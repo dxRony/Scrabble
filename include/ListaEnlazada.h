@@ -6,6 +6,7 @@
 #define LISTAENLAZADA_H
 
 #include <iostream>
+using namespace std;
 
 template <typename T> // indica que es una estrucutura generica
 struct Nodo
@@ -108,10 +109,10 @@ void ListaEnlazada<T>::mostrarLista() const
 
     while (actual)
     {                                     // mientras exista un nodo actual
-        std::cout << actual->dato << " "; // imprimimos el dato actual
+        cout << actual->dato << " "; // imprimimos el dato actual
         actual = actual->siguiente;       // el nodo actual se convierte en el siguiente del actual
     }
-    std::cout << std::endl; // imprimiendo salto de linea cuando no hayan mas elementos
+    cout << endl; // imprimiendo salto de linea cuando no hayan mas elementos
 }
 
 #endif //LISTAENLAZADA_H

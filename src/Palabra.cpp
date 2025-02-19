@@ -33,3 +33,9 @@ void Palabra::setPalabraFormada(bool palabraFormada)
 {
     this->palabraFormada = palabraFormada;
 }
+
+// Definición del operador de salida
+ostream& operator<<(ostream& os, const Palabra& palabra) {
+    os << palabra.getContenido();  // Puedes agregar más info si quieres: << " (" << palabra.getPuntuacion() << ")"
+    return os;
+}

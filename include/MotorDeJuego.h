@@ -1,8 +1,8 @@
 #ifndef MOTORDEJUEGO_H
 #define MOTORDEJUEGO_H
 
-//#include "Partida.h"
-//#include "Reporte.h"
+#include "Partida.h"
+#include "Reporte.h"
 #include <iostream>
 
 class MotorDeJuego

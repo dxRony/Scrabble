@@ -5,6 +5,8 @@
 
 
 #include <iostream>
+
+#include "../include/Archivo.h"
 using namespace std;
 MotorDeJuego::MotorDeJuego() {}
 
@@ -41,6 +43,13 @@ void MotorDeJuego::mostrarMenu()
 void MotorDeJuego::nuevaPartida()
 {
     cout << "\n Iniciando Nueva Partida..." << endl;
+    Archivo archivo;
+    ListaEnlazada<Palabra> listaPalabras;
+    cout << "\n Leyendo y ordenando palabras..." << endl;
+    listaPalabras = archivo.ordenarAlfabeticamente();
+    listaPalabras.mostrarLista();
+    //Partida partida;
+
 }
 
 void MotorDeJuego::verReportes()

@@ -27,6 +27,8 @@ public:
     void setContenido(string contenido);
     void setPuntuacion(int puntuacion);
     void setPalabraFormada(bool palabraFormada);
+
+    friend ostream& operator<<(ostream& os, const Palabra& palabra);
 };
 
 #endif //PALABRA_H
