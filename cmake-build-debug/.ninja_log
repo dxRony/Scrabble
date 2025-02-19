@@ -1,0 +1,4 @@
+# ninja log v6
+1	180	1739980044420045720	CMakeFiles/Scrabble.dir/main.cpp.o	c387848d052f36b
+186	287	1739980044605044096	Scrabble	e502f54d697ce2f2
+1	186	1739980044420045720	CMakeFiles/Scrabble.dir/src/MotorDeJuego.cpp.o	2964d56145a6f0c1
