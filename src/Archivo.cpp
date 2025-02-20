@@ -11,8 +11,6 @@
 ListaEnlazada<Palabra> Archivo::leerCSV(const string &rutaArchivo)
 {
     ListaEnlazada<Palabra> listaPalabras;
-    cout << "ruta archivo: "<< rutaArchivo << endl;
-    cout << "Ruta exacta: [" << rutaArchivo << "]" << endl;
     ifstream archivo(rutaArchivo, ios::in);
     if (!archivo.is_open())
     {

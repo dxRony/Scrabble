@@ -27,12 +27,17 @@ public:
     int getPuntuacion() const;
     int getCantidadTurnos() const;
     int getTiempoJugado() const;
+    ListaEnlazada<Letra> getLetras() const;
 
     //setters
     void setNombre(string nuevoNombre);
     void setPuntuacion(int puntos);
-    void aumentarTurno();
+    void setCantidadTurnos(int turnoExtra);
     void setTiempoJugado(int tiempoExtra);
+    void setLetra (Letra letra);
+
+    // Sobrecarga del operador <<
+    friend ostream& operator<<(ostream& os, const Jugador& jugador);
 
 };
 

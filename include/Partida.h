@@ -24,6 +24,11 @@ private:
 public:
     Partida();
 
+    void iniciarPartida(ListaEnlazada<Palabra> diccionario);
+    void registrarJugadores();
+    ListaEnlazada<Letra> generarLetrasJugables(ListaEnlazada<Palabra> &diccionario);
+    void repartirLetras();
+
     //getters
     Cola<Jugador> getColaJugadores() const;
     Pila<Palabra> getPilaPalabrasJugadas() const;

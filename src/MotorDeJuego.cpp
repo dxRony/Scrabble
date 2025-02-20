@@ -42,18 +42,18 @@ void MotorDeJuego::mostrarMenu()
 
 void MotorDeJuego::nuevaPartida()
 {
-    cout << "\n Iniciando Nueva Partida..." << endl;
+    cout << "\nIniciando Nueva Partida..." << endl;
     Archivo archivo;
     ListaEnlazada<Palabra> listaPalabras;
-    cout << "\n Leyendo y ordenando palabras..." << endl;
+    cout << "\nLeyendo y ordenando palabras..." << endl;
     listaPalabras = archivo.ordenarAlfabeticamente();
+    cout << "Lista de palabras disponibles para la partida:" << endl;
     listaPalabras.mostrarLista();
     Partida partida;
-    //partida.
-
+    partida.iniciarPartida(listaPalabras);
 }
 
 void MotorDeJuego::verReportes()
 {
-    cout << "\n Mostrando Reportes..." << endl;
+    cout << "\nMostrando Reportes..." << endl;
 }

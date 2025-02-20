@@ -11,19 +11,22 @@ using namespace std;
 class Letra
 {
 private:
-    string letra;
+    char letra;
     int punteo;
 
 public:
     Letra();
 
     //getters
-    string getLetra() const;
+    char getLetra() const;
     int getPunteo() const;
 
     //setters
-    void setLetra(string letra);
+    void setLetra(char letra);
     void setPunteo(int punteo);
+
+    // Declaración de la sobrecarga como amiga
+    friend ostream& operator<<(ostream& os, const Letra& l);
 };
 
 #endif //LETRA_H

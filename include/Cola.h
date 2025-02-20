@@ -30,6 +30,7 @@ public:
     T obtenerFrente() const;   // metodo para obtener al primer elemento de la cola
     bool estaVacia() const;    // metodo que verifica si la cola esta vacia
     void mostrarCola() const;  // metodo para mostrar la cola
+    Cola<T> mezclarCola(); // metodo para mezclar una cola
 };
 
 template <typename T>
@@ -76,7 +77,6 @@ T Cola<T>::obtenerFrente() const
     if (estaVacia()) // si la cola esta vacia no se puede devolver nada
     {
         throw runtime_error("La cola esta vacia");
-        return;
     }
     return frente->dato; // regresando el nodo que esta enfrente
 }
@@ -93,9 +93,45 @@ void Cola<T>::mostrarCola() const
     Nodo *actual = frente; // se crea un nodo actual para contener el inicio de la cola
     while (actual)         // mientras exista un nodo actual
     {
-        cout << actual->dato << " "; // Se imprime ese nodo actual
+        cout << actual->dato << " \n"; // Se imprime ese nodo actual
         actual = actual->siguiente;  // el nodo actual se actualiza al siguiente nodo de la cola
     }
     cout << endl;
+}
+
+template <typename T>
+Cola<T> Cola<T>::mezclarCola() {
+    int cantidad = 0; //var para contar los elementos de la cola
+    Nodo* temporal = frente;
+    while (temporal != nullptr) {
+        cantidad++;
+        temporal = temporal->siguiente;
+    }
+
+    T* arreglo = new T[cantidad];   //convirtiendo la cola en un arreglo para una facil manipulacion
+    for (int i = 0; i < cantidad; i++) {
+        arreglo[i] = obtenerFrente(); // guardando el primer dato
+        desencolar();                 // eliminando el primer dato
+    }
+
+    //mezclando el arreglo con algoritmo fisher-yates
+    srand(static_cast<unsigned int>(time(nullptr))); // semilla de aleatoriedad
+    for (int i = cantidad - 1; i > 0; i--) {
+        int indiceAleatorio = rand() % (i + 1); // generando indice aleatorio
+
+        // moviendo arreglo[i] con arreglo[indiceAleatorio]
+        T temp = arreglo[i];
+        arreglo[i] = arreglo[indiceAleatorio];
+        arreglo[indiceAleatorio] = temp;
+    }
+
+    // encolando los elementos mezclados en una nueva cola
+    Cola<T> colaMezclada;
+    for (int i = 0; i < cantidad; i++) {
+        colaMezclada.encolar(arreglo[i]);
+    }
+
+    delete[] arreglo;
+    return colaMezclada;
 }
 #endif //COLA_H

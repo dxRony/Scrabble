@@ -109,7 +109,7 @@ void ListaEnlazada<T>::mostrarLista() const
 
     while (actual)
     {                                     // mientras exista un nodo actual
-        cout << actual->dato << " "; // imprimimos el dato actual
+        cout << actual->dato << " \n"; // imprimimos el dato actual
         actual = actual->siguiente;       // el nodo actual se convierte en el siguiente del actual
     }
     cout << endl; // imprimiendo salto de linea cuando no hayan mas elementos
