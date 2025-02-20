@@ -48,7 +48,8 @@ void MotorDeJuego::nuevaPartida()
     cout << "\n Leyendo y ordenando palabras..." << endl;
     listaPalabras = archivo.ordenarAlfabeticamente();
     listaPalabras.mostrarLista();
-    //Partida partida;
+    Partida partida;
+    //partida.
 
 }
 

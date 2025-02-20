@@ -13,18 +13,12 @@ ListaEnlazada<Palabra> Archivo::leerCSV(const string &rutaArchivo)
     ListaEnlazada<Palabra> listaPalabras;
     cout << "ruta archivo: "<< rutaArchivo << endl;
     cout << "Ruta exacta: [" << rutaArchivo << "]" << endl;
-    //ifstream archivo(rutaArchivo); // abriendo archivo
     ifstream archivo(rutaArchivo, ios::in);
-    if (!archivo) {
-        cerr << "Fallo de apertura. errno: " << strerror(errno) << endl;
-    }
-
     if (!archivo.is_open())
     {
         cerr << "Error al abrir archivo.csv " << rutaArchivo << endl;
         return listaPalabras;
     }
-    cout << "se abrio el archivo" << endl;
 
     string linea;
     while (getline(archivo, linea)) // leyendo linea por linea
@@ -54,7 +48,7 @@ ListaEnlazada<Palabra> Archivo::leerCSV(const string &rutaArchivo)
 
 ListaEnlazada<Palabra> Archivo::ordenarAlfabeticamente()
 {
-    ListaEnlazada<Palabra> listaPalabras = this->leerCSV("util/palabras.csv");
+    ListaEnlazada<Palabra> listaPalabras = this->leerCSV("../util/palabras.csv");
     Nodo<Palabra> *actual = listaPalabras.obtenerCabeza();  //obteniendo la cabeza de la lista
 
     while (actual != nullptr) // minetras el nodo actual exista
