@@ -25,7 +25,7 @@ void Letra::setPunteo(int punteo){
     this->punteo = punteo;
 }
 
-// Implementación de la sobrecarga del operador <<
+// sobrecarga del operador "<<"
 ostream& operator<<(ostream& os, const Letra& l) {
     os << "Letra: " << l.getLetra() << ", Punteo: " << l.getPunteo();
     return os;

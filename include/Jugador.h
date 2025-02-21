@@ -28,6 +28,7 @@ public:
     int getCantidadTurnos() const;
     int getTiempoJugado() const;
     ListaEnlazada<Letra> getLetras() const;
+    void mostrarLetras() const;
 
     //setters
     void setNombre(string nuevoNombre);

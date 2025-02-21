@@ -31,6 +31,7 @@ public:
     Nodo<T>* obtenerCabeza() const;
     void eliminar(T valor);
     void mostrarLista() const;
+    int contarElementos() const;
 };
 
 template <typename T>
@@ -99,7 +100,6 @@ Nodo<T>* ListaEnlazada<T>::obtenerCabeza() const{
         return cabeza;
     }
     return nullptr;
-
 }
 
 template <typename T>
@@ -115,4 +115,15 @@ void ListaEnlazada<T>::mostrarLista() const
     cout << endl; // imprimiendo salto de linea cuando no hayan mas elementos
 }
 
+template <typename T>
+int ListaEnlazada<T>::contarElementos() const {
+    int contador = 0;
+    Nodo<T>* actual = cabeza; // guardando la cabeza de la lista
+
+    while (actual != nullptr) {
+        contador++;               // sumando cada nodo
+        actual = actual->siguiente; // pasando al siguiente nodo
+    }
+    return contador;
+}
 #endif //LISTAENLAZADA_H

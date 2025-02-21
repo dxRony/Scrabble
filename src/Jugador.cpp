@@ -23,7 +23,19 @@ ListaEnlazada<Letra> Jugador::getLetras() const {
     return letras;
 }
 
-
+void Jugador::mostrarLetras() const {
+    Nodo<Letra>* actual = letras.obtenerCabeza();
+    cout << "Letras (fichas) de " << nombre << ": ";
+    if (actual == nullptr) {
+        cout << nombre << ", no tiene mas letras en su bolsa" << endl;
+        return;
+    }
+    while (actual != nullptr) {
+        cout << actual->dato.getLetra() << " ";
+        actual = actual->siguiente;
+    }
+    cout << endl;
+}
 // setters
 void Jugador::setNombre(string nuevoNombre)
 {

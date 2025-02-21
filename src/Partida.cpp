@@ -12,13 +12,16 @@ Partida::Partida() : jugadores(), palabrasJugadas(), listaPunteos(), diccionario
 
 void Partida::iniciarPartida(ListaEnlazada<Palabra> diccionario) {
     this->registrarJugadores();
-    cout  << "Generando turnos aleatorios..." << endl;
     jugadores = jugadores.mezclarCola();
-    jugadores.mostrarCola();
     this->generarLetrasJugables(diccionario);
-    cout << "Letras jugables a repartir entre los jugadores:" << endl;
+    cout << "Letras a repartir entre los jugadores:" << endl;
     letrasJugables.mostrarLista();
     cout << "Repartiendo letras (fichas) entre todos los jugadores..." << endl;
+    this ->repartirLetras();
+    cout  << "Generando turnos aleatorios..." << endl;
+    cout << "Ornden de los turnos para la partida: " << endl;
+    jugadores.mostrarCola();
+    cout << "Todo listo para iniciar" << endl;
 }
 
 void Partida::registrarJugadores() {
@@ -27,7 +30,7 @@ void Partida::registrarJugadores() {
     cin >> cantidadJugadores;
 
     while (cantidadJugadores <2) {
-        cout << "Debe haber minimo 2 jugadores en la partida" << endl;
+        cout << "Debe haber minimo 2 jugadores en la partida *_*" << endl;
         cout << "\nIngresa el numero de jugadores que tendra la partida..." << endl;
         cin >> cantidadJugadores;
     }
@@ -69,26 +72,20 @@ ListaEnlazada<Letra> Partida::generarLetrasJugables(ListaEnlazada<Palabra>& dicc
 }
 
 void Partida::repartirLetras() {
-    int cantidadJugadores = 0;
-    Nodo<Jugador>* actualJugador = jugadores.obtenerFrente();   //obteniendo al primer jugador de la cola
-
-    // Contar el número de jugadores
-    while (actualJugador != nullptr) {
-        cantidadJugadores++;
-        actualJugador = actualJugador->siguiente;
-    }
-
-    if (cantidadJugadores == 0) return; // Si no hay jugadores, no se reparte
-
+    int cantidadJugadores = jugadores.contarElementos();
+    if (cantidadJugadores == 0) return;
     Nodo<Letra>* actualLetra = letrasJugables.obtenerCabeza();
-    actualJugador = jugadores.obtenerFrente();
 
-    // Repartir letras de forma circular entre los jugadores
+    // repartiendo hasta que no haya dato siguiente
     while (actualLetra != nullptr) {
-        actualJugador->dato.setLetra(actualLetra->dato); // Método de Jugador para recibir letras
-        actualLetra = actualLetra->siguiente;
-        actualJugador = actualJugador->siguiente ? actualJugador->siguiente : jugadores.obtenerFrente();
+        Jugador actualJugador = jugadores.desencolar(); // guardando jugador
+        actualJugador.setLetra(actualLetra->dato);      // dandole una ficha
+        jugadores.encolar(actualJugador);               // agregandolo a la cola nuevamente
+
+        actualLetra = actualLetra->siguiente;           // actualizando letra
     }
+    //Jugador jugadortmp = jugadores.obtenerFrente();
+    //jugadortmp.mostrarLetras();
 }
 
 // getters

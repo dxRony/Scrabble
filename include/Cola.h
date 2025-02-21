@@ -26,11 +26,12 @@ public:
     Cola(); // constructor de la clase cola
 
     void encolar(T nuevoDato); // metodo para agregar elementos a la cola
-    void desencolar();         // metodo para eliminar elementos de la cola
+    T desencolar();         // metodo para eliminar elementos de la cola
     T obtenerFrente() const;   // metodo para obtener al primer elemento de la cola
     bool estaVacia() const;    // metodo que verifica si la cola esta vacia
     void mostrarCola() const;  // metodo para mostrar la cola
     Cola<T> mezclarCola(); // metodo para mezclar una cola
+    int contarElementos() const;
 };
 
 template <typename T>
@@ -53,22 +54,22 @@ void Cola<T>::encolar(T nuevoDato)
 }
 
 template <typename T>
-void Cola<T>::desencolar()
+T Cola<T>::desencolar()
 {
-    if (estaVacia()) // si la cola esta vacia no se puede desencola ningun dato de la cola
-    {
-        cout << "La cola esta vacia\n";
-        return;
+    if (estaVacia()) {
+        throw runtime_error("La cola está vacía"); // si la cola esta vacia arrojamos error
     }
 
-    Nodo *temp = frente;        // guardando temporalmente el frente de la cola
-    frente = frente->siguiente; // el nodo que sigue al frente se convierte en el frente
-    delete temp;                // eliminando el dato que estaba en el frente de la cola
+    Nodo *tmp = frente;        // guardando el primer nodo
+    T dato = tmp->dato;        // almacenando el objeto
+    frente = frente->siguiente; // cambiando dato de enfrente por el siguiente del frente
+    delete tmp;                // liberando memoria
 
-    if (frente == nullptr) // si el frente de la cola queda vacio
-    {
-        final = nullptr; // el final se vuelve vacio (ya no hay nodos en la cola)
+    if (frente == nullptr) {
+        final = nullptr; //si ya no hay dato de enfrente, no hay dato al final
     }
+
+    return dato; // devolviendo el dato
 }
 
 template <typename T>
@@ -133,5 +134,16 @@ Cola<T> Cola<T>::mezclarCola() {
 
     delete[] arreglo;
     return colaMezclada;
+}
+
+template <typename T>
+int Cola<T>::contarElementos() const {
+    int contador = 0;
+    Nodo* actual = frente;
+    while (actual != nullptr) {
+        contador++;
+        actual = actual->siguiente;
+    }
+    return contador;
 }
 #endif //COLA_H
