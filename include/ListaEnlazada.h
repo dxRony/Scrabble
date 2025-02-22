@@ -32,6 +32,7 @@ public:
     void eliminar(T valor);
     void mostrarLista() const;
     int contarElementos() const;
+    void setCabeza(Nodo<T> *cabeza);
 };
 
 template <typename T>
@@ -125,5 +126,10 @@ int ListaEnlazada<T>::contarElementos() const {
         actual = actual->siguiente; // pasando al siguiente nodo
     }
     return contador;
+}
+
+template <typename T>
+void ListaEnlazada<T>::setCabeza(Nodo<T>* nuevoCabeza) {
+    cabeza = nuevoCabeza;
 }
 #endif //LISTAENLAZADA_H

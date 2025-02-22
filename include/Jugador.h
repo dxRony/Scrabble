@@ -19,8 +19,16 @@ private:
     int tiempoJugado;
     ListaEnlazada<Letra> letras;
 
+    //funciones privadas
+    Nodo<Letra>* mergeSort(Nodo<Letra>* cabeza);
+    Nodo<Letra>* dividirLista(Nodo<Letra>* cabeza);
+    Nodo<Letra>* fusionarListas(Nodo<Letra>* izquierda, Nodo<Letra>* derecha);
 public:
     Jugador();
+
+    void mostrarLetras() const;
+    void ordenarLetrasPorPunteo();
+
 
     //getters
     string getNombre() const;
@@ -28,7 +36,7 @@ public:
     int getCantidadTurnos() const;
     int getTiempoJugado() const;
     ListaEnlazada<Letra> getLetras() const;
-    void mostrarLetras() const;
+
 
     //setters
     void setNombre(string nuevoNombre);

@@ -84,8 +84,11 @@ void Partida::repartirLetras() {
 
         actualLetra = actualLetra->siguiente;           // actualizando letra
     }
-    //Jugador jugadortmp = jugadores.obtenerFrente();
-    //jugadortmp.mostrarLetras();
+    Jugador jugadortmp = jugadores.obtenerFrente();
+    jugadortmp.mostrarLetras();
+    jugadortmp.ordenarLetrasPorPunteo();
+    cout << "letras ordenadas: " << endl;
+    jugadortmp.mostrarLetras();
 }
 
 // getters
