@@ -9,8 +9,7 @@
 #include "Palabra.h"
 using namespace std;
 
-class Archivo
-{
+class Archivo {
 public:
     ListaEnlazada<Palabra> leerCSV(const string &rutaArchivo);
 

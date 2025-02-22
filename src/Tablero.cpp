@@ -6,8 +6,7 @@
 
 using namespace std;
 
-Tablero::Tablero()
-{
+Tablero::Tablero() {
     this->filas = 15;
     this->columnas = 15;
     this->espacioActivo = true;
@@ -19,17 +18,14 @@ int Tablero::getColumnas() const { return columnas; }
 bool Tablero::getEspacioActivo() const { return espacioActivo; }
 
 // setters
-void Tablero::setFilas(int filas)
-{
+void Tablero::setFilas(int filas) {
     this->filas = filas;
 }
 
-void Tablero::setColummnas(int columnas)
-{
+void Tablero::setColummnas(int columnas) {
     this->columnas = columnas;
 }
 
-void Tablero::setEspacioActivo(bool espacioActivo)
-{
+void Tablero::setEspacioActivo(bool espacioActivo) {
     this->espacioActivo = espacioActivo;
 }

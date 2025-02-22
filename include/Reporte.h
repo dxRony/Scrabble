@@ -10,8 +10,7 @@
 #include "Palabra.h"
 #include "Jugador.h"
 
-class Reporte
-{
+class Reporte {
 private:
     Pila<Palabra> palabrasEncontradas;
     Pila<Palabra> palabrasPerdidas;
@@ -23,10 +22,12 @@ public:
 
     //getters
     Pila<Palabra> getPilaPalabrasEncontradas() const;
-    Pila<Palabra> getPilaPalabrasPerdidas() const;
-    ListaEnlazada<Jugador> getListaJugadores() const;
-    ListaEnlazada<int> getListaTiempoPorTurno() const;
 
+    Pila<Palabra> getPilaPalabrasPerdidas() const;
+
+    ListaEnlazada<Jugador> getListaJugadores() const;
+
+    ListaEnlazada<int> getListaTiempoPorTurno() const;
 };
 
 #endif //REPORTE_H

@@ -10,8 +10,7 @@
 #include "Jugador.h"
 #include "Palabra.h"
 
-class Partida
-{
+class Partida {
 private:
     Cola<Jugador> jugadores;
     Pila<Palabra> palabrasJugadas;
@@ -25,22 +24,29 @@ public:
     Partida();
 
     void iniciarPartida(ListaEnlazada<Palabra> diccionario);
+
     void registrarJugadores();
+
     ListaEnlazada<Letra> generarLetrasJugables(ListaEnlazada<Palabra> &diccionario);
+
     void repartirLetras();
 
     //getters
     Cola<Jugador> getColaJugadores() const;
+
     Pila<Palabra> getPilaPalabrasJugadas() const;
+
     ListaEnlazada<Jugador> getListaPunteos() const;
+
     ListaEnlazada<Palabra> getListaDiccionario() const;
+
     ListaEnlazada<Letra> getListaLetrasJugables() const;
+
     //pendiente getterTablero
     bool getHayPalabra() const;
 
     //setters
     void setHayPalabra(bool hayPalabra);
-
 };
 
 #endif //PARTIDA_H

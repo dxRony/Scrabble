@@ -17,8 +17,8 @@ void Partida::iniciarPartida(ListaEnlazada<Palabra> diccionario) {
     cout << "Letras a repartir entre los jugadores:" << endl;
     letrasJugables.mostrarLista();
     cout << "Repartiendo letras (fichas) entre todos los jugadores..." << endl;
-    this ->repartirLetras();
-    cout  << "Generando turnos aleatorios..." << endl;
+    this->repartirLetras();
+    cout << "Generando turnos aleatorios..." << endl;
     cout << "Ornden de los turnos para la partida: " << endl;
     jugadores.mostrarCola();
     cout << "Todo listo para iniciar" << endl;
@@ -29,7 +29,7 @@ void Partida::registrarJugadores() {
     cout << "Ingresa el numero de jugadores que tendra la partida..." << endl;
     cin >> cantidadJugadores;
 
-    while (cantidadJugadores <2) {
+    while (cantidadJugadores < 2) {
         cout << "Debe haber minimo 2 jugadores en la partida *_*" << endl;
         cout << "\nIngresa el numero de jugadores que tendra la partida..." << endl;
         cin >> cantidadJugadores;
@@ -45,23 +45,25 @@ void Partida::registrarJugadores() {
         jugador.setPuntuacion(0);
         jugador.setCantidadTurnos(0);
         jugador.setTiempoJugado(0);
-        jugadores.encolar(jugador);  // encolando al jugador
+        jugadores.encolar(jugador); // encolando al jugador
     }
     cout << "Jugadores: " << endl;
     jugadores.mostrarCola();
 }
 
-ListaEnlazada<Letra> Partida::generarLetrasJugables(ListaEnlazada<Palabra>& diccionario) {
-    Nodo<Palabra>* actual = diccionario.obtenerCabeza();    //obteniendo la primera lera
+ListaEnlazada<Letra> Partida::generarLetrasJugables(ListaEnlazada<Palabra> &diccionario) {
+    Nodo<Palabra> *actual = diccionario.obtenerCabeza(); //obteniendo la primera lera
 
     srand(static_cast<unsigned int>(time(nullptr))); // semilla de aleatoriedad
 
-    while (actual != nullptr) {     //mientras sigan habiendo palabras en el diccionario
-        const string& palabra = actual->dato.getContenido();    //obteniendo el contenido de la palabra
+    while (actual != nullptr) {
+        //mientras sigan habiendo palabras en el diccionario
+        const string &palabra = actual->dato.getContenido(); //obteniendo el contenido de la palabra
 
-        for (char caracter : palabra) {     //recorriendo cada letra de la palabra
-            Letra letra;                    //creando objeto letra
-            letra.setLetra(caracter);       // asignando la letra
+        for (char caracter: palabra) {
+            //recorriendo cada letra de la palabra
+            Letra letra; //creando objeto letra
+            letra.setLetra(caracter); // asignando la letra
             letra.setPunteo(rand() % 9 + 1); // creando la puntuacion aleatoria dela letra
 
             letrasJugables.agregarFinal(letra); // agregando la letra a la lista
@@ -74,15 +76,15 @@ ListaEnlazada<Letra> Partida::generarLetrasJugables(ListaEnlazada<Palabra>& dicc
 void Partida::repartirLetras() {
     int cantidadJugadores = jugadores.contarElementos();
     if (cantidadJugadores == 0) return;
-    Nodo<Letra>* actualLetra = letrasJugables.obtenerCabeza();
+    Nodo<Letra> *actualLetra = letrasJugables.obtenerCabeza();
 
     // repartiendo hasta que no haya dato siguiente
     while (actualLetra != nullptr) {
         Jugador actualJugador = jugadores.desencolar(); // guardando jugador
-        actualJugador.setLetra(actualLetra->dato);      // dandole una ficha
-        jugadores.encolar(actualJugador);               // agregandolo a la cola nuevamente
+        actualJugador.setLetra(actualLetra->dato); // dandole una ficha
+        jugadores.encolar(actualJugador); // agregandolo a la cola nuevamente
 
-        actualLetra = actualLetra->siguiente;           // actualizando letra
+        actualLetra = actualLetra->siguiente; // actualizando letra
     }
     Jugador jugadortmp = jugadores.obtenerFrente();
     jugadortmp.mostrarLetras();
@@ -101,11 +103,6 @@ ListaEnlazada<Letra> Partida::getListaLetrasJugables() const { return letrasJuga
 bool Partida::getHayPalabra() const { return hayPalabra; }
 
 // setters
-void Partida::setHayPalabra(bool nuevaHayPalabra)
-{
+void Partida::setHayPalabra(bool nuevaHayPalabra) {
     hayPalabra = nuevaHayPalabra;
 }
-
-
-
-

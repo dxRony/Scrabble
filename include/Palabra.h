@@ -8,8 +8,7 @@
 #include <string>
 using namespace std;
 
-class Palabra
-{
+class Palabra {
 private:
     string contenido;
     int puntuacion;
@@ -20,15 +19,19 @@ public:
 
     // getters
     string getContenido() const;
+
     int getPuntuacion() const;
+
     bool isPalabraFormada() const;
 
     // setters
     void setContenido(string contenido);
+
     void setPuntuacion(int puntuacion);
+
     void setPalabraFormada(bool palabraFormada);
 
-    friend ostream& operator<<(ostream& os, const Palabra& palabra);
+    friend ostream &operator<<(ostream &os, const Palabra &palabra);
 };
 
 #endif //PALABRA_H

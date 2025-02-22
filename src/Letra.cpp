@@ -6,8 +6,7 @@
 
 using namespace std;
 
-Letra::Letra()
-{
+Letra::Letra() {
     this->letra = ' ';
     this->punteo = 0;
 }
@@ -17,16 +16,16 @@ char Letra::getLetra() const { return letra; }
 int Letra::getPunteo() const { return punteo; }
 
 //setters
-void Letra::setLetra(char letra){
+void Letra::setLetra(char letra) {
     this->letra = letra;
 }
 
-void Letra::setPunteo(int punteo){
+void Letra::setPunteo(int punteo) {
     this->punteo = punteo;
 }
 
 // sobrecarga del operador "<<"
-ostream& operator<<(ostream& os, const Letra& l) {
+ostream &operator<<(ostream &os, const Letra &l) {
     os << "Letra: " << l.getLetra() << ", Punteo: " << l.getPunteo();
     return os;
 }

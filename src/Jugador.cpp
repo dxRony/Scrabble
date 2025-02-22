@@ -39,36 +39,40 @@ Nodo<Letra> *Jugador::mergeSort(Nodo<Letra> *cabeza) {
     }
     Nodo<Letra> *medio = dividirLista(cabeza); //lLamando a metodo para dividir la lista general en 2
     Nodo<Letra> *izquierda = mergeSort(cabeza); // enviando la 1era mitad para dividir...
-    Nodo<Letra> *derecha = mergeSort(medio);    //enviando la 2da mitad tambien
+    Nodo<Letra> *derecha = mergeSort(medio); //enviando la 2da mitad tambien
 
-    return fusionarListas(izquierda, derecha);  //fusiona las 2 mitades para tener una lista ordenada
+    return fusionarListas(izquierda, derecha); //fusiona las 2 mitades para tener una lista ordenada
 }
 
 Nodo<Letra> *Jugador::dividirLista(Nodo<Letra> *cabeza) {
-    Nodo<Letra> *lento = cabeza;        //puntero que avanza un nodo a la vez
-    Nodo<Letra> *rapido = cabeza->siguiente;    //puntero que avanza 2 nodos a la vez
+    Nodo<Letra> *lento = cabeza; //puntero que avanza un nodo a la vez
+    Nodo<Letra> *rapido = cabeza->siguiente; //puntero que avanza 2 nodos a la vez
 
-    while (rapido && rapido->siguiente) {       //mientras existan estos punteros (cuando ya no hay rapido, lento estara a media lista)
-        lento = lento->siguiente;               //avanzando 1 puntero
-        rapido = rapido->siguiente->siguiente;  //avanzando 2 punteros
+    while (rapido && rapido->siguiente) {
+        //mientras existan estos punteros (cuando ya no hay rapido, lento estara a media lista)
+        lento = lento->siguiente; //avanzando 1 puntero
+        rapido = rapido->siguiente->siguiente; //avanzando 2 punteros
     }
-    Nodo<Letra> *medio = lento->siguiente;      //guardando el inicio de la 2da lista
+    Nodo<Letra> *medio = lento->siguiente; //guardando el inicio de la 2da lista
     lento->siguiente = nullptr; // desliga ambas listas
-    return medio;               //devolviendo la 2da mitad
+    return medio; //devolviendo la 2da mitad
 }
 
 Nodo<Letra> *Jugador::fusionarListas(Nodo<Letra> *izquierda, Nodo<Letra> *derecha) {
-    if (!izquierda) return derecha;     //si no hay 2da lista, devuelve la 1ra
-    if (!derecha) return izquierda;     //si no hay 1ra lista, devuelve la 2da
+    if (!izquierda) return derecha; //si no hay 2da lista, devuelve la 1ra
+    if (!derecha) return izquierda; //si no hay 1ra lista, devuelve la 2da
 
-    Nodo<Letra> *resultado = nullptr;   //nodo que guardara el que tenga mayor punteo
+    Nodo<Letra> *resultado = nullptr; //nodo que guardara el que tenga mayor punteo
 
-    if (izquierda->dato.getPunteo() >= derecha->dato.getPunteo()) { //comparando ambos datos
-        resultado = izquierda;//si el mayor es el de la izquierda
-        resultado->siguiente = fusionarListas(izquierda->siguiente, derecha);   // se compara el siguiente de la izquierda con el derecho
+    if (izquierda->dato.getPunteo() >= derecha->dato.getPunteo()) {
+        //comparando ambos datos
+        resultado = izquierda; //si el mayor es el de la izquierda
+        resultado->siguiente = fusionarListas(izquierda->siguiente, derecha);
+        // se compara el siguiente de la izquierda con el derecho
     } else {
-        resultado = derecha;  //si el mayo es el de la derecha
-        resultado->siguiente = fusionarListas(izquierda, derecha->siguiente);   //se compara el siguiente de la derecha con el izquierdo
+        resultado = derecha; //si el mayo es el de la derecha
+        resultado->siguiente = fusionarListas(izquierda, derecha->siguiente);
+        //se compara el siguiente de la derecha con el izquierdo
     }
     return resultado; //devolviendo el nodo de mayor valor
 }

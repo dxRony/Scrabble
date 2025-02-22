@@ -8,14 +8,14 @@
 
 #include "../include/Archivo.h"
 using namespace std;
-MotorDeJuego::MotorDeJuego() {}
 
-void MotorDeJuego::mostrarMenu()
-{
+MotorDeJuego::MotorDeJuego() {
+}
+
+void MotorDeJuego::mostrarMenu() {
     int opcion;
 
-    do
-    {
+    do {
         cout << "            BIENVENIDO A SCRABBLE   " << endl;
         cout << "\n*********** Menu Principal ***********" << endl;
         cout << "1. Nueva Partida" << endl;
@@ -24,14 +24,13 @@ void MotorDeJuego::mostrarMenu()
         cout << "Selecciona Una Opcion" << endl;
         cin >> opcion;
 
-        switch (opcion)
-        {
+        switch (opcion) {
             case 1:
                 nuevaPartida();
-            break;
+                break;
             case 2:
                 verReportes();
-            break;
+                break;
             case 3:
                 finalizarEjecucion = true;
             default:
@@ -40,8 +39,7 @@ void MotorDeJuego::mostrarMenu()
     } while (!finalizarEjecucion);
 }
 
-void MotorDeJuego::nuevaPartida()
-{
+void MotorDeJuego::nuevaPartida() {
     cout << "\nIniciando Nueva Partida..." << endl;
     Archivo archivo;
     ListaEnlazada<Palabra> listaPalabras;
@@ -53,7 +51,6 @@ void MotorDeJuego::nuevaPartida()
     partida.iniciarPartida(listaPalabras);
 }
 
-void MotorDeJuego::verReportes()
-{
+void MotorDeJuego::verReportes() {
     cout << "\nMostrando Reportes..." << endl;
 }

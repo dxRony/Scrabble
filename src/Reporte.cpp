@@ -6,8 +6,7 @@
 
 using namespace std;
 
-Reporte::Reporte() : palabrasEncontradas(), palabrasPerdidas(), listaJugadores(), tiempoPorTurno()
-{
+Reporte::Reporte() : palabrasEncontradas(), palabrasPerdidas(), listaJugadores(), tiempoPorTurno() {
 }
 
 // getters

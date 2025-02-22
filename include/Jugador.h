@@ -10,8 +10,7 @@
 #include "Letra.h"
 using namespace std;
 
-class Jugador
-{
+class Jugador {
 private:
     string nombre;
     int puntuacion;
@@ -20,34 +19,45 @@ private:
     ListaEnlazada<Letra> letras;
 
     //funciones privadas
-    Nodo<Letra>* mergeSort(Nodo<Letra>* cabeza);
-    Nodo<Letra>* dividirLista(Nodo<Letra>* cabeza);
-    Nodo<Letra>* fusionarListas(Nodo<Letra>* izquierda, Nodo<Letra>* derecha);
+    Nodo<Letra> *mergeSort(Nodo<Letra> *cabeza);
+
+    Nodo<Letra> *dividirLista(Nodo<Letra> *cabeza);
+
+    Nodo<Letra> *fusionarListas(Nodo<Letra> *izquierda, Nodo<Letra> *derecha);
+
 public:
     Jugador();
 
     void mostrarLetras() const;
+
     void ordenarLetrasPorPunteo();
 
 
     //getters
     string getNombre() const;
+
     int getPuntuacion() const;
+
     int getCantidadTurnos() const;
+
     int getTiempoJugado() const;
+
     ListaEnlazada<Letra> getLetras() const;
 
 
     //setters
     void setNombre(string nuevoNombre);
+
     void setPuntuacion(int puntos);
+
     void setCantidadTurnos(int turnoExtra);
+
     void setTiempoJugado(int tiempoExtra);
-    void setLetra (Letra letra);
+
+    void setLetra(Letra letra);
 
     // Sobrecarga del operador <<
-    friend ostream& operator<<(ostream& os, const Jugador& jugador);
-
+    friend ostream &operator<<(ostream &os, const Jugador &jugador);
 };
 
 #endif //JUGADOR_H

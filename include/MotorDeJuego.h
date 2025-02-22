@@ -5,15 +5,17 @@
 #include "Reporte.h"
 #include <iostream>
 
-class MotorDeJuego
-{
+class MotorDeJuego {
 public:
     MotorDeJuego();
+
     void mostrarMenu();
 
 private:
     void nuevaPartida();
+
     void verReportes();
+
     bool finalizarEjecucion = false;
 };
 
