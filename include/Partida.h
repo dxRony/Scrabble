@@ -31,6 +31,8 @@ public:
 
     void repartirLetras();
 
+    void ordenarLetrasJugadores();
+
     //getters
     Cola<Jugador> getColaJugadores() const;
 

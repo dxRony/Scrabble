@@ -3,29 +3,67 @@
 //
 #include "../include/Tablero.h"
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
 Tablero::Tablero() {
-    this->filas = 15;
-    this->columnas = 15;
-    this->espacioActivo = true;
+    for (int i = 0; i < 15; i++) {
+        //cada vez que se crea un tablero en partida se crea un tablero vacio
+        for (int j = 0; j < 15; j++) {
+            casillas[i][j].setLetra(' ');
+            casillas[i][j].setPunteo(0);
+        }
+    }
 }
 
-// getters
-int Tablero::getFilas() const { return filas; }
-int Tablero::getColumnas() const { return columnas; }
-bool Tablero::getEspacioActivo() const { return espacioActivo; }
+void Tablero::generarTablero() {
+    srand(static_cast<unsigned int>(time(nullptr))); // Semilla para aleatoriedad
+    int contador = 0;
 
-// setters
-void Tablero::setFilas(int filas) {
-    this->filas = filas;
+    while (contador < 10) {
+        //verificando que no se hayan creado las 10 casillas desactivadas
+        int fila = rand() % 15; //coordenada aleatoria x
+        int columna = rand() % 15; // coordenada aleatoria y
+
+        if (casillas[fila][columna].getLetra() == ' ') {
+            //verificando que no haya * previo
+            casillas[fila][columna].setLetra('*'); // insertando * (simbolizara que esta desactivada la casilla
+            contador++; //aumentando la cantidad de * en el tablero
+        }
+    }
 }
 
-void Tablero::setColummnas(int columnas) {
-    this->columnas = columnas;
-}
+void Tablero::imprimirTablero() const {
+    const string horizontal = "----"; // Borde horizontal para cada celda
 
-void Tablero::setEspacioActivo(bool espacioActivo) {
-    this->espacioActivo = espacioActivo;
+    // Encabezado de columnas
+    cout << "    ";
+    for (int col = 0; col < 15; col++) {
+        cout << setw(3) << col + 1 << " "; // Números de columna con ancho fijo
+    }
+    cout << "\n";
+
+    for (int i = 0; i < 15; i++) {
+        // Línea superior de las celdas
+        cout << "    ";
+        for (int col = 0; col < 15; col++) {
+            cout << horizontal;
+        }
+        cout << "+\n";
+
+        // Contenido de la fila con número de fila
+        cout << setw(2) << i + 1 << "  |";
+        for (int j = 0; j < 15; j++) {
+            cout << " " << casillas[i][j].getLetra() << " |";
+        }
+        cout << "\n";
+    }
+
+    // Línea inferior final
+    cout << "    ";
+    for (int col = 0; col < 15; col++) {
+        cout << horizontal;
+    }
+    cout << "\n";
 }

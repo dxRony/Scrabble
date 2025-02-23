@@ -2,6 +2,7 @@
 // Created by ronyrojas on 19/02/25.
 //
 #include "../include/Partida.h"
+#include "../include/Tablero.h"
 #include <iostream>
 
 using namespace std;
@@ -16,12 +17,17 @@ void Partida::iniciarPartida(ListaEnlazada<Palabra> diccionario) {
     this->generarLetrasJugables(diccionario);
     cout << "Letras a repartir entre los jugadores:" << endl;
     letrasJugables.mostrarLista();
-    cout << "Repartiendo letras (fichas) entre todos los jugadores..." << endl;
+    cout << "Repartiendo letras (fichas) entre todos los jugadores y ordenandolas de mayor a menor punteo..." << endl;
     this->repartirLetras();
+    //this->ordenarLetrasJugadores();
     cout << "Generando turnos aleatorios..." << endl;
     cout << "Ornden de los turnos para la partida: " << endl;
     jugadores.mostrarCola();
-    cout << "Todo listo para iniciar" << endl;
+    cout << "Todo listo para iniciar..." << endl;
+    Tablero tablero;
+    tablero.generarTablero();   //creando el tablero de juego
+    cout << "El tablero para esta partida es:" << endl;
+    tablero.imprimirTablero();
 }
 
 void Partida::registrarJugadores() {
@@ -86,13 +92,19 @@ void Partida::repartirLetras() {
 
         actualLetra = actualLetra->siguiente; // actualizando letra
     }
-    Jugador jugadortmp = jugadores.obtenerFrente();
-    jugadortmp.mostrarLetras();
-    jugadortmp.ordenarLetrasPorPunteo();
-    cout << "letras ordenadas: " << endl;
-    jugadortmp.mostrarLetras();
 }
 
+void Partida::ordenarLetrasJugadores() {
+    int cantidadJugadores = jugadores.contarElementos(); //obteniendo el numero de jugadores
+
+    for (int i = 0; i < cantidadJugadores; ++i) {
+        Jugador jugadorTmp = jugadores.obtenerFrente();      // obteniendo el frente de la cola
+        jugadores.desencolar();                      // desencolandolo
+
+        jugadorTmp.ordenarLetrasPorPunteo();         // ordenando sus letras
+        jugadores.encolar(jugadorTmp);              // encolandolo con sus letras ordenadas
+    }
+}
 // getters
 Cola<Jugador> Partida::getColaJugadores() const { return jugadores; }
 Pila<Palabra> Partida::getPilaPalabrasJugadas() const { return palabrasJugadas; }

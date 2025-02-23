@@ -4,29 +4,19 @@
 
 #ifndef TABLERO_H
 #define TABLERO_H
+#include "Letra.h"
+
 
 class Tablero {
 private:
-    int filas;
-    int columnas;
-    bool espacioActivo;
+    Letra casillas[15][15];
 
 public:
     Tablero();
 
-    //getters
-    int getFilas() const;
+    void generarTablero();
 
-    int getColumnas() const;
-
-    bool getEspacioActivo() const;
-
-    //setters
-    void setFilas(int filas);
-
-    void setColummnas(int columnas);
-
-    void setEspacioActivo(bool activar);
+    void imprimirTablero() const;
 };
 
 #endif //TABLERO_H

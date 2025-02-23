@@ -65,7 +65,6 @@ T Cola<T>::desencolar() {
     if (frente == nullptr) {
         final = nullptr; //si ya no hay dato de enfrente, no hay dato al final
     }
-
     return dato; // devolviendo el dato
 }
 
