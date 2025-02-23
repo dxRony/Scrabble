@@ -1,0 +1,64 @@
+		Abstracción de objetos
+1) Jugador:
+	ATRIBUTOS
+		-Nombre			str
+		-Puntuacion		int
+		-CantidadTurnos	int
+		-Letras			linkedList LETRA
+		-TiempoJugado	int
+
+	METODOS
+	
+
+2) Tablero:
+	ATRIBUTOS
+		-Filas			int(15)
+		-Columnas		int(15)
+		-EspacioActivo 	bool
+
+	METODOS
+
+3) Letra(Ficha):
+	ATRIBUTOS
+		-Letra			str
+		-Punteo			int
+
+		METODOS
+
+4) MotorDeJuego:
+	ATRIBUTOS
+
+
+	METODOS
+
+6) Partida:
+	ATRIBUTOS
+		-TableroDeJuego		array
+		-ColaTurnos			linkedList	JUGADOR -> cola
+		-PalabrasJugadas	linkedList	PALABRA	-> pila
+		-ListaPunteos		linkedList	JUGADOR -> lista
+		-HayPalabra			bool
+		-Diccionario		linkedList	PALABRA -> lista
+		-LetrasJugables		linkedList	LETRA	-> lista
+
+	METODOS
+
+7) Palabra:
+	ATRIBUTOS
+		-Contenido			str
+		-PalabraFormada		bool
+		-Puntuacion			int
+
+	METODOS	
+
+8) Archivo:
+	ATRIBUTOS
+		
+9) Reporte:
+	ATRIBUTOS
+		-PalabrasEcontradas		linkedList	PALABRA	pila
+		-PalabrasPerdidas		linkedList	PALABRA	pila
+		-ListaJugadores			linkedList	JUGADOR lista
+		-Tiempo por turno		linkedList	int		lista
+
+	METODOS

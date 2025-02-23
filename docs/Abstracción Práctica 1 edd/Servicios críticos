@@ -1,0 +1,21 @@
+		Servicios críticos
+1) Ingreso de jugadores y fichas O(1):
+	Añadir a los jugadores y sus fichas a la lista enlazada al inicio del juego.
+
+2) Gestión de turnos con cola O(1):
+	Usar una cola para manejar los turnos de los jugadores, para una rotacion eficiente.
+
+3) Inserción y eliminación de fichas en lista enlazada O(n):
+	Manejar las fichas del jugador usando una lista enlazada para agregar y quitar letras.
+
+4) Ordenación de fichas por puntuación O(n log n):
+	Usar algoritmo de ordenación eficiente para mostrar las fichas de mayor a menor punteo.
+
+5) Registro de palabras jugadas con pila O(1):
+	Almacenar las palabras jugadas en una pila, para poder deshacer la ultima palabra    (se revierte la colocacion de la ultima ficha).
+
+6) Cálculo y ordenación de puntuaciones O(n^2):
+	Calcular la puntuación de cada jugador y ordenarlo en una lista al final del juego.
+
+7) Ordenación de palabras iniciales O(n^2):
+	Antes de iniciar la partida se deberá ordenar las palabras alfabeticamente.

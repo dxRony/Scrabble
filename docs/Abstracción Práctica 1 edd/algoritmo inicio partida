@@ -1,0 +1,19 @@
+al iniciar una partida:
+- se carga el archivo.csv.
+- se ordenan las palabras alfabeticamente.
+- se mandan las palabras ordenadas a un metodo de la clase partida que recibe esas palabras.
+- ingresar la cantida de jugadores que tendra el juego
+- revolver jugadores para los turnos
+- asignar valores aleatorios a las letras
+- repartir las letras entre todos los jugadores (en una lista enlazada)
+- ordenar las letras de mayor a menor puntuacion
+- crear tablero de 15x15
+- desactivar aleatoriamente 10 casillas
+
+- primer turno coloca cualquier letra en el centro
+- siguiente turno debe colocar una letra contigua
+- cuando se forma una palabra del diccionario, se retira de palabras jugables
+- ciclar hasta que ya no hayan palabras jugables o los jugadores ya no tengan fichas
+- guardar datos de la partida cuando esta acabe
+- regresar al menu principal
+- generar reportes
