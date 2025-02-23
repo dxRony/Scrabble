@@ -17,8 +17,9 @@ private:
     ListaEnlazada<Jugador> listaPunteos;
     ListaEnlazada<Palabra> diccionario;
     ListaEnlazada<Letra> letrasJugables;
-    //pendiente array de Letras
     bool hayPalabra;
+    bool hayLetraCentro;
+    Jugador jugadorActual;
 
 public:
     Partida();
@@ -44,11 +45,18 @@ public:
 
     ListaEnlazada<Letra> getListaLetrasJugables() const;
 
-    //pendiente getterTablero
+    Jugador cambiarTurno();
+
+    void realizarTurno(int opcionTurno);
+
     bool getHayPalabra() const;
+
+    bool getHayLetraCentro() const;
 
     //setters
     void setHayPalabra(bool hayPalabra);
+
+    void setHayLetraCentro(bool hayLetraCentro);
 };
 
 #endif //PARTIDA_H

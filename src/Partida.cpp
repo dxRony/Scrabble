@@ -9,30 +9,42 @@ using namespace std;
 
 Partida::Partida() : jugadores(), palabrasJugadas(), listaPunteos(), diccionario(), letrasJugables() {
     this->hayPalabra = true;
+    this->hayLetraCentro = false;
+    this->jugadorActual = Jugador();
 }
 
 void Partida::iniciarPartida(ListaEnlazada<Palabra> diccionario) {
+    this->diccionario = diccionario;
     this->registrarJugadores();
     jugadores = jugadores.mezclarCola();
-    this->generarLetrasJugables(diccionario);
-    cout << "Letras a repartir entre los jugadores:" << endl;
-    letrasJugables.mostrarLista();
+    this->generarLetrasJugables(this->diccionario);
+    //cout << "Letras a repartir entre los jugadores:" << endl;
+    //letrasJugables.mostrarLista();
     cout << "Repartiendo letras (fichas) entre todos los jugadores y ordenandolas de mayor a menor punteo..." << endl;
     this->repartirLetras();
-    //this->ordenarLetrasJugadores();
+    this->ordenarLetrasJugadores();
     cout << "Generando turnos aleatorios..." << endl;
-    cout << "Ornden de los turnos para la partida: " << endl;
+    cout << "Orden de los turnos para la partida: " << endl;
     jugadores.mostrarCola();
     cout << "Todo listo para iniciar..." << endl;
     Tablero tablero;
-    tablero.generarTablero();   //creando el tablero de juego
+    tablero.generarTablero(); //creando el tablero de juego
     cout << "El tablero para esta partida es:" << endl;
     tablero.imprimirTablero();
+
+
+    int opcionTurno=0;
+    do {
+        jugadorActual = this->cambiarTurno();
+        opcionTurno = jugadorActual.mostrarOpcionesTurno();
+        this->realizarTurno(opcionTurno);
+    } while (this->hayPalabra == false || this->diccionario.estaVacia());
+    //ciclando mientras hayan palabrasJugables o se puedan formar palabras
 }
 
 void Partida::registrarJugadores() {
     int cantidadJugadores = 0;
-    cout << "Ingresa el numero de jugadores que tendra la partida..." << endl;
+    cout << "\nIngresa el numero de jugadores que tendra la partida..." << endl;
     cin >> cantidadJugadores;
 
     while (cantidadJugadores < 2) {
@@ -98,13 +110,46 @@ void Partida::ordenarLetrasJugadores() {
     int cantidadJugadores = jugadores.contarElementos(); //obteniendo el numero de jugadores
 
     for (int i = 0; i < cantidadJugadores; ++i) {
-        Jugador jugadorTmp = jugadores.obtenerFrente();      // obteniendo el frente de la cola
-        jugadores.desencolar();                      // desencolandolo
+        Jugador jugadorTmp = jugadores.obtenerFrente(); // obteniendo el frente de la cola
+        jugadores.desencolar(); // desencolandolo
 
-        jugadorTmp.ordenarLetrasPorPunteo();         // ordenando sus letras
-        jugadores.encolar(jugadorTmp);              // encolandolo con sus letras ordenadas
+        jugadorTmp.ordenarLetrasPorPunteo(); // ordenando sus letras
+        jugadores.encolar(jugadorTmp); // encolandolo con sus letras ordenadas
     }
 }
+
+Jugador Partida::cambiarTurno() {
+    Jugador jugadorTmp = jugadores.obtenerFrente();
+    jugadores.desencolar();
+    jugadores.encolar(jugadorTmp);
+    return jugadorTmp;
+}
+
+void Partida::realizarTurno(int opcionTurno) {
+    int opcionTurno2 = 0;
+    switch (opcionTurno) {
+        case 1: //colocar letra
+
+            break;
+        case 2: //mostrar letras
+            jugadorActual.mostrarLetras();
+            opcionTurno2 = jugadorActual.mostrarOpcionesTurno();
+            realizarTurno(opcionTurno2);
+
+            break;
+        case 3: //ver palabras jugables
+            cout << "Letras que puedes formar: "<< endl;
+            diccionario.mostrarLista();
+            opcionTurno2 = jugadorActual.mostrarOpcionesTurno();
+            realizarTurno(opcionTurno2);
+        case 4: //pasar turno
+                cout << "Turno saltado" << endl;
+            break;
+        default:
+            cout << "Opcion ingresada no válida." << endl;
+    }
+}
+
 // getters
 Cola<Jugador> Partida::getColaJugadores() const { return jugadores; }
 Pila<Palabra> Partida::getPilaPalabrasJugadas() const { return palabrasJugadas; }

@@ -21,7 +21,7 @@ void Jugador::mostrarLetras() const {
         return;
     }
     while (actual != nullptr) {
-        cout << actual->dato.getLetra() << ", punteo = " << actual->dato.getPunteo() << " ";
+        cout <<"Letra = " <<actual->dato.getLetra() << ", punteo = " << actual->dato.getPunteo() << "; ";
         actual = actual->siguiente;
     }
     cout << endl;
@@ -75,6 +75,19 @@ Nodo<Letra> *Jugador::fusionarListas(Nodo<Letra> *izquierda, Nodo<Letra> *derech
         //se compara el siguiente de la derecha con el izquierdo
     }
     return resultado; //devolviendo el nodo de mayor valor
+}
+
+int Jugador::mostrarOpcionesTurno() const {
+    int opcion;
+    cout << "\nEs tu turno " << this->nombre << endl;
+    cout << "*********** Selecciona Una Opcion ***********" << endl;
+    cout << "1. Colocar Letra (ficha)" << endl;
+    cout << "2. Ver Tus Letras" << endl;
+    cout << "3. Ver Palabras Jugables" << endl;
+    cout << "4. Pasar Turno" << endl;
+    cout << "Selecciona Una Opcion" << endl;
+    cin >> opcion;
+    return opcion;
 }
 
 // getters

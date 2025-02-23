@@ -26,8 +26,8 @@ void Tablero::generarTablero() {
         int fila = rand() % 15; //coordenada aleatoria x
         int columna = rand() % 15; // coordenada aleatoria y
 
-        if (casillas[fila][columna].getLetra() == ' ') {
-            //verificando que no haya * previo
+        if (casillas[fila][columna].getLetra() == ' ' || fila == 7 && columna == 7) {
+            //verificando que no haya * previo y que no se bloquee el espacio central
             casillas[fila][columna].setLetra('*'); // insertando * (simbolizara que esta desactivada la casilla
             contador++; //aumentando la cantidad de * en el tablero
         }
@@ -35,24 +35,24 @@ void Tablero::generarTablero() {
 }
 
 void Tablero::imprimirTablero() const {
-    const string horizontal = "----"; // Borde horizontal para cada celda
+    const string horizontal = "----"; // linea horizontal para cada letra
 
-    // Encabezado de columnas
+    // numeracion de las columnas
     cout << "    ";
     for (int col = 0; col < 15; col++) {
-        cout << setw(3) << col + 1 << " "; // Números de columna con ancho fijo
+        cout << setw(3) << col + 1 << " "; // numero de cada columna -> setw(3) añadiendo 3 columnas de ancho
     }
     cout << "\n";
 
     for (int i = 0; i < 15; i++) {
-        // Línea superior de las celdas
+        //linea de arriba
         cout << "    ";
         for (int col = 0; col < 15; col++) {
             cout << horizontal;
         }
         cout << "+\n";
 
-        // Contenido de la fila con número de fila
+        // imprimiendo valores del tablero
         cout << setw(2) << i + 1 << "  |";
         for (int j = 0; j < 15; j++) {
             cout << " " << casillas[i][j].getLetra() << " |";
@@ -60,7 +60,7 @@ void Tablero::imprimirTablero() const {
         cout << "\n";
     }
 
-    // Línea inferior final
+    // linea de abajo
     cout << "    ";
     for (int col = 0; col < 15; col++) {
         cout << horizontal;
