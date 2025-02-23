@@ -14,6 +14,8 @@ Jugador::Jugador(): letras() {
 }
 
 void Jugador::mostrarLetras() const {
+    int numeroLetra = 0;
+
     Nodo<Letra> *actual = letras.obtenerCabeza();
     cout << "Letras (fichas) de " << nombre << ": \n";
     if (actual == nullptr) {
@@ -21,7 +23,8 @@ void Jugador::mostrarLetras() const {
         return;
     }
     while (actual != nullptr) {
-        cout <<"Letra = " <<actual->dato.getLetra() << ", punteo = " << actual->dato.getPunteo() << "; ";
+        numeroLetra++;
+        cout <<"("<< numeroLetra<<")Letra = " <<actual->dato.getLetra() << ", punteo = " << actual->dato.getPunteo() << "; ";
         actual = actual->siguiente;
     }
     cout << endl;

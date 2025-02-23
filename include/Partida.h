@@ -20,6 +20,7 @@ private:
     bool hayPalabra;
     bool hayLetraCentro;
     Jugador jugadorActual;
+    Tablero tableroDeJuego;
 
 public:
     Partida();

@@ -11,6 +11,7 @@ Partida::Partida() : jugadores(), palabrasJugadas(), listaPunteos(), diccionario
     this->hayPalabra = true;
     this->hayLetraCentro = false;
     this->jugadorActual = Jugador();
+    this->tableroDeJuego = Tablero();
 }
 
 void Partida::iniciarPartida(ListaEnlazada<Palabra> diccionario) {
@@ -27,17 +28,16 @@ void Partida::iniciarPartida(ListaEnlazada<Palabra> diccionario) {
     cout << "Orden de los turnos para la partida: " << endl;
     jugadores.mostrarCola();
     cout << "Todo listo para iniciar..." << endl;
-    Tablero tablero;
-    tablero.generarTablero(); //creando el tablero de juego
+    tableroDeJuego.generarTablero(); //creando el tablero de juego
     cout << "El tablero para esta partida es:" << endl;
-    tablero.imprimirTablero();
-
+    tableroDeJuego.imprimirTablero();
 
     int opcionTurno=0;
     do {
         jugadorActual = this->cambiarTurno();
         opcionTurno = jugadorActual.mostrarOpcionesTurno();
         this->realizarTurno(opcionTurno);
+        opcionTurno =0;
     } while (this->hayPalabra == false || this->diccionario.estaVacia());
     //ciclando mientras hayan palabrasJugables o se puedan formar palabras
 }
@@ -129,6 +129,21 @@ void Partida::realizarTurno(int opcionTurno) {
     int opcionTurno2 = 0;
     switch (opcionTurno) {
         case 1: //colocar letra
+            int indiceLetra;
+            int coordenadaY;
+            int coordenadaX;
+            Letra letraAColocar;
+
+            cout << "Letras que tienes en tu bolsa:"<< endl;
+            jugadorActual.mostrarLetras();            
+            cout << "Ingresa el indice de la letra que quieres colocar:" << endl;
+            cin >> indiceLetra;
+            //letraAColocar = jugadorActual.getLetras().obtenerPorIndice(indiceLetra);
+            cout << "Ingresa la coordenada Y donde quieres poner la letra:" << endl;
+            cin >> coordenadaY;
+            cout << "Ingresa la coordenada X donde quieres poner la letra:" << endl;
+            cin >> coordenadaX;
+            tableroDeJuego.colocarLetra(letraAColocar, coordenadaX + 1, coordenadaY + 1, diccionario);            
 
             break;
         case 2: //mostrar letras
