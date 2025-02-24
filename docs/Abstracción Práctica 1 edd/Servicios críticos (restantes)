@@ -1,7 +1,4 @@
 		Servicios críticos (restantes)
-1) Ingreso de jugadores y fichas O(1):
-	Añadir a los jugadores y sus fichas a la lista enlazada al inicio del juego.
-
 2) Gestión de turnos con cola O(1):
 	Usar una cola para manejar los turnos de los jugadores, para una rotacion eficiente.
 

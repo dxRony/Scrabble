@@ -7,12 +7,10 @@
 
 using namespace std;
 
-Tablero::Tablero(){
-    for (int i = 0; i < 15; i++)
-    {
+Tablero::Tablero() {
+    for (int i = 0; i < 15; i++) {
         // cada vez que se crea un tablero en partida se crea un tablero vacio
-        for (int j = 0; j < 15; j++)
-        {
+        for (int j = 0; j < 15; j++) {
             casillas[i][j].setLetra(' ');
             casillas[i][j].setPunteo(0);
         }
@@ -20,39 +18,38 @@ Tablero::Tablero(){
     this->hayLetraCentro = false;
 }
 
-void Tablero::generarTablero(){
+void Tablero::generarTablero() {
     srand(static_cast<unsigned int>(time(nullptr))); // Semilla para aleatoriedad
     int contador = 0;
 
-    while (contador < 10)
-    {
+    while (contador < 10) {
         // verificando que no se hayan creado las 10 casillas desactivadas
-        int fila = rand() % 15;    // coordenada aleatoria x
+        int fila = rand() % 15; // coordenada aleatoria x
         int columna = rand() % 15; // coordenada aleatoria y
 
-        if (casillas[fila][columna].getLetra() == ' ' || fila == 7 && columna == 7)
-        {
+        if (casillas[fila][columna].getLetra() == ' ' || fila == 7 && columna == 7) {
             // verificando que no haya * previo y que no se bloquee el espacio central
             casillas[fila][columna].setLetra('*'); // insertando * (simbolizara que esta desactivada la casilla)
-            contador++;                            // aumentando la cantidad de * en el tablero
+            contador++; // aumentando la cantidad de * en el tablero
         }
     }
 }
 
-void Tablero::colocarLetra(Letra letra, int fila, int columna, ListaEnlazada<Palabra> diccionario){
+void Tablero::colocarLetra(Letra letra, int fila, int columna, ListaEnlazada<Palabra> diccionario) {
     int punteoLetra = letra.getPunteo();
     char contenidoLetra = letra.getLetra();
 
-    if (fila <0 || fila >=15 || columna <0 || columna >=15) {
+    if (fila < 0 || fila >= 15 || columna < 0 || columna >= 15) {
         cout << "Coordenadas a fuera del rango del tablero" << endl;
         return;
     }
-    
-    if (!hayLetraCentro){//reemplazando coordenadas cuando no haya letra en el centro
-        cout << "La primera letra debe estar en el centro"<< endl;
+
+    if (!hayLetraCentro) {
+        //reemplazando coordenadas cuando no haya letra en el centro
+        cout << "La primera letra debe estar en el centro" << endl;
         fila = 7;
         columna = 7;
-        cout<< "Colocando letra en el centro " << endl;
+        cout << "Colocando letra en el centro " << endl;
         casillas[fila][columna].setLetra(contenidoLetra);
         casillas[fila][columna].setPunteo(punteoLetra);
         this->hayLetraCentro = true;
@@ -69,9 +66,10 @@ void Tablero::colocarLetra(Letra letra, int fila, int columna, ListaEnlazada<Pal
     if ((fila > 0 && casillas[fila - 1][columna].getLetra() != ' ') ||
         (fila < 14 && casillas[fila + 1][columna].getLetra() != ' ') ||
         (columna > 0 && casillas[fila][columna - 1].getLetra() != ' ') ||
-        (columna < 14 && casillas[fila][columna + 1].getLetra() != ' ')){
+        (columna < 14 && casillas[fila][columna + 1].getLetra() != ' ')) {
         //si las condiciones anteriores se cumplen, se puede colocar la letra en la coordenada
         letraContigua = true;
+        cout << "Si se pudo jsjs " << endl;
     }
     if (!letraContigua) {
         cout << "Debiste colocar la letra juntoa otra letra. Has perdido tu turno :(" << endl;
@@ -80,43 +78,36 @@ void Tablero::colocarLetra(Letra letra, int fila, int columna, ListaEnlazada<Pal
     //despues de todas las validaciones ya se puede colocar la letra
     casillas[fila][columna].setLetra(contenidoLetra);
     casillas[fila][columna].setPunteo(punteoLetra);
-    cout<< "Letra: " << contenidoLetra << " colocada en " << fila+1 << "," << columna+1 << endl;
-
+    cout << "Letra: " << contenidoLetra << " colocada en (" << fila + 1 << "," << columna + 1 << ")" << endl;
 }
 
-void Tablero::comprobarPalabraFormada(ListaEnlazada<Palabra> diccionario){
-        /**
-         * implementar la logica para verificar si se formo una palabra del diccionario
-         */
-    
+void Tablero::comprobarPalabraFormada(ListaEnlazada<Palabra> diccionario) {
+    /**
+     * implementar la logica para verificar si se formo una palabra del diccionario
+     */
 }
 
-void Tablero::imprimirTablero() const
-{
+void Tablero::imprimirTablero() const {
     const string horizontal = "----"; // linea horizontal para cada letra
 
     // numeracion de las columnas
     cout << "    ";
-    for (int col = 0; col < 15; col++)
-    {
+    for (int col = 0; col < 15; col++) {
         cout << setw(3) << col + 1 << " "; // numero de cada columna -> setw(3) añadiendo 3 columnas de ancho
     }
     cout << "\n";
 
-    for (int i = 0; i < 15; i++)
-    {
+    for (int i = 0; i < 15; i++) {
         // linea de arriba
         cout << "    ";
-        for (int col = 0; col < 15; col++)
-        {
+        for (int col = 0; col < 15; col++) {
             cout << horizontal;
         }
         cout << "+\n";
 
         // imprimiendo valores del tablero
         cout << setw(2) << i + 1 << "  |";
-        for (int j = 0; j < 15; j++)
-        {
+        for (int j = 0; j < 15; j++) {
             cout << " " << casillas[i][j].getLetra() << " |";
         }
         cout << "\n";
@@ -124,15 +115,14 @@ void Tablero::imprimirTablero() const
 
     // linea de abajo
     cout << "    ";
-    for (int col = 0; col < 15; col++)
-    {
+    for (int col = 0; col < 15; col++) {
         cout << horizontal;
     }
     cout << "\n";
 }
 
 // getters
-bool Tablero::getHayLetraCentro() const { return hayLetraCentro;}
+bool Tablero::getHayLetraCentro() const { return hayLetraCentro; }
 
 //setters
-void Tablero::setHayLetraCentro (bool hayLetra){ hayLetraCentro = hayLetra; }
+void Tablero::setHayLetraCentro(bool hayLetra) { hayLetraCentro = hayLetra; }

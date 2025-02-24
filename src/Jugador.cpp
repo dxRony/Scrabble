@@ -15,17 +15,27 @@ Jugador::Jugador(): letras() {
 
 void Jugador::mostrarLetras() const {
     int numeroLetra = 0;
-
     Nodo<Letra> *actual = letras.obtenerCabeza();
+
     cout << "Letras (fichas) de " << nombre << ": \n";
-    if (actual == nullptr) {
+    if (!actual) {
         cout << nombre << ", no tiene mas letras en su bolsa" << endl;
         return;
     }
-    while (actual != nullptr) {
-        numeroLetra++;
-        cout << numeroLetra<<".- Letra = " <<actual->dato.getLetra() << ", punteo = " << actual->dato.getPunteo() << "; ";
+
+    while (actual) {
+        if (&actual->dato == nullptr) {
+            cout << "⚠️ Dato del nodo actual es nulo." << endl;
+            break;
+        }
+
+        cout << numeroLetra + 1 << ".- Letra = "
+             << actual->dato.getLetra()
+             << ", punteo = "
+             << actual->dato.getPunteo() << "; ";
+
         actual = actual->siguiente;
+        numeroLetra++;
     }
     cout << endl;
 }

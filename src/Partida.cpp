@@ -42,8 +42,7 @@ void Partida::iniciarPartida(ListaEnlazada<Palabra> diccionario) {
         opcionTurno = jugadorActual.mostrarOpcionesTurno();
         this->realizarTurno(opcionTurno);
         tableroDeJuego.imprimirTablero();
-        //jugadorActual = this->cambiarTurno();
-    } while (this->hayPalabra == false || this->diccionario.estaVacia());
+    } while (this->hayPalabra == true || this->diccionario.estaVacia());
     cout << "Se cumplio el while" << endl;
     //ciclando mientras hayan palabrasJugables o se puedan formar palabras
 }
@@ -137,19 +136,19 @@ void Partida::realizarTurno(int opcionTurno) {
         case 1: {
             //colocar letra
             int indiceLetra;
-            int coordenadaY;
-            int coordenadaX;
+            int columna;
+            int fila;
             Letra letraAColocar;
             cout << "Letras que tienes en tu bolsa:" << endl;
             jugadorActual.mostrarLetras();
             cout << "Ingresa el indice de la letra que quieres colocar:" << endl;
             cin >> indiceLetra;
-            letraAColocar = jugadorActual.getLetras().obtenerYEliminar(indiceLetra-1);
-            cout << "Ingresa la coordenada Y donde quieres poner la letra:" << endl;
-            cin >> coordenadaY;
-            cout << "Ingresa la coordenada X donde quieres poner la letra:" << endl;
-            cin >> coordenadaX;
-            tableroDeJuego.colocarLetra(letraAColocar, coordenadaX + 1, coordenadaY + 1, diccionario);
+            letraAColocar = jugadorActual.getLetras().obtenerYEliminar(indiceLetra - 1);
+            cout << "Ingresa la columna donde quieres poner la letra:" << endl;
+            cin >> columna;
+            cout << "Ingresa la fila donde quieres poner la letra:" << endl;
+            cin >> fila;
+            tableroDeJuego.colocarLetra(letraAColocar, fila-1, columna-1, diccionario);
 
             break;
         }
