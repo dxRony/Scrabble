@@ -3,7 +3,11 @@
 //
 #include "../include/Partida.h"
 #include "../include/Tablero.h"
+#include "../include/Letra.h"
+#include "../include/Palabra.h"
+
 #include <iostream>
+
 
 using namespace std;
 
@@ -32,13 +36,15 @@ void Partida::iniciarPartida(ListaEnlazada<Palabra> diccionario) {
     cout << "El tablero para esta partida es:" << endl;
     tableroDeJuego.imprimirTablero();
 
-    int opcionTurno=0;
+    int opcionTurno = 0;
     do {
         jugadorActual = this->cambiarTurno();
         opcionTurno = jugadorActual.mostrarOpcionesTurno();
         this->realizarTurno(opcionTurno);
-        opcionTurno =0;
+        tableroDeJuego.imprimirTablero();
+        //jugadorActual = this->cambiarTurno();
     } while (this->hayPalabra == false || this->diccionario.estaVacia());
+    cout << "Se cumplio el while" << endl;
     //ciclando mientras hayan palabrasJugables o se puedan formar palabras
 }
 
@@ -128,40 +134,44 @@ Jugador Partida::cambiarTurno() {
 void Partida::realizarTurno(int opcionTurno) {
     int opcionTurno2 = 0;
     switch (opcionTurno) {
-        case 1: //colocar letra
+        case 1: {
+            //colocar letra
             int indiceLetra;
             int coordenadaY;
             int coordenadaX;
             Letra letraAColocar;
-
-            cout << "Letras que tienes en tu bolsa:"<< endl;
-            jugadorActual.mostrarLetras();            
+            cout << "Letras que tienes en tu bolsa:" << endl;
+            jugadorActual.mostrarLetras();
             cout << "Ingresa el indice de la letra que quieres colocar:" << endl;
             cin >> indiceLetra;
-            //letraAColocar = jugadorActual.getLetras().obtenerPorIndice(indiceLetra);
+            letraAColocar = jugadorActual.getLetras().obtenerYEliminar(indiceLetra-1);
             cout << "Ingresa la coordenada Y donde quieres poner la letra:" << endl;
             cin >> coordenadaY;
             cout << "Ingresa la coordenada X donde quieres poner la letra:" << endl;
             cin >> coordenadaX;
-            tableroDeJuego.colocarLetra(letraAColocar, coordenadaX + 1, coordenadaY + 1, diccionario);            
+            tableroDeJuego.colocarLetra(letraAColocar, coordenadaX + 1, coordenadaY + 1, diccionario);
 
             break;
-        case 2: //mostrar letras
+        }
+        case 2: {
+            //mostrar letras
             jugadorActual.mostrarLetras();
             opcionTurno2 = jugadorActual.mostrarOpcionesTurno();
             realizarTurno(opcionTurno2);
-
             break;
-        case 3: //ver palabras jugables
-            cout << "Letras que puedes formar: "<< endl;
+        }
+        case 3: {
+            //ver palabras jugables
+            cout << "Letras que puedes formar: " << endl;
             diccionario.mostrarLista();
             opcionTurno2 = jugadorActual.mostrarOpcionesTurno();
             realizarTurno(opcionTurno2);
-        case 4: //pasar turno
-                cout << "Turno saltado" << endl;
             break;
-        default:
+        }
+        default: {
             cout << "Opcion ingresada no válida." << endl;
+            break;
+        }
     }
 }
 

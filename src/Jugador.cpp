@@ -24,7 +24,7 @@ void Jugador::mostrarLetras() const {
     }
     while (actual != nullptr) {
         numeroLetra++;
-        cout <<"("<< numeroLetra<<")Letra = " <<actual->dato.getLetra() << ", punteo = " << actual->dato.getPunteo() << "; ";
+        cout << numeroLetra<<".- Letra = " <<actual->dato.getLetra() << ", punteo = " << actual->dato.getPunteo() << "; ";
         actual = actual->siguiente;
     }
     cout << endl;
@@ -87,7 +87,6 @@ int Jugador::mostrarOpcionesTurno() const {
     cout << "1. Colocar Letra (ficha)" << endl;
     cout << "2. Ver Tus Letras" << endl;
     cout << "3. Ver Palabras Jugables" << endl;
-    cout << "4. Pasar Turno" << endl;
     cout << "Selecciona Una Opcion" << endl;
     cin >> opcion;
     return opcion;

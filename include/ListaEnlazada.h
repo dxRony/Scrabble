@@ -40,6 +40,8 @@ public:
     void setCabeza(Nodo<T> *cabeza);
 
     bool estaVacia() const;
+
+    T obtenerYEliminar(int indice);
 };
 
 template<typename T>
@@ -137,4 +139,36 @@ bool ListaEnlazada<T>::estaVacia() const {
     return cabeza == nullptr;   //devuelve true si la lista esta vacia
 }
 
+template<typename T>
+T ListaEnlazada<T>::obtenerYEliminar(int indice) {
+    if (estaVacia()) {
+        throw out_of_range("La lista está vacía.");
+    }
+
+    if (indice < 0 || indice >= contarElementos()) {
+        throw out_of_range("Índice fuera de rango.");
+    }
+
+    Nodo<T> *actual = cabeza;
+    Nodo<T> *previo = nullptr;
+    int contador = 0;
+
+    while (actual != nullptr && contador < indice) {
+        previo = actual;
+        actual = actual->siguiente;
+        contador++;
+    }
+
+    T datoADevolver = actual->dato;  // Guardamos el dato antes de eliminar
+
+    // Si el nodo a eliminar es la cabeza
+    if (previo == nullptr) {
+        cabeza = actual->siguiente;
+    } else {
+        previo->siguiente = actual->siguiente;
+    }
+
+    delete actual; // Liberamos la memoria del nodo eliminado
+    return datoADevolver; // Retornamos el dato eliminado
+}
 #endif //LISTAENLAZADA_H

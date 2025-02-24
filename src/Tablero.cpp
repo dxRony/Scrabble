@@ -42,28 +42,46 @@ void Tablero::generarTablero(){
 void Tablero::colocarLetra(Letra letra, int fila, int columna, ListaEnlazada<Palabra> diccionario){
     int punteoLetra = letra.getPunteo();
     char contenidoLetra = letra.getLetra();
+
+    if (fila <0 || fila >=15 || columna <0 || columna >=15) {
+        cout << "Coordenadas a fuera del rango del tablero" << endl;
+        return;
+    }
     
     if (!hayLetraCentro){//reemplazando coordenadas cuando no haya letra en el centro
         cout << "La primera letra debe estar en el centro"<< endl;
         fila = 7;
         columna = 7;
         cout<< "Colocando letra en el centro " << endl;
-        this->hayLetraCentro = true;
-    }
-
-    //controlando que no haya * o cualquier otra letra en la casilla y que la letra este rodeada de alguna letra
-    if (casillas[fila][columna].getLetra() == ' ' 
-    && casillas[fila-1][columna].getLetra()!=' ' && casillas[fila-1][columna].getLetra()=='*'
-    || casillas[fila+1][columna].getLetra()!=' ' && casillas[fila+1][columna].getLetra()=='*'
-    || casillas[fila][columna+1].getLetra()!=' ' && casillas[fila][columna+1].getLetra()=='*'
-    || casillas[fila][columna-1].getLetra()!=' ' && casillas[fila][columna-1].getLetra()=='*'){          
-        //actualizando datos de la casilla
         casillas[fila][columna].setLetra(contenidoLetra);
         casillas[fila][columna].setPunteo(punteoLetra);
-        this->comprobarPalabraFormada(diccionario);   //metodo para comprobar si se formo una palabra
-    } else{
-        cout << "La casilla con esta coordenada ya estaba ocupada, o no la puedes ocupar has perdido tu turno :(" << endl;
+        this->hayLetraCentro = true;
+        return;
     }
+    //verificando que la casilla esta vacia
+    if (casillas[fila][columna].getLetra() != ' ') {
+        cout << "La casilla ya esta ocupada. Has perdido tu turno :(" << endl;
+        return;
+    }
+
+    // verficando que la coordenada este a la par de otra letra (vertical u horizontal)
+    bool letraContigua = false;
+    if ((fila > 0 && casillas[fila - 1][columna].getLetra() != ' ') ||
+        (fila < 14 && casillas[fila + 1][columna].getLetra() != ' ') ||
+        (columna > 0 && casillas[fila][columna - 1].getLetra() != ' ') ||
+        (columna < 14 && casillas[fila][columna + 1].getLetra() != ' ')){
+        //si las condiciones anteriores se cumplen, se puede colocar la letra en la coordenada
+        letraContigua = true;
+    }
+    if (!letraContigua) {
+        cout << "Debiste colocar la letra juntoa otra letra. Has perdido tu turno :(" << endl;
+        return;
+    }
+    //despues de todas las validaciones ya se puede colocar la letra
+    casillas[fila][columna].setLetra(contenidoLetra);
+    casillas[fila][columna].setPunteo(punteoLetra);
+    cout<< "Letra: " << contenidoLetra << " colocada en " << fila+1 << "," << columna+1 << endl;
+
 }
 
 void Tablero::comprobarPalabraFormada(ListaEnlazada<Palabra> diccionario){

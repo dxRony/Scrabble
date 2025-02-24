@@ -9,6 +9,7 @@
 #include "Pila.h"
 #include "Jugador.h"
 #include "Palabra.h"
+#include "Tablero.h"
 
 class Partida {
 private:
