@@ -12,10 +12,11 @@ template<typename T>
 class Cola {
 private:
     struct Nodo {
-        T dato; // valor del elemento (nodo)
-        Nodo *siguiente; // apuntador al siguiente elemento
-        Nodo(T nuevoDato) : dato(nuevoDato), siguiente(nullptr) {
+        T *dato; // apuntador al valor del elemento (nodo)
+        Nodo *siguiente; //apuntador añ siguiente nodo
+        explicit Nodo(T *nuevoDato) : dato(nuevoDato), siguiente(nullptr) {
         } // constructor con el primer elemento y el siguiente
+        ~Nodo() { delete dato; } //destructor para liberar memoria
     };
 
     Nodo *frente; // apuntador al frente de la cola
@@ -23,8 +24,9 @@ private:
 
 public:
     Cola(); // constructor de la clase cola
+    ~Cola(); //destructir
 
-    void encolar(T nuevoDato); // metodo para agregar elementos a la cola
+    void encolar(const T &nuevoDato); // metodo para agregar elementos a la cola
     T desencolar(); // metodo para eliminar elementos de la cola
     T obtenerFrente() const; // metodo para obtener al primer elemento de la cola
     bool estaVacia() const; // metodo que verifica si la cola esta vacia
@@ -33,19 +35,30 @@ public:
     int contarElementos() const;
 };
 
+
 template<typename T>
 Cola<T>::Cola() : frente(nullptr), final(nullptr) {
+    //inicia los punteros con nullptr
+}
+
+
+template<typename T>
+Cola<T>::~Cola() {
+    // libera la memoria de todos los nodos
+    while (!estaVacia()) {
+        desencolar();
+    }
 }
 
 template<typename T>
-void Cola<T>::encolar(T nuevoDato) {
-    Nodo *nuevoNodo = new Nodo(nuevoDato); // creando nuevo nodo con el dato recibido
-    if (estaVacia()) // si la cola esta vacia
-    {
+void Cola<T>::encolar(const T &nuevoDato) {
+    Nodo *nuevoNodo = new Nodo(new T(nuevoDato)); // creando nuevo nodo con el dato
+    if (estaVacia()) {
+        // si la cola esta vacia
         frente = nuevoNodo;
         final = nuevoNodo; // el nuevo nodo se convierte en el final y el frente de la cola
-    } else // si la cola no esta vacia
-    {
+    } else {
+        // si la cola no esta vacia
         final->siguiente = nuevoNodo; // se actualiza el puntero del final de la cola
         final = nuevoNodo; // actualizando el nodo final con el dato recibido
     }
@@ -57,12 +70,12 @@ T Cola<T>::desencolar() {
         throw runtime_error("La cola está vacía"); // si la cola esta vacia arrojamos error
     }
 
-    Nodo *tmp = frente; // guardando el primer nodo
-    T dato = tmp->dato; // almacenando el objeto
-    frente = frente->siguiente; // cambiando dato de enfrente por el siguiente del frente
+    Nodo *tmp = frente; // creando nodo temporal
+    T dato = *(frente->dato); // almacenando el dato
+    frente = frente->siguiente; // cambiando dato de enfrente por el siguiente
     delete tmp; // liberando memoria
 
-    if (frente == nullptr) {
+    if (!frente) {
         final = nullptr; //si ya no hay dato de enfrente, no hay dato al final
     }
     return dato; // devolviendo el dato
@@ -74,7 +87,7 @@ T Cola<T>::obtenerFrente() const {
     {
         throw runtime_error("La cola esta vacia");
     }
-    return frente->dato; // regresando el nodo que esta enfrente
+    return *(frente->dato); // regresando el nodo que esta enfrente
 }
 
 template<typename T>
@@ -86,9 +99,9 @@ bool Cola<T>::estaVacia() const {
 template<typename T>
 void Cola<T>::mostrarCola() const {
     Nodo *actual = frente; // se crea un nodo actual para contener el inicio de la cola
-    while (actual) // mientras exista un nodo actual
-    {
-        cout << actual->dato << " \n"; // Se imprime ese nodo actual
+    while (actual) {
+        // mientras exista un nodo actual
+        cout << *(actual->dato) << " \n"; // Se imprime ese nodo actual
         actual = actual->siguiente; // el nodo actual se actualiza al siguiente nodo de la cola
     }
     cout << endl;
@@ -96,37 +109,31 @@ void Cola<T>::mostrarCola() const {
 
 template<typename T>
 Cola<T> Cola<T>::mezclarCola() {
-    int cantidad = 0; //var para contar los elementos de la cola
-    Nodo *temporal = frente;
-    while (temporal != nullptr) {
-        cantidad++;
-        temporal = temporal->siguiente;
+    int cantidad = contarElementos(); //var para almacenar los elementos de la cola
+    if (cantidad == 0) {
+        return *this;
     }
 
-    T *arreglo = new T[cantidad]; //convirtiendo la cola en un arreglo para una facil manipulacion
+    T **arreglo = new T *[cantidad]; //convirtiendo la cola en un arreglo para una facil manipulacion
+    Nodo *actual = frente;
     for (int i = 0; i < cantidad; i++) {
-        arreglo[i] = obtenerFrente(); // guardando el primer dato
-        desencolar(); // eliminando el primer dato
+        arreglo[i] = new T(*(actual->dato)); // guardando el primer dato
+        actual = actual->siguiente;
     }
 
     //mezclando el arreglo con algoritmo fisher-yates
     srand(static_cast<unsigned int>(time(nullptr))); // semilla de aleatoriedad
     for (int i = cantidad - 1; i > 0; i--) {
         int indiceAleatorio = rand() % (i + 1); // generando indice aleatorio
-
-        // moviendo arreglo[i] con arreglo[indiceAleatorio]
-        T temp = arreglo[i];
-        arreglo[i] = arreglo[indiceAleatorio];
-        arreglo[indiceAleatorio] = temp;
+        swap(arreglo[i], arreglo[indiceAleatorio]);
     }
-
     // encolando los elementos mezclados en una nueva cola
     Cola<T> colaMezclada;
     for (int i = 0; i < cantidad; i++) {
-        colaMezclada.encolar(arreglo[i]);
+        colaMezclada.encolar(*(arreglo[i]));
+        delete arreglo[i]; //liberando memora de cada dato ya manipulado
     }
-
-    delete[] arreglo;
+    delete[] arreglo; //liberando memoria del arreglo vacio
     return colaMezclada;
 }
 
