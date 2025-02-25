@@ -39,9 +39,11 @@ void Partida::iniciarPartida(ListaEnlazada<Palabra *> *diccionario) {
     cout << "Repartiendo letras (fichas) entre todos los jugadores y ordenandolas de mayor a menor punteo..." << endl;
     repartirLetras();
     ordenarLetrasJugadores();
+
     cout << "Generando turnos aleatorios..." << endl;
     cout << "Orden de los turnos para la partida: " << endl;
     jugadores->mostrarCola();
+
     cout << "Todo listo para iniciar..." << endl;
     tableroDeJuego->generarTablero(); //creando el tablero de juego
     cout << "El tablero para esta partida es:" << endl;
@@ -53,21 +55,20 @@ void Partida::iniciarPartida(ListaEnlazada<Palabra *> *diccionario) {
         opcionTurno = jugadorActual->mostrarOpcionesTurno();
         realizarTurno(opcionTurno);
         tableroDeJuego->imprimirTablero();
-    } while (hayPalabra == true || this->diccionario->estaVacia());
+    } while (hayPalabra && !diccionario->estaVacia());
     cout << "Se cumplio el while" << endl;
     //ciclando mientras hayan palabrasJugables o se puedan formar palabras
 }
 
 void Partida::registrarJugadores() {
     int cantidadJugadores = 0;
-    cout << "\nIngresa el numero de jugadores que tendra la partida..." << endl;
-    cin >> cantidadJugadores;
-
-    while (cantidadJugadores < 2) {
-        cout << "Debe haber minimo 2 jugadores en la partida *_*" << endl;
+    do {
         cout << "\nIngresa el numero de jugadores que tendra la partida..." << endl;
         cin >> cantidadJugadores;
-    }
+        if (cantidadJugadores<2) {
+            cout << "El numero de jugadores debe ser minimo 2" << endl;
+        }
+    } while (cantidadJugadores < 2);
 
     for (int i = 0; i < cantidadJugadores; i++) {
         string nombre;
@@ -87,18 +88,22 @@ void Partida::registrarJugadores() {
 
 ListaEnlazada<Letra *> *Partida::generarLetrasJugables(ListaEnlazada<Palabra *> *diccionario) {
     Nodo<Palabra *> *actual = diccionario->obtenerCabeza(); //obteniendo la primera lera
-
     srand(static_cast<unsigned int>(time(nullptr))); // semilla de aleatoriedad
 
     while (actual != nullptr) {
+        Palabra *palabra = actual->dato;
         //mientras sigan habiendo palabras en el diccionario
-        for (char caracter: actual->dato->getContenido()) {
+        if (palabra != nullptr) {
+            string contenido = palabra->getContenido();
+            for (char caracter: contenido) {
             //recorriendo cada letra de la palabra
             Letra *letra = new Letra(); //creando objeto letra
             letra->setLetra(caracter); // asignando la letra
             letra->setPunteo(rand() % 9 + 1); // creando la puntuacion aleatoria dela letra
             letrasJugables->agregarFinal(letra); // agregando la letra a la lista
         }
+        }
+
         actual = actual->siguiente; // pasar al siguiente nodo del diccionario, para analizar la siguiente palabra
     }
     return letrasJugables;
@@ -142,13 +147,22 @@ void Partida::realizarTurno(int opcionTurno) {
             jugadorActual->mostrarLetras();
             cout << "Ingresa el indice de la letra que quieres colocar:" << endl;
             cin >> indiceLetra;
-            Letra letraAColocar = jugadorActual->getLetras()->obtenerYEliminar(indiceLetra - 1);
+            Letra *letraAColocar = jugadorActual->getLetras()->obtenerYEliminar(indiceLetra - 1);
+            if (letraAColocar == nullptr) {
+                cout << "Índice inválido. Intenta nuevamente." << endl;
+                break;
+            }
             //Letra* letraAColocar = jugadorActual->getLetras()->obtenerYEliminar(indiceLetra - 1);
             cout << "Ingresa la columna donde quieres poner la letra:" << endl;
             cin >> columna;
             cout << "Ingresa la fila donde quieres poner la letra:" << endl;
             cin >> fila;
-            tableroDeJuego->colocarLetra(letraAColocar, fila - 1, columna - 1, diccionario);
+
+            bool colocada = tableroDeJuego->colocarLetra(letraAColocar, fila - 1, columna - 1, diccionario);
+            if (!colocada) {
+                cout << "No se pudo colocar la letra en la posición indicada. La letra se descartará." << endl;
+                delete letraAColocar;
+            }
 
             break;
         }

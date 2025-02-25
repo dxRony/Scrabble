@@ -5,23 +5,14 @@
 #ifndef COLA_H
 #define COLA_H
 #include <iostream>
-
+#include "Nodo.h"
 using namespace std;
 
 template<typename T>
 class Cola {
-public:
-    struct Nodo {
-        T *dato; // apuntador al valor del elemento (nodo)
-        Nodo *siguiente; //apuntador añ siguiente nodo
-        explicit Nodo(T *nuevoDato) : dato(nuevoDato), siguiente(nullptr) {
-        } // constructor con el primer elemento y el siguiente
-        ~Nodo() { delete dato; } //destructor para liberar memoria
-    };
-
 private:
-    Nodo *frente; // apuntador al frente de la cola
-    Nodo *final; // apuntador al final de la cola
+    Nodo<T> *frente; // apuntador al frente de la cola
+    Nodo<T> *final; // apuntador al final de la cola
 
 public:
     Cola(); // constructor de la clase cola
@@ -35,7 +26,6 @@ public:
     Cola<T> mezclarCola(); // metodo para mezclar una cola
     int contarElementos() const;
 };
-
 
 template<typename T>
 Cola<T>::Cola() : frente(nullptr), final(nullptr) {
@@ -53,7 +43,7 @@ Cola<T>::~Cola() {
 
 template<typename T>
 void Cola<T>::encolar(const T &nuevoDato) {
-    Nodo *nuevoNodo = new Nodo(new T(nuevoDato)); // creando nuevo nodo con el dato
+    Nodo<T> *nuevoNodo = new Nodo<T>(new T(nuevoDato)); // creando nuevo nodo con el dato
     if (estaVacia()) {
         // si la cola esta vacia
         frente = nuevoNodo;
@@ -71,7 +61,7 @@ T Cola<T>::desencolar() {
         throw runtime_error("La cola está vacía"); // si la cola esta vacia arrojamos error
     }
 
-    Nodo *tmp = frente; // creando nodo temporal
+    Nodo<T> *tmp = frente; // creando nodo temporal
     T dato = *(frente->dato); // almacenando el dato
     frente = frente->siguiente; // cambiando dato de enfrente por el siguiente
     delete tmp; // liberando memoria
@@ -99,7 +89,7 @@ bool Cola<T>::estaVacia() const {
 
 template<typename T>
 void Cola<T>::mostrarCola() const {
-    Nodo *actual = frente; // se crea un nodo actual para contener el inicio de la cola
+    Nodo<T> *actual = frente; // se crea un nodo actual para contener el inicio de la cola
     while (actual) {
         // mientras exista un nodo actual
         cout << *(actual->dato) << " \n"; // Se imprime ese nodo actual
@@ -116,7 +106,7 @@ Cola<T> Cola<T>::mezclarCola() {
     }
 
     T **arreglo = new T *[cantidad]; //convirtiendo la cola en un arreglo para una facil manipulacion
-    Nodo *actual = frente;
+    Nodo<T> *actual = frente;
     for (int i = 0; i < cantidad; i++) {
         arreglo[i] = new T(*(actual->dato)); // guardando el primer dato
         actual = actual->siguiente;
@@ -141,7 +131,7 @@ Cola<T> Cola<T>::mezclarCola() {
 template<typename T>
 int Cola<T>::contarElementos() const {
     int contador = 0;
-    Nodo *actual = frente;
+    Nodo<T> *actual = frente;
     while (actual != nullptr) {
         contador++;
         actual = actual->siguiente;
