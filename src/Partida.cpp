@@ -116,7 +116,7 @@ void Partida::repartirLetras() {
     // repartiendo hasta que no haya dato siguiente
     while (actualLetra != nullptr) {
         Jugador *actualJugador = jugadores->desencolar(); // guardando jugador
-        actualJugador->setLetra(actualLetra->dato); // dandole una ficha
+        actualJugador->setLetra(*(actualLetra->dato)); // dandole una ficha
         jugadores->encolar(actualJugador); // agregandolo a la cola nuevamente
         actualLetra = actualLetra->siguiente; // actualizando letra
     }
