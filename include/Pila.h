@@ -12,7 +12,7 @@ using namespace std;
 
 template<typename T>
 class Pila {
-private:
+public:
     struct Nodo {
         T *dato; //apuntador al dato
         Nodo *siguiente; //apuntador al siguiente nodo
@@ -20,7 +20,7 @@ private:
         } //constructor del nodo
         ~Nodo() { delete dato; } // destructor del nodo
     };
-
+private:
     Nodo *cima; // apuntador al primer elemento de la pila
 
 public:

@@ -10,7 +10,7 @@ using namespace std;
 
 template<typename T>
 class Cola {
-private:
+public:
     struct Nodo {
         T *dato; // apuntador al valor del elemento (nodo)
         Nodo *siguiente; //apuntador añ siguiente nodo
@@ -19,6 +19,7 @@ private:
         ~Nodo() { delete dato; } //destructor para liberar memoria
     };
 
+private:
     Nodo *frente; // apuntador al frente de la cola
     Nodo *final; // apuntador al final de la cola
 

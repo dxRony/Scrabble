@@ -13,41 +13,43 @@
 
 class Partida {
 private:
-    Cola<Jugador> jugadores;
-    Pila<Palabra> palabrasJugadas;
-    ListaEnlazada<Jugador> listaPunteos;
-    ListaEnlazada<Palabra> diccionario;
-    ListaEnlazada<Letra> letrasJugables;
+    Cola<Jugador*> *jugadores;
+    Pila<Palabra*> *palabrasJugadas;
+    ListaEnlazada<Jugador*> *listaPunteos;
+    ListaEnlazada<Palabra*> *diccionario;
+    ListaEnlazada<Letra*> *letrasJugables;
     bool hayPalabra;
     bool hayLetraCentro;
-    Jugador jugadorActual;
-    Tablero tableroDeJuego;
+    Jugador *jugadorActual;
+    Tablero *tableroDeJuego;
 
 public:
     Partida();
 
-    void iniciarPartida(ListaEnlazada<Palabra> diccionario);
+    ~Partida();
+
+    void iniciarPartida(ListaEnlazada<Palabra*> *diccionario);
 
     void registrarJugadores();
 
-    ListaEnlazada<Letra> generarLetrasJugables(ListaEnlazada<Palabra> &diccionario);
+    ListaEnlazada<Letra*> *generarLetrasJugables(ListaEnlazada<Palabra*> *diccionario);
 
     void repartirLetras();
 
     void ordenarLetrasJugadores();
 
     //getters
-    Cola<Jugador> getColaJugadores() const;
+    Cola<Jugador*> *getColaJugadores() const;
 
-    Pila<Palabra> getPilaPalabrasJugadas() const;
+    Pila<Palabra*> *getPilaPalabrasJugadas() const;
 
-    ListaEnlazada<Jugador> getListaPunteos() const;
+    ListaEnlazada<Jugador*> *getListaPunteos() const;
 
-    ListaEnlazada<Palabra> getListaDiccionario() const;
+    ListaEnlazada<Palabra*> *getListaDiccionario() const;
 
-    ListaEnlazada<Letra> getListaLetrasJugables() const;
+    ListaEnlazada<Letra*> *getListaLetrasJugables() const;
 
-    Jugador cambiarTurno();
+    Jugador *cambiarTurno();
 
     void realizarTurno(int opcionTurno);
 

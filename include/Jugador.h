@@ -12,21 +12,23 @@ using namespace std;
 
 class Jugador {
 private:
-    string nombre;
-    int puntuacion;
-    int cantidadTurnos;
-    int tiempoJugado;
-    ListaEnlazada<Letra> letras;
+    string* nombre;
+    int* puntuacion;
+    int* cantidadTurnos;
+    int* tiempoJugado;
+    ListaEnlazada<Letra>* letras;
 
     //funciones privadas
-    Nodo<Letra> *mergeSort(Nodo<Letra> *cabeza);
+    Nodo<Letra>* mergeSort(Nodo<Letra>* cabeza);
 
-    Nodo<Letra> *dividirLista(Nodo<Letra> *cabeza);
+    Nodo<Letra>* dividirLista(Nodo<Letra>* cabeza);
 
-    Nodo<Letra> *fusionarListas(Nodo<Letra> *izquierda, Nodo<Letra> *derecha);
+    Nodo<Letra>* fusionarListas(Nodo<Letra>* izquierda, Nodo<Letra>* derecha);
 
 public:
     Jugador();
+
+    ~Jugador();
 
     void mostrarLetras() const;
 
@@ -43,11 +45,11 @@ public:
 
     int getTiempoJugado() const;
 
-    ListaEnlazada<Letra> getLetras() const;
+    ListaEnlazada<Letra>* getLetras() const;
 
 
     //setters
-    void setNombre(string nuevoNombre);
+    void setNombre(const string& nuevoNombre);
 
     void setPuntuacion(int puntos);
 
@@ -55,7 +57,7 @@ public:
 
     void setTiempoJugado(int tiempoExtra);
 
-    void setLetra(Letra letra);
+    void setLetra(const Letra& letra);
 
     // Sobrecarga del operador <<
     friend ostream &operator<<(ostream &os, const Jugador &jugador);

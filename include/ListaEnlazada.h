@@ -12,15 +12,18 @@ using namespace std;
 
 template<typename T>
 class ListaEnlazada {
-private:
+public:
     struct Nodo {
         T *dato; // apuntador al dato
         Nodo *siguiente; // apuntador al siguiente nodo
         explicit Nodo(T *nuevoDato) : dato(nuevoDato), siguiente(nullptr) {
         } // constructor con el primero dato y nullptr (siguiente dato)
+        ~Nodo() {delete dato;}
     };
 
+private:
     Nodo *cabeza; //apuntador al primer nodo (cabeza) de la lista
+
 public:
     ListaEnlazada(); //constructor
     ~ListaEnlazada(); //destructor
@@ -28,11 +31,11 @@ public:
     void agregarInicio(const T &nuevoDato); //agrega un dato al inicio
     void agregarFinal(const T &nuevoDato); //agrega un dato al final
     void eliminar(const T &valor); //elimina el primer nodo con el valor dado
-    Nodo *obtenerCabeza() const; //devuelve el apuntador de la cabeza
+    Nodo *obtenerCabeza(); //devuelve el apuntador de la cabeza
     void setCabeza(Nodo *nuevaCabeza); //modifica la cabea de la lista
     bool estaVacia() const; //indica si la lista esta vacia
     void mostrarLista() const; //muestra todos los elementos de la lista
-    int contarElementos() const;    //cuenta los elementos de la lista
+    int contarElementos() const; //cuenta los elementos de la lista
     T obtenerYEliminar(int indice); //obtiene y elimina el dato segun el indice
 };
 
@@ -98,7 +101,7 @@ void ListaEnlazada<T>::eliminar(const T &valor) {
 }
 
 template<typename T>
-typename ListaEnlazada<T>::Nodo *ListaEnlazada<T>::obtenerCabeza() const {
+typename ListaEnlazada<T>::Nodo *ListaEnlazada<T>::obtenerCabeza() {
     return cabeza;
 }
 
@@ -114,7 +117,7 @@ bool ListaEnlazada<T>::estaVacia() const {
 
 template<typename T>
 void ListaEnlazada<T>::mostrarLista() const {
-    Nodo *actual = cabeza;  //obteniendo cabeza
+    Nodo *actual = cabeza; //obteniendo cabeza
     while (actual) {
         //mientras haya actual
         cout << *(actual->dato) << ", "; //imprimiendo dato actual
@@ -126,7 +129,7 @@ void ListaEnlazada<T>::mostrarLista() const {
 template<typename T>
 int ListaEnlazada<T>::contarElementos() const {
     int contador = 0;
-    Nodo *actual = cabeza;  //guardando primer elemento
+    Nodo *actual = cabeza; //guardando primer elemento
     while (actual) {
         contador++; //aumentando contador
         actual = actual->siguiente; //avanzando de dato
@@ -143,22 +146,20 @@ T ListaEnlazada<T>::obtenerYEliminar(int indice) {
         throw out_of_range("Índice fuera de rango.");
     }
 
-    Nodo *actual = cabeza;  //guardando cabeza
+    Nodo *actual = cabeza; //guardando cabeza
     Nodo *previo = nullptr; //guardando previo
-    int contador = 0;
 
-    while (contador < indice) {
+    for (int i =0; i < indice; i++) {
         //avanzando de dato hasta llegar al solicitado
         previo = actual;
         actual = actual->siguiente;
-        contador++;
     }
 
     T datoADevolver = *(actual->dato); // guardando dato solicitado
 
     if (previo) {
         //si tiene previo
-        previo->siguiente = actual->siguiente;  //se actualiza el dato
+        previo->siguiente = actual->siguiente; //se actualiza el dato
     } else {
         // si no tiene previo (es la cabeza)
         cabeza = actual->siguiente;

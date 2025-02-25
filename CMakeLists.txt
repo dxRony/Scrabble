@@ -22,4 +22,5 @@ add_executable(Scrabble main.cpp
         src/Palabra.cpp
         src/Partida.cpp
         src/Reporte.cpp
-        src/Tablero.cpp)
+        src/Tablero.cpp
+        include/Nodo.h.cpp)
