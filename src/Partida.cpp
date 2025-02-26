@@ -12,7 +12,7 @@ Partida::Partida() {
     jugadores = new Cola<Jugador *>();
     palabrasJugadas = new Pila<Palabra *>();
     listaPunteos = new ListaEnlazada<Jugador *>();
-    diccionario = new ListaEnlazada<Palabra *>();
+    diccionario = new ListaEnlazada<Palabra>();
     letrasJugables = new ListaEnlazada<Letra *>();
     hayPalabra = true;
     hayLetraCentro = false;
@@ -29,7 +29,7 @@ Partida::~Partida() {
     delete tableroDeJuego;
 }
 
-void Partida::iniciarPartida(ListaEnlazada<Palabra *> *diccionario) {
+void Partida::iniciarPartida(ListaEnlazada<Palabra> *diccionario) {
     this->diccionario = diccionario;
     registrarJugadores();
     jugadores->mezclarCola();
@@ -192,7 +192,7 @@ void Partida::realizarTurno(int opcionTurno) {
 Cola<Jugador *> *Partida::getColaJugadores() const { return jugadores; }
 Pila<Palabra *> *Partida::getPilaPalabrasJugadas() const { return palabrasJugadas; }
 ListaEnlazada<Jugador *> *Partida::getListaPunteos() const { return listaPunteos; }
-ListaEnlazada<Palabra *> *Partida::getListaDiccionario() const { return diccionario; }
+ListaEnlazada<Palabra> *Partida::getListaDiccionario() const { return diccionario; }
 ListaEnlazada<Letra *> *Partida::getListaLetrasJugables() const { return letrasJugables; }
 
 bool Partida::getHayPalabra() const { return hayPalabra; }

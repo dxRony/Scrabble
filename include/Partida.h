@@ -16,7 +16,7 @@ private:
     Cola<Jugador*> *jugadores;
     Pila<Palabra*> *palabrasJugadas;
     ListaEnlazada<Jugador*> *listaPunteos;
-    ListaEnlazada<Palabra*> *diccionario;
+    ListaEnlazada<Palabra> *diccionario;
     ListaEnlazada<Letra*> *letrasJugables;
     bool hayPalabra;
     bool hayLetraCentro;
@@ -28,7 +28,7 @@ public:
 
     ~Partida();
 
-    void iniciarPartida(ListaEnlazada<Palabra*> *diccionario);
+    void iniciarPartida(ListaEnlazada<Palabra> *diccionario);
 
     void registrarJugadores();
 
@@ -45,7 +45,7 @@ public:
 
     ListaEnlazada<Jugador*> *getListaPunteos() const;
 
-    ListaEnlazada<Palabra*> *getListaDiccionario() const;
+    ListaEnlazada<Palabra> *getListaDiccionario() const;
 
     ListaEnlazada<Letra*> *getListaLetrasJugables() const;
 
