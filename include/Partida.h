@@ -32,5 +32,7 @@ public:
 
     void agregarJugadores();
 
+    void generarLetrasJugables();
+
 };
 #endif //PARTIDA_H

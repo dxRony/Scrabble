@@ -19,7 +19,7 @@ public:
 
     void setData(T *value) {
         delete this->data;          // Libera el dato actual
-        this->data = new T(value);  // Asigna el nuevo valor
+        this->data = value;  // Asigna el nuevo valor
     }
 
     Nodo *getNext() {

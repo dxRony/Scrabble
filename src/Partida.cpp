@@ -15,10 +15,10 @@ Partida::Partida() {
 }
 
 Partida::~Partida() {
-   // delete jugadores;
-    //delete palabrasJugadas;
-    //delete listaPunteos;
-    //delete letrasJugables;
+   delete jugadores;
+    delete palabrasJugadas;
+    delete listaPunteos;
+    delete letrasJugables;
 }
 
 void Partida::iniciarPartida(ListaEnlazada<Palabra> *diccionario) {
@@ -27,8 +27,11 @@ void Partida::iniciarPartida(ListaEnlazada<Palabra> *diccionario) {
     cout << "Palabras en el diccionario:" << endl;
     diccionario->imprimirLista();
     agregarJugadores();
-
-
+    cout << "Revolviendo turnos..." << endl;
+    jugadores->mezclarCola();
+    jugadores->mostrarCola();
+    cout << "Repartiendo letras a los jugadores..."<< endl;
+    generarLetrasJugables();
 }
 
 void Partida::agregarJugadores() {
@@ -52,7 +55,34 @@ void Partida::agregarJugadores() {
     }
 
     cout << "\nJugadores agregados correctamente a la partida.\n" << endl;
-    jugadores->mostrarCola();
+}
+
+void Partida::generarLetrasJugables() {
+    // Verificamos que el diccionario no esté vacío
+    if (diccionario == nullptr || diccionario->isEmpty()) {
+        cout << "El diccionario está vacío." << endl;
+        return;
+    }
+
+    // Recorremos cada palabra en el diccionario
+    for (int i = 0; i < diccionario->obtenerTamano(); i++) {
+        Palabra *palabraActual = diccionario->obtenerDatoEnPosicion(i);
+
+        // Obtenemos el contenido de la palabra (string)
+        string contenido = palabraActual->getContenido();
+
+        // Recorremos cada letra del contenido
+        for (char letraChar : contenido) {
+            // Creamos un objeto Letra con la letra y un puntaje aleatorio
+            Letra *letra = new Letra();
+            letra->setLetra(letraChar) ; // Asignamos la letra
+            letra->setPunteo(rand() % 9 + 1)  ; // Puntaje aleatorio entre 1 y 9
+
+            // Agregamos la letra a la lista de letras jugables
+            this->letrasJugables->insertar(letra);
+        }
+    }
+    cout << "Letras jugables generadas." << std::endl;
 }
 
 

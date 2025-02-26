@@ -20,6 +20,41 @@ public:
         this->fin = nullptr;
     }
 
+    int obtenerTamano() {
+        int tamano = 0;
+        Nodo<T> *actual = this->inicio;
+        while (actual != nullptr) {
+            tamano++;
+            actual = actual->getNext();
+        }
+        return tamano;
+    }
+
+    Nodo<T> *obtenerNodoEnPosicion(int posicion) {
+        Nodo<T> *actual = this->inicio;
+        for (int i = 0; i < posicion; i++) {
+            actual = actual->getNext();
+        }
+        return actual;
+    }
+
+    void mezclarCola() {
+        int tamano = obtenerTamano();
+        if (tamano <= 1) return;
+
+        for (int i = tamano - 1; i > 0; i--) {
+            int j = rand() % (i + 1);
+
+            Nodo<T> *nodoI = obtenerNodoEnPosicion(i);
+            Nodo<T> *nodoJ = obtenerNodoEnPosicion(j);
+
+            // Intercambiamos los valores, no los punteros
+            T temp = nodoI->getValue();
+            nodoI->setValue(nodoJ->getValue());
+            nodoJ->setValue(temp);
+        }
+    }
+
     Nodo<T> *getInicio() {
         return this->inicio;
     }
@@ -91,16 +126,13 @@ public:
         }
 
         Nodo<T> *actual = this->inicio;
-        cout << "Elementos en la cola:" << endl;
         while (actual != nullptr) {
             T *dato = actual->getData();
             if (dato != nullptr) {
-                cout << *dato << endl;  // Asume que T tiene sobrecargado el operador <<
+                cout << *dato << endl; // Asume que T tiene sobrecargado el operador <<
             }
             actual = actual->getNext();
         }
     }
-
-
 };
 #endif //COLA_H
