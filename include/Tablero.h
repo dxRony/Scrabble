@@ -11,9 +11,9 @@
 
 class Tablero {
 private:
-    Letra casillas[15][15];
+    Letra* casillas[15][15];
     bool hayLetraCentro;
-    void comprobarPalabraFormada(ListaEnlazada<Palabra> diccionario);
+    void comprobarPalabraFormada(ListaEnlazada<Palabra*> *diccionario);
 
 public:
     Tablero();
@@ -22,9 +22,7 @@ public:
 
     void imprimirTablero() const;
     
-    void colocarLetra(Letra letra, int fila, int columna, ListaEnlazada<Palabra> diccionario);
-
-    
+    bool colocarLetra(Letra letra, int fila, int columna, ListaEnlazada<Palabra*> *diccionario);
 
     bool getHayLetraCentro() const;
 

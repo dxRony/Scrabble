@@ -11,9 +11,9 @@ using namespace std;
 
 class Archivo {
 public:
-    ListaEnlazada<Palabra> leerCSV(const string &rutaArchivo);
+    ListaEnlazada<Palabra*>* leerCSV(const string &rutaArchivo);
 
-    ListaEnlazada<Palabra> ordenarAlfabeticamente();
+    ListaEnlazada<Palabra*>* ordenarAlfabeticamente();
 };
 
 #endif //ARCHIVO_H

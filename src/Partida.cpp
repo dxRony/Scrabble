@@ -116,7 +116,7 @@ void Partida::repartirLetras() {
     // repartiendo hasta que no haya dato siguiente
     while (actualLetra != nullptr) {
         Jugador *actualJugador = jugadores->desencolar(); // guardando jugador
-        actualJugador->setLetra(*(actualLetra->dato)); // dandole una ficha
+        actualJugador->setLetra((actualLetra->dato)); // dandole una ficha
         jugadores->encolar(actualJugador); // agregandolo a la cola nuevamente
         actualLetra = actualLetra->siguiente; // actualizando letra
     }
@@ -158,12 +158,11 @@ void Partida::realizarTurno(int opcionTurno) {
             cout << "Ingresa la fila donde quieres poner la letra:" << endl;
             cin >> fila;
 
-            bool colocada = tableroDeJuego->colocarLetra(letraAColocar, fila - 1, columna - 1, diccionario);
+            bool colocada = tableroDeJuego->colocarLetra(*letraAColocar, fila - 1, columna - 1, diccionario);
             if (!colocada) {
                 cout << "No se pudo colocar la letra en la posición indicada. La letra se descartará." << endl;
                 delete letraAColocar;
             }
-
             break;
         }
         case 2: {
