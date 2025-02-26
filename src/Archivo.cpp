@@ -45,9 +45,13 @@ ListaEnlazada<Palabra> *Archivo::leerCSV(const string &rutaArchivo) {
 
 ListaEnlazada<Palabra> *Archivo::ordenarAlfabeticamente() {
     ListaEnlazada<Palabra > *listaPalabras = this->leerCSV("../util/palabras.csv");
+    if (!listaPalabras ||listaPalabras->estaVacia()) {
+        return listaPalabras;
+    }
     if (!listaPalabras) {
         return nullptr;
     }
+
     Nodo<Palabra> *actual = listaPalabras->obtenerCabeza(); //obteniendo la cabeza de la lista
     while (actual != nullptr) {
         // minetras el nodo actual exista

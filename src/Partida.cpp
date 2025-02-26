@@ -29,7 +29,7 @@ Partida::~Partida() {
 
 void Partida::iniciarPartida(ListaEnlazada<Palabra> *diccionario) {
     cout << "entrando a iniciar partida..." << endl;
-    this->diccionario = diccionario;
+    this->diccionario->copiarLista(diccionario);
     registrarJugadores();
     jugadores->mezclarCola();
     generarLetrasJugables(diccionario);
@@ -42,16 +42,16 @@ void Partida::iniciarPartida(ListaEnlazada<Palabra> *diccionario) {
     jugadores->mostrarCola();
 
     cout << "Todo listo para iniciar..." << endl;
-    tableroDeJuego.generarTablero(); //creando el tablero de juego
+    //tableroDeJuego.generarTablero(); //creando el tablero de juego
     cout << "El tablero para esta partida es:" << endl;
-    tableroDeJuego.imprimirTablero();
+    //tableroDeJuego.imprimirTablero();
 
     int opcionTurno = 0;
     do {
         jugadorActual = cambiarTurno();
         opcionTurno = jugadorActual.mostrarOpcionesTurno();
-        realizarTurno(opcionTurno);
-        tableroDeJuego.imprimirTablero();
+        //realizarTurno(opcionTurno);
+       // tableroDeJuego.imprimirTablero();
     } while (hayPalabra && !diccionario->estaVacia());
     cout << "Se cumplio el while" << endl;
     //ciclando mientras hayan palabrasJugables o se puedan formar palabras

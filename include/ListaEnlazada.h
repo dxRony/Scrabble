@@ -29,12 +29,13 @@ public:
     void mostrarLista() const; //muestra todos los elementos de la lista
     int contarElementos() const; //cuenta los elementos de la lista
     T obtenerYEliminar(int indice); //obtiene y elimina el dato segun el indice
+    void copiarLista( ListaEnlazada<T> *otraLista);
 };
 
 template<typename T>
-ListaEnlazada<T>::ListaEnlazada() {
+ListaEnlazada<T>::ListaEnlazada() : cabeza(nullptr){
     // constructor
-    cabeza = nullptr; // la lista empieza con la cabeza nula (no hay datos)
+    //cabeza = nullptr; // la lista empieza con la cabeza nula (no hay datos)
 }
 
 // libera todos los nodos
@@ -47,14 +48,14 @@ ListaEnlazada<T>::~ListaEnlazada() {
 
 template<typename T>
 void ListaEnlazada<T>::agregarInicio(const T &nuevoDato) {
-    auto nuevoNodo = new Nodo<T>(new T(nuevoDato)); // creando nuevo dato
+    auto nuevoNodo = new Nodo<T>(nuevoDato); // creando nuevo dato
     nuevoNodo->siguiente = cabeza; // el nuevo nodo apunta a la cabeza
     cabeza = nuevoNodo; // el nuevo nodo se convierte en la cabeza
 }
 
 template<typename T>
 void ListaEnlazada<T>::agregarFinal(T nuevoDato) {
-    auto *nuevoNodo = new Nodo<T>(nuevoDato); //creando nodo que contenga al nuevo elemento
+    auto nuevoNodo = new Nodo<T>(nuevoDato); //creando nodo que contenga al nuevo elemento
     if (estaVacia()) {
         cabeza = nuevoNodo; //si la lista esta vacia, el nuevoNodo sera la cabeza
     } else {
@@ -74,7 +75,7 @@ void ListaEnlazada<T>::eliminar(const T &valor) {
 
     while (actual) {
         // mientras haya un nodo actual
-        if (*(actual->dato) == valor) {
+        if (actual->dato == valor) {
             // si el nodo actual es el nodo a eliminar
             if (previo) {
                 // si hay un nodo previo al actual
@@ -158,5 +159,16 @@ T ListaEnlazada<T>::obtenerYEliminar(int indice) {
     }
     delete actual;
     return datoADevolver;
+}
+
+template<typename T>
+void ListaEnlazada<T>::copiarLista(ListaEnlazada<T>* otraLista) {
+    if (!otraLista || otraLista->estaVacia()) return;
+
+    Nodo<T>* actual = otraLista->obtenerCabeza();
+    while (actual) {
+        this->agregarFinal(actual->dato);  // Reutilizamos agregarFinal
+        actual = actual->siguiente;
+    }
 }
 #endif //LISTAENLAZADA_H
