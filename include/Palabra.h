@@ -1,10 +1,9 @@
 //
-// Created by ronyrojas on 19/02/25.
+// Created by ronyrojas on 26/02/25.
 //
 
 #ifndef PALABRA_H
 #define PALABRA_H
-
 #include <string>
 using namespace std;
 
@@ -33,5 +32,4 @@ public:
 
     friend ostream &operator<<(ostream &os, const Palabra &palabra);
 };
-
 #endif //PALABRA_H

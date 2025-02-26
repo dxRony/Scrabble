@@ -1,5 +1,5 @@
 //
-// Created by ronyrojas on 19/02/25.
+// Created by ronyrojas on 26/02/25.
 //
 
 #include "../include/Archivo.h"
@@ -48,19 +48,21 @@ ListaEnlazada<Palabra> *Archivo::ordenarAlfabeticamente() {
     if (!listaPalabras || listaPalabras->isEmpty()) {
         return listaPalabras;
     }
-    Nodo<Palabra> *actual = listaPalabras->getRaiz(); //obteniendo la cabeza de la lista
-    while (actual != nullptr) {
-        // minetras el nodo actual exista
-        Nodo<Palabra> *siguiente = actual->getNext(); //obteniendo el nodo siguiente de la lista
-        while (siguiente != nullptr) {
-            //si el nodo siguiente existe
+    bool intercambio;
+    do {
+        intercambio = false;
+        Nodo<Palabra> *actual = listaPalabras->getRaiz();
+        while (actual != nullptr && actual->getNext() != nullptr) {
+            Nodo<Palabra> *siguiente = actual->getNext();
             if (actual->getValue().getContenido() > siguiente->getValue().getContenido()) {
-                //comparando el contenido para determinar si es mayor
-                swap(actual->getValue(), siguiente->getValue());
+                // En lugar de: swap(actual->getValue(), siguiente->getValue());
+                Palabra temp = actual->getValue();
+                actual->setValue(siguiente->getValue());
+                siguiente->setValue(temp);
+                intercambio = true;
             }
-            siguiente = siguiente->getNext(); //yendo al siguiente nodo (siguiente del siguiente)
+            actual = actual->getNext();
         }
-        actual = actual->getNext(); //el actual nodo se convierte en el siguiente del actual
-    }
+    } while (intercambio);
     return listaPalabras; //devolviendo la lista ordenada
 }

@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Scrabble::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Scrabble-Debug-5697d62a91b4e7311479.json",
+					"jsonFile" : "target-Scrabble-Debug-5dbfafd21638c56f6c3c.json",
 					"name" : "Scrabble",
 					"projectIndex" : 0
 				}
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/ronyrojas/Documentos/Proyectos/Scrabble-main/cmake-build-debug",
-		"source" : "/home/ronyrojas/Documentos/Proyectos/Scrabble-main"
+		"build" : "/home/ronyrojas/Im\u00e1genes/Scrabble/cmake-build-debug",
+		"source" : "/home/ronyrojas/Im\u00e1genes/Scrabble"
 	},
 	"version" : 
 	{

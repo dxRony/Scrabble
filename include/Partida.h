@@ -1,15 +1,15 @@
 //
-// Created by ronyrojas on 19/02/25.
+// Created by ronyrojas on 26/02/25.
 //
+
 #ifndef PARTIDA_H
 #define PARTIDA_H
-
 #include "ListaEnlazada.h"
 #include "Cola.h"
 #include "Pila.h"
 #include "Jugador.h"
 #include "Palabra.h"
-#include "Tablero.h"
+//#include "Tablero.h"
 
 class Partida {
 private:
@@ -21,7 +21,7 @@ private:
     bool hayPalabra;
     bool hayLetraCentro;
     Jugador jugadorActual;
-    Tablero tableroDeJuego;
+    //Tablero tableroDeJuego;
 
 public:
     Partida();
@@ -30,37 +30,7 @@ public:
 
     void iniciarPartida(ListaEnlazada<Palabra> *diccionario);
 
-    void registrarJugadores();
+    void agregarJugadores();
 
-    ListaEnlazada<Letra> *generarLetrasJugables(ListaEnlazada<Palabra> *diccionario);
-
-    void repartirLetras();
-
-    void ordenarLetrasJugadores();
-
-    //getters
-    Cola<Jugador> *getColaJugadores() const;
-
-    Pila<Palabra> *getPilaPalabrasJugadas() const;
-
-    ListaEnlazada<Jugador> *getListaPunteos() const;
-
-    ListaEnlazada<Palabra> *getListaDiccionario() const;
-
-    ListaEnlazada<Letra> *getListaLetrasJugables() const;
-
-    Jugador cambiarTurno();
-
-    void realizarTurno(int opcionTurno);
-
-    bool getHayPalabra() const;
-
-    bool getHayLetraCentro() const;
-
-    //setters
-    void setHayPalabra(bool hayPalabra);
-
-    void setHayLetraCentro(bool hayLetraCentro);
 };
-
 #endif //PARTIDA_H

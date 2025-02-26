@@ -1,8 +1,12 @@
+//
+// Created by ronyrojas on 26/02/25.
+//
+
 #ifndef MOTORDEJUEGO_H
 #define MOTORDEJUEGO_H
 
-#include "Partida.h"
-#include "Reporte.h"
+//#include "Partida.h"
+//#include "Reporte.h"
 #include <iostream>
 
 class MotorDeJuego {
@@ -18,5 +22,4 @@ private:
 
     bool finalizarEjecucion = false;
 };
-
 #endif //MOTORDEJUEGO_H

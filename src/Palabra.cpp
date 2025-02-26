@@ -1,5 +1,5 @@
 //
-// Created by ronyrojas on 19/02/25.
+// Created by ronyrojas on 26/02/25.
 //
 #include "../include/Palabra.h"
 #include <iostream>

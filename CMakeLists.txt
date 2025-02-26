@@ -7,21 +7,16 @@ add_executable(Scrabble main.cpp
         include/MotorDeJuego.h
         src/MotorDeJuego.cpp
         include/Archivo.h
-        include/Cola.h
-        include/Jugador.h
-        include/Letra.h
+        src/Archivo.cpp
         include/ListaEnlazada.h
         include/Palabra.h
-        include/Partida.h
-        include/Pila.h
-        include/Reporte.h
-        include/Tablero.h
-        src/Archivo.cpp
-        src/Jugador.cpp
-        src/Letra.cpp
         src/Palabra.cpp
-        src/Partida.cpp
-        src/Reporte.cpp
-        src/Tablero.cpp
         include/Nodo.h
-)
+        include/Partida.h
+        src/Partida.cpp
+        include/Cola.h
+        include/Pila.h
+        include/Jugador.h
+        src/Jugador.cpp
+        include/Letra.h
+        src/Letra.cpp)

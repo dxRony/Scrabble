@@ -1,20 +1,21 @@
 //
-// Created by ronyrojas on 19/02/25.
+// Created by ronyrojas on 26/02/25.
 //
 
 #ifndef LISTAENLAZADA_H
 #define LISTAENLAZADA_H
-
 #include <iostream>
 #include <stdexcept>
 #include "Nodo.h"
 
 using namespace std;
 
-template<class T> class ListaEnlazada {
+template<class T>
+class ListaEnlazada {
 private:
     Nodo<T> *raiz; //apuntador al primer nodo (cabeza) de la lista raiz = cabeza
     int size;
+
 public:
     ListaEnlazada() {
         this->raiz = nullptr;
@@ -24,6 +25,7 @@ public:
     Nodo<T> *getRaiz() {
         return this->raiz;
     }
+
     void setRaiz(Nodo<T> *raiz) {
         this->raiz = raiz;
     }
@@ -31,6 +33,7 @@ public:
     int getSize() {
         return this->size;
     }
+
     void setSize(int size) {
         this->size = size;
     }
@@ -116,6 +119,14 @@ public:
     bool isEmpty() {
         return this->raiz == nullptr;
     }
-};
 
+    void imprimirLista() {
+        Nodo<T> *actual = this->raiz;
+        while (actual != nullptr) {
+            cout << actual->getValue() << ", ";
+            actual = actual->getNext();
+        }
+        cout << "nullptr" << endl;
+    }
+};
 #endif //LISTAENLAZADA_H

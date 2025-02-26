@@ -1,5 +1,5 @@
 //
-// Created by ronyrojas on 19/02/25.
+// Created by ronyrojas on 26/02/25.
 //
 
 #ifndef JUGADOR_H
@@ -16,23 +16,23 @@ private:
     int puntuacion;
     int cantidadTurnos;
     int tiempoJugado;
-    ListaEnlazada<Letra> letras;
+    ListaEnlazada<Letra> *letras;
 
     //funciones privadas
-    Nodo<Letra > *mergeSort(Nodo<Letra> *cabeza);
+    //Nodo<Letra > *mergeSort(Nodo<Letra> *cabeza);
 
-    Nodo<Letra > *dividirLista(Nodo<Letra> *cabeza);
+    //Nodo<Letra > *dividirLista(Nodo<Letra> *cabeza);
 
-    Nodo<Letra > *fusionarListas(Nodo<Letra> *izquierda, Nodo<Letra> *derecha);
+    //Nodo<Letra > *fusionarListas(Nodo<Letra> *izquierda, Nodo<Letra> *derecha);
 
 public:
     Jugador();
 
-    void mostrarLetras() ;
+    //void mostrarLetras() ;
 
-    void ordenarLetrasPorPunteo();
+    //void ordenarLetrasPorPunteo();
 
-    int mostrarOpcionesTurno() const;
+    //int mostrarOpcionesTurno() const;
 
     //getters
     string getNombre() const;
@@ -43,7 +43,7 @@ public:
 
     int getTiempoJugado() const;
 
-    ListaEnlazada<Letra> &getLetras();
+    ListaEnlazada<Letra>* getLetras();
 
     //setters
     void setNombre(const string &nuevoNombre);
@@ -54,7 +54,7 @@ public:
 
     void setTiempoJugado(int tiempoExtra);
 
-    void setLetra(const Letra &letra);
+    void setLetras(ListaEnlazada<Letra> *letras);
 
     // Sobrecarga del operador <<
     friend ostream &operator<<(ostream &os, const Jugador &jugador);

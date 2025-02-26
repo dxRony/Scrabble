@@ -1,5 +1,5 @@
 //
-// Created by ronyrojas on 24/02/25.
+// Created by ronyrojas on 26/02/25.
 //
 
 #ifndef NODO_H
@@ -11,22 +11,15 @@ private:
     Nodo *next;
 
 public:
-    Nodo(T *value) {
-        this->data = value;
-        this->next = nullptr;
-    }
-
-    Nodo(T value) {
-        this->data = new T(value);
-        this->next = nullptr;
-    }
+    explicit Nodo(const T &value) : data(new T(value)), next(nullptr) {}
 
     T *getData() {
         return this->data;
     }
 
     void setData(T *value) {
-        this->data = value;
+        delete this->data;          // Libera el dato actual
+        this->data = new T(value);  // Asigna el nuevo valor
     }
 
     Nodo *getNext() {

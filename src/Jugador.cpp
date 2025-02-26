@@ -1,4 +1,8 @@
 //
+// Created by ronyrojas on 26/02/25.
+//
+
+//
 // Created by ronyrojas on 19/02/25.
 //
 #include "../include/Jugador.h"
@@ -7,10 +11,16 @@
 
 using namespace std;
 
-Jugador::Jugador(): nombre(""), puntuacion(0), cantidadTurnos(0), tiempoJugado(0), letras() {}
+Jugador::Jugador() {
+    nombre = "";
+    puntuacion = 0;
+    cantidadTurnos = 0;
+    tiempoJugado = 0;
+    letras = new ListaEnlazada<Letra>();
+}
 
-
-void Jugador::mostrarLetras()  {
+/*
+void Jugador::mostrarLetras() {
     int numeroLetra = 0;
     Nodo<Letra> *actual = letras.obtenerCabeza();
 
@@ -21,12 +31,13 @@ void Jugador::mostrarLetras()  {
     }
     while (actual) {
         cout << numeroLetra << ".- Letra = " << actual->dato.getLetra()
-             << ", punteo = " << actual->dato.getPunteo() << "; ";
+                << ", punteo = " << actual->dato.getPunteo() << "; ";
         actual = actual->siguiente;
         numeroLetra++;
     }
     cout << endl;
 }
+
 
 void Jugador::ordenarLetrasPorPunteo() {
     //metodo a llamar para ordenar letras
@@ -87,27 +98,42 @@ int Jugador::mostrarOpcionesTurno() const {
     cout << "Selecciona Una Opcion" << endl;
     cin >> opcion;
     return opcion;
-}
+}*/
 
 // getters
+
+
 string Jugador::getNombre() const { return nombre; }
 int Jugador::getPuntuacion() const { return puntuacion; }
 int Jugador::getCantidadTurnos() const { return cantidadTurnos; }
 int Jugador::getTiempoJugado() const { return tiempoJugado; }
-ListaEnlazada<Letra>& Jugador::getLetras() { return letras; }
+ListaEnlazada<Letra> *Jugador::getLetras() { return letras; }
 
 // setters
-void Jugador::setNombre(const string& nuevoNombre) { nombre = nuevoNombre; }
-void Jugador::setPuntuacion(int puntos) { puntuacion = puntos; }
-void Jugador::setCantidadTurnos(int turnoExtra) { cantidadTurnos = turnoExtra; }
-void Jugador::setTiempoJugado(int tiempoExtra) { tiempoJugado = tiempoExtra; }
-void Jugador::setLetra(const Letra &letra) { letras.agregarFinal(letra); }
-
-ostream& operator<<(ostream& os, const Jugador& jugador) {
-    os << "Nombre: " << jugador.getNombre()
-       << ", Puntuación: " << jugador.getPuntuacion()
-       << ", Turnos: " << jugador.getCantidadTurnos()
-       << ", Tiempo Jugado: " << jugador.getTiempoJugado() << "s";
-    return os;
+void Jugador::setNombre(const string &nombre) {
+    this->nombre = nombre;
 }
 
+void Jugador::setPuntuacion(int puntuacion) {
+    this->puntuacion = puntuacion;
+}
+
+void Jugador::setCantidadTurnos(int cantidadTurnos) {
+    this->cantidadTurnos = cantidadTurnos;
+}
+
+void Jugador::setTiempoJugado(int tiempoJugado) {
+    this->tiempoJugado = tiempoJugado;
+}
+
+void Jugador::setLetras(ListaEnlazada<Letra> *letras) {
+    this->letras = letras;
+}
+
+ostream &operator<<(ostream &os, const Jugador &jugador) {
+    os << "Nombre: " << jugador.getNombre()
+            << ", Puntuación: " << jugador.getPuntuacion()
+            << ", Turnos: " << jugador.getCantidadTurnos()
+            << ", Tiempo Jugado: " << jugador.getTiempoJugado() << "s";
+    return os;
+}

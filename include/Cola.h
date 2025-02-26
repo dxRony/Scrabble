@@ -1,5 +1,5 @@
 //
-// Created by ronyrojas on 19/02/25.
+// Created by ronyrojas on 26/02/25.
 //
 
 #ifndef COLA_H
@@ -8,7 +8,8 @@
 #include "Nodo.h"
 using namespace std;
 
-template<class T> class Cola {
+template<class T>
+class Cola {
 private:
     Nodo<T> *inicio; // apuntador al frente de la cola frente = inicio
     Nodo<T> *fin; // apuntador al final de la cola    final = fin
@@ -59,7 +60,7 @@ public:
         if (this->inicio == nullptr) return T();
 
         Nodo<T> *aux = this->inicio;
-        T *dato = this->inicio->getDato();
+        T *dato = this->inicio->getData();
         this->inicio = this->inicio->getNext();
         if (this->inicio == nullptr) this->fin = nullptr;
 
@@ -82,5 +83,24 @@ public:
     bool isVacio() {
         return this->inicio == nullptr;
     }
+
+    void mostrarCola() {
+        if (isVacio()) {
+            cout << "La cola está vacía." << endl;
+            return;
+        }
+
+        Nodo<T> *actual = this->inicio;
+        cout << "Elementos en la cola:" << endl;
+        while (actual != nullptr) {
+            T *dato = actual->getData();
+            if (dato != nullptr) {
+                cout << *dato << endl;  // Asume que T tiene sobrecargado el operador <<
+            }
+            actual = actual->getNext();
+        }
+    }
+
+
 };
 #endif //COLA_H

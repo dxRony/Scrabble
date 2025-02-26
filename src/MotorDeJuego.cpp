@@ -1,5 +1,5 @@
 //
-// Created by ronyrojas on 19/02/25.
+// Created by ronyrojas on 26/02/25.
 //
 #include "../include/MotorDeJuego.h"
 
@@ -7,6 +7,7 @@
 #include <iostream>
 
 #include "../include/Archivo.h"
+#include "../include/Partida.h"
 using namespace std;
 
 MotorDeJuego::MotorDeJuego() {
@@ -27,12 +28,13 @@ void MotorDeJuego::mostrarMenu() {
         switch (opcion) {
             case 1:
                 nuevaPartida();
-                break;
+            break;
             case 2:
                 verReportes();
-                break;
+            break;
             case 3:
                 finalizarEjecucion = true;
+            break;
             default:
                 cout << "Opcion ingresada no válida." << endl;
             break;
@@ -46,10 +48,9 @@ void MotorDeJuego::nuevaPartida() {
     cout << "\nLeyendo y ordenando palabras..." << endl;
     ListaEnlazada<Palabra> *listaPalabras= archivo.ordenarAlfabeticamente();
     cout << "Lista de palabras disponibles para la partida:" << endl;
-    listaPalabras->mostrarLista();
-    cout << "creando partida..." << endl;
+    listaPalabras->imprimirLista();
+
     Partida partida;
-    cout << "creando instancia partida..." << endl;
     partida.iniciarPartida(listaPalabras);
 }
 

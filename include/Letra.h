@@ -1,10 +1,9 @@
 //
-// Created by ronyrojas on 19/02/25.
+// Created by ronyrojas on 26/02/25.
 //
 
 #ifndef LETRA_H
 #define LETRA_H
-
 #include <string>
 using namespace std;
 
@@ -29,5 +28,4 @@ public:
     // Declaración de la sobrecarga como amiga
     friend ostream &operator<<(ostream &os, const Letra &l);
 };
-
 #endif //LETRA_H

@@ -39,7 +39,7 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = /home/ronyrojas/Documentos/Scrabble/cmake-build-debug/
+cmake_ninja_workdir = /home/ronyrojas/Imágenes/Scrabble/cmake-build-debug/
 # =============================================================================
 # Object build statements for EXECUTABLE target Scrabble
 
@@ -49,56 +49,44 @@ cmake_ninja_workdir = /home/ronyrojas/Documentos/Scrabble/cmake-build-debug/
 
 build cmake_object_order_depends_target_Scrabble: phony || .
 
-build CMakeFiles/Scrabble.dir/main.cpp.o: CXX_COMPILER__Scrabble_unscanned_Debug /home/ronyrojas/Documentos/Scrabble/main.cpp || cmake_object_order_depends_target_Scrabble
+build CMakeFiles/Scrabble.dir/main.cpp.o: CXX_COMPILER__Scrabble_unscanned_Debug /home/ronyrojas/Imágenes/Scrabble/main.cpp || cmake_object_order_depends_target_Scrabble
   DEP_FILE = CMakeFiles/Scrabble.dir/main.cpp.o.d
   FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/Scrabble.dir
   OBJECT_FILE_DIR = CMakeFiles/Scrabble.dir
 
-build CMakeFiles/Scrabble.dir/src/MotorDeJuego.cpp.o: CXX_COMPILER__Scrabble_unscanned_Debug /home/ronyrojas/Documentos/Scrabble/src/MotorDeJuego.cpp || cmake_object_order_depends_target_Scrabble
+build CMakeFiles/Scrabble.dir/src/MotorDeJuego.cpp.o: CXX_COMPILER__Scrabble_unscanned_Debug /home/ronyrojas/Imágenes/Scrabble/src/MotorDeJuego.cpp || cmake_object_order_depends_target_Scrabble
   DEP_FILE = CMakeFiles/Scrabble.dir/src/MotorDeJuego.cpp.o.d
   FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/Scrabble.dir
   OBJECT_FILE_DIR = CMakeFiles/Scrabble.dir/src
 
-build CMakeFiles/Scrabble.dir/src/Archivo.cpp.o: CXX_COMPILER__Scrabble_unscanned_Debug /home/ronyrojas/Documentos/Scrabble/src/Archivo.cpp || cmake_object_order_depends_target_Scrabble
+build CMakeFiles/Scrabble.dir/src/Archivo.cpp.o: CXX_COMPILER__Scrabble_unscanned_Debug /home/ronyrojas/Imágenes/Scrabble/src/Archivo.cpp || cmake_object_order_depends_target_Scrabble
   DEP_FILE = CMakeFiles/Scrabble.dir/src/Archivo.cpp.o.d
   FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/Scrabble.dir
   OBJECT_FILE_DIR = CMakeFiles/Scrabble.dir/src
 
-build CMakeFiles/Scrabble.dir/src/Jugador.cpp.o: CXX_COMPILER__Scrabble_unscanned_Debug /home/ronyrojas/Documentos/Scrabble/src/Jugador.cpp || cmake_object_order_depends_target_Scrabble
-  DEP_FILE = CMakeFiles/Scrabble.dir/src/Jugador.cpp.o.d
-  FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles/Scrabble.dir
-  OBJECT_FILE_DIR = CMakeFiles/Scrabble.dir/src
-
-build CMakeFiles/Scrabble.dir/src/Letra.cpp.o: CXX_COMPILER__Scrabble_unscanned_Debug /home/ronyrojas/Documentos/Scrabble/src/Letra.cpp || cmake_object_order_depends_target_Scrabble
-  DEP_FILE = CMakeFiles/Scrabble.dir/src/Letra.cpp.o.d
-  FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles/Scrabble.dir
-  OBJECT_FILE_DIR = CMakeFiles/Scrabble.dir/src
-
-build CMakeFiles/Scrabble.dir/src/Palabra.cpp.o: CXX_COMPILER__Scrabble_unscanned_Debug /home/ronyrojas/Documentos/Scrabble/src/Palabra.cpp || cmake_object_order_depends_target_Scrabble
+build CMakeFiles/Scrabble.dir/src/Palabra.cpp.o: CXX_COMPILER__Scrabble_unscanned_Debug /home/ronyrojas/Imágenes/Scrabble/src/Palabra.cpp || cmake_object_order_depends_target_Scrabble
   DEP_FILE = CMakeFiles/Scrabble.dir/src/Palabra.cpp.o.d
   FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/Scrabble.dir
   OBJECT_FILE_DIR = CMakeFiles/Scrabble.dir/src
 
-build CMakeFiles/Scrabble.dir/src/Partida.cpp.o: CXX_COMPILER__Scrabble_unscanned_Debug /home/ronyrojas/Documentos/Scrabble/src/Partida.cpp || cmake_object_order_depends_target_Scrabble
+build CMakeFiles/Scrabble.dir/src/Partida.cpp.o: CXX_COMPILER__Scrabble_unscanned_Debug /home/ronyrojas/Imágenes/Scrabble/src/Partida.cpp || cmake_object_order_depends_target_Scrabble
   DEP_FILE = CMakeFiles/Scrabble.dir/src/Partida.cpp.o.d
   FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/Scrabble.dir
   OBJECT_FILE_DIR = CMakeFiles/Scrabble.dir/src
 
-build CMakeFiles/Scrabble.dir/src/Reporte.cpp.o: CXX_COMPILER__Scrabble_unscanned_Debug /home/ronyrojas/Documentos/Scrabble/src/Reporte.cpp || cmake_object_order_depends_target_Scrabble
-  DEP_FILE = CMakeFiles/Scrabble.dir/src/Reporte.cpp.o.d
+build CMakeFiles/Scrabble.dir/src/Jugador.cpp.o: CXX_COMPILER__Scrabble_unscanned_Debug /home/ronyrojas/Imágenes/Scrabble/src/Jugador.cpp || cmake_object_order_depends_target_Scrabble
+  DEP_FILE = CMakeFiles/Scrabble.dir/src/Jugador.cpp.o.d
   FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/Scrabble.dir
   OBJECT_FILE_DIR = CMakeFiles/Scrabble.dir/src
 
-build CMakeFiles/Scrabble.dir/src/Tablero.cpp.o: CXX_COMPILER__Scrabble_unscanned_Debug /home/ronyrojas/Documentos/Scrabble/src/Tablero.cpp || cmake_object_order_depends_target_Scrabble
-  DEP_FILE = CMakeFiles/Scrabble.dir/src/Tablero.cpp.o.d
+build CMakeFiles/Scrabble.dir/src/Letra.cpp.o: CXX_COMPILER__Scrabble_unscanned_Debug /home/ronyrojas/Imágenes/Scrabble/src/Letra.cpp || cmake_object_order_depends_target_Scrabble
+  DEP_FILE = CMakeFiles/Scrabble.dir/src/Letra.cpp.o.d
   FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/Scrabble.dir
   OBJECT_FILE_DIR = CMakeFiles/Scrabble.dir/src
@@ -111,7 +99,7 @@ build CMakeFiles/Scrabble.dir/src/Tablero.cpp.o: CXX_COMPILER__Scrabble_unscanne
 #############################################
 # Link the executable Scrabble
 
-build Scrabble: CXX_EXECUTABLE_LINKER__Scrabble_Debug CMakeFiles/Scrabble.dir/main.cpp.o CMakeFiles/Scrabble.dir/src/MotorDeJuego.cpp.o CMakeFiles/Scrabble.dir/src/Archivo.cpp.o CMakeFiles/Scrabble.dir/src/Jugador.cpp.o CMakeFiles/Scrabble.dir/src/Letra.cpp.o CMakeFiles/Scrabble.dir/src/Palabra.cpp.o CMakeFiles/Scrabble.dir/src/Partida.cpp.o CMakeFiles/Scrabble.dir/src/Reporte.cpp.o CMakeFiles/Scrabble.dir/src/Tablero.cpp.o
+build Scrabble: CXX_EXECUTABLE_LINKER__Scrabble_Debug CMakeFiles/Scrabble.dir/main.cpp.o CMakeFiles/Scrabble.dir/src/MotorDeJuego.cpp.o CMakeFiles/Scrabble.dir/src/Archivo.cpp.o CMakeFiles/Scrabble.dir/src/Palabra.cpp.o CMakeFiles/Scrabble.dir/src/Partida.cpp.o CMakeFiles/Scrabble.dir/src/Jugador.cpp.o CMakeFiles/Scrabble.dir/src/Letra.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/Scrabble.dir
   POST_BUILD = :
@@ -124,7 +112,7 @@ build Scrabble: CXX_EXECUTABLE_LINKER__Scrabble_Debug CMakeFiles/Scrabble.dir/ma
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/ronyrojas/Documentos/Scrabble/cmake-build-debug && /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  COMMAND = cd /home/ronyrojas/Imágenes/Scrabble/cmake-build-debug && /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -135,7 +123,7 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/ronyrojas/Documentos/Scrabble/cmake-build-debug && /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S/home/ronyrojas/Documentos/Scrabble -B/home/ronyrojas/Documentos/Scrabble/cmake-build-debug
+  COMMAND = cd /home/ronyrojas/Imágenes/Scrabble/cmake-build-debug && /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S/home/ronyrojas/Imágenes/Scrabble -B/home/ronyrojas/Imágenes/Scrabble/cmake-build-debug
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -151,7 +139,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 
 #############################################
-# Folder: /home/ronyrojas/Documentos/Scrabble/cmake-build-debug
+# Folder: /home/ronyrojas/Imágenes/Scrabble/cmake-build-debug
 
 build all: phony Scrabble
 
@@ -162,14 +150,14 @@ build all: phony Scrabble
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | /home/ronyrojas/Documentos/Scrabble/CMakeLists.txt /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeCInformation.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeCXXInformation.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeGenericSystem.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Compiler/GNU-C.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Compiler/GNU.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/Linux-GNU-C.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/Linux-GNU-CXX.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/Linux-GNU.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/Linux-Initialize.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/Linux.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.30.5/CMakeCCompiler.cmake CMakeFiles/3.30.5/CMakeCXXCompiler.cmake CMakeFiles/3.30.5/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | /home/ronyrojas/Imágenes/Scrabble/CMakeLists.txt /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeCInformation.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeCXXInformation.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeGenericSystem.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Compiler/GNU-C.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Compiler/GNU.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/Linux-GNU-C.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/Linux-GNU-CXX.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/Linux-GNU.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/Linux-Initialize.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/Linux.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.30.5/CMakeCCompiler.cmake CMakeFiles/3.30.5/CMakeCXXCompiler.cmake CMakeFiles/3.30.5/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build /home/ronyrojas/Documentos/Scrabble/CMakeLists.txt /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeCInformation.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeCXXInformation.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeGenericSystem.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Compiler/GNU-C.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Compiler/GNU.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/Linux-GNU-C.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/Linux-GNU-CXX.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/Linux-GNU.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/Linux-Initialize.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/Linux.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.30.5/CMakeCCompiler.cmake CMakeFiles/3.30.5/CMakeCXXCompiler.cmake CMakeFiles/3.30.5/CMakeSystem.cmake: phony
+build /home/ronyrojas/Imágenes/Scrabble/CMakeLists.txt /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeCInformation.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeCXXInformation.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeGenericSystem.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Compiler/GNU-C.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Compiler/GNU.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/Linux-GNU-C.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/Linux-GNU-CXX.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/Linux-GNU.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/Linux-Initialize.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/Linux.cmake /opt/CLion/CLion-2024.3.3/clion-2024.3.3/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.30.5/CMakeCCompiler.cmake CMakeFiles/3.30.5/CMakeCXXCompiler.cmake CMakeFiles/3.30.5/CMakeSystem.cmake: phony
 
 
 #############################################
