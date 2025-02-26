@@ -13,7 +13,6 @@ using namespace std;
 
 template<typename T>
 class ListaEnlazada {
-
 private:
     Nodo<T> *cabeza; //apuntador al primer nodo (cabeza) de la lista
 
@@ -35,7 +34,7 @@ public:
 template<typename T>
 ListaEnlazada<T>::ListaEnlazada() {
     // constructor
-    cabeza(nullptr); // la lista empieza con la cabeza nula (no hay datos)
+    cabeza = nullptr; // la lista empieza con la cabeza nula (no hay datos)
 }
 
 // libera todos los nodos
@@ -48,14 +47,14 @@ ListaEnlazada<T>::~ListaEnlazada() {
 
 template<typename T>
 void ListaEnlazada<T>::agregarInicio(const T &nuevoDato) {
-    Nodo<T> *nuevoNodo = new Nodo<T>(new T(nuevoDato)); // creando nuevo dato
+    auto *nuevoNodo = new Nodo<T>(new T(nuevoDato)); // creando nuevo dato
     nuevoNodo->siguiente = cabeza; // el nuevo nodo apunta a la cabeza
     cabeza = nuevoNodo; // el nuevo nodo se convierte en la cabeza
 }
 
 template<typename T>
 void ListaEnlazada<T>::agregarFinal(const T &nuevoDato) {
-    Nodo<T> *nuevoNodo = new Nodo<T>(new T(nuevoDato)); //creando nodo que contenga al nuevo elemento
+    auto *nuevoNodo = new Nodo<T>(new T(nuevoDato)); //creando nodo que contenga al nuevo elemento
     if (estaVacia()) {
         cabeza = nuevoNodo; //si la lista esta vacia, el nuevoNodo sera la cabeza
     } else {
@@ -113,7 +112,7 @@ void ListaEnlazada<T>::mostrarLista() const {
     Nodo<T> *actual = cabeza; //obteniendo cabeza
     while (actual) {
         //mientras haya actual
-        cout << *(actual->dato) << ", "; //imprimiendo dato actual
+        cout << actual->dato << ", "; //imprimiendo dato actual
         actual = actual->siguiente; //avanzando al siguiente dato
     }
     cout << endl;
@@ -142,13 +141,13 @@ T ListaEnlazada<T>::obtenerYEliminar(int indice) {
     Nodo<T> *actual = cabeza; //guardando cabeza
     Nodo<T> *previo = nullptr; //guardando previo
 
-    for (int i =0; i < indice; i++) {
+    for (int i = 0; i < indice && actual!=nullptr; i++) {
         //avanzando de dato hasta llegar al solicitado
         previo = actual;
         actual = actual->siguiente;
     }
 
-    T datoADevolver = *(actual->dato); // guardando dato solicitado
+    T datoADevolver = actual->dato; // guardando dato solicitado
 
     if (previo) {
         //si tiene previo

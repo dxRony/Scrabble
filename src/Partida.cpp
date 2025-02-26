@@ -163,6 +163,7 @@ void Partida::realizarTurno(int opcionTurno) {
                 cout << "No se pudo colocar la letra en la posición indicada. La letra se descartará." << endl;
                 delete letraAColocar;
             }
+
             break;
         }
         case 2: {

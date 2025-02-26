@@ -8,8 +8,8 @@
 #include <iostream>
 #include <cstring>
 
-ListaEnlazada<Palabra *> *Archivo::leerCSV(const string &rutaArchivo) {
-    auto *listaPalabras = new ListaEnlazada<Palabra *>();
+ListaEnlazada<Palabra> *Archivo::leerCSV(const string &rutaArchivo) {
+    auto *listaPalabras = new ListaEnlazada<Palabra>();
     ifstream archivo(rutaArchivo, ios::in);
     if (!archivo.is_open()) {
         cerr << "Error al abrir archivo.csv " << rutaArchivo << endl;
@@ -31,10 +31,10 @@ ListaEnlazada<Palabra *> *Archivo::leerCSV(const string &rutaArchivo) {
 
             if (!palabraTexto.empty()) {
                 // si hay palabra
-                auto *palabra = new Palabra(); // se crea el objeto palabra
-                palabra->setContenido(palabraTexto); // se asigna la palabra leida
-                palabra->setPuntuacion(0); // puntuacion inicial
-                palabra->setPalabraFormada(false); // estado inicial
+                Palabra palabra; // se crea el objeto palabra
+                palabra.setContenido(palabraTexto); // se asigna la palabra leida
+                palabra.setPuntuacion(0); // puntuacion inicial
+                palabra.setPalabraFormada(false); // estado inicial
                 listaPalabras->agregarFinal(palabra); // se agrega al final de la lista
             }
         }
@@ -43,23 +43,20 @@ ListaEnlazada<Palabra *> *Archivo::leerCSV(const string &rutaArchivo) {
     return listaPalabras;
 }
 
-ListaEnlazada<Palabra *> *Archivo::ordenarAlfabeticamente() {
-    ListaEnlazada<Palabra *> *listaPalabras = this->leerCSV("../util/palabras.csv");
+ListaEnlazada<Palabra> *Archivo::ordenarAlfabeticamente() {
+    ListaEnlazada<Palabra > *listaPalabras = this->leerCSV("../util/palabras.csv");
     if (!listaPalabras) {
         return nullptr;
     }
-    Nodo<Palabra *> *actual = listaPalabras->obtenerCabeza(); //obteniendo la cabeza de la lista
+    Nodo<Palabra> *actual = listaPalabras->obtenerCabeza(); //obteniendo la cabeza de la lista
     while (actual != nullptr) {
         // minetras el nodo actual exista
-        Nodo<Palabra *> *siguiente = actual->siguiente; //obteniendo el nodo siguiente de la lista
+        Nodo<Palabra> *siguiente = actual->siguiente; //obteniendo el nodo siguiente de la lista
         while (siguiente != nullptr) {
             //si el nodo siguiente existe
-            if (actual->dato->getContenido() > siguiente->dato->getContenido()) {
+            if (actual->dato.getContenido() > siguiente->dato.getContenido()) {
                 //comparando el contenido para determinar si es mayor
-
-                Palabra *temp = actual->dato; //guardando el dato actual
-                actual->dato = siguiente->dato; //en el dato actual se guarda el siguiente
-                siguiente->dato = temp; //y en el siguiente se guarda el actual
+                swap(actual->dato, siguiente->dato);
             }
             siguiente = siguiente->siguiente; //yendo al siguiente nodo (siguiente del siguiente)
         }

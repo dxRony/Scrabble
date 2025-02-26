@@ -13,7 +13,6 @@ using namespace std;
 
 template<typename T>
 class Pila {
-
 private:
     Nodo<T> *cima; // apuntador al primer elemento de la pila
 
@@ -29,8 +28,8 @@ public:
 };
 
 template<typename T>
-Pila<T>::Pila()  {
-    cima(nullptr);
+Pila<T>::Pila() {
+    cima = nullptr;
 }
 
 template<typename T>

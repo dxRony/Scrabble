@@ -2,6 +2,7 @@
 // Created by ronyrojas on 19/02/25.
 //
 #include "../include/Jugador.h"
+#include "../include/Letra.h"
 #include <iostream>
 
 using namespace std;
@@ -24,7 +25,7 @@ Jugador::~Jugador() {
 
 void Jugador::mostrarLetras() const {
     int numeroLetra = 0;
-    Nodo<Letra*>* actual = letras->obtenerCabeza();
+    Nodo<Letra *> *actual = letras->obtenerCabeza();
 
     cout << "Letras (fichas) de " << *nombre << ": \n";
     if (!actual) {
@@ -32,8 +33,8 @@ void Jugador::mostrarLetras() const {
         return;
     }
     while (actual) {
-        cout << numeroLetra << ".- Letra = " << actual->dato->getLetra()
-             << ", punteo = " << actual->dato->getPunteo() << "; ";
+        cout << numeroLetra << ".- Letra = " << (*actual->dato)->getLetra()
+             << ", punteo = " << (*actual->dato)->getPunteo() << "; ";
         actual = actual->siguiente;
         numeroLetra++;
     }
@@ -76,7 +77,7 @@ Nodo<Letra*>* Jugador::fusionarListas(Nodo<Letra*>* izquierda, Nodo<Letra*>* der
 
     Nodo<Letra*>* resultado = nullptr; //nodo que guardara el que tenga mayor punteo
 
-    if (izquierda->dato->getPunteo() >= derecha->dato->getPunteo()) {
+    if ((*izquierda->dato)->getPunteo() >= (*derecha->dato)->getPunteo()) {
         //comparando ambos datos
         resultado = izquierda; //si el mayor es el de la izquierda
         resultado->siguiente = fusionarListas((izquierda->siguiente), derecha);

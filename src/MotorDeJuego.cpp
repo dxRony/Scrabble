@@ -43,7 +43,7 @@ void MotorDeJuego::nuevaPartida() {
     cout << "\nIniciando Nueva Partida..." << endl;
     Archivo* archivo = new Archivo();
     cout << "\nLeyendo y ordenando palabras..." << endl;
-    ListaEnlazada<Palabra*> *listaPalabras= archivo->ordenarAlfabeticamente();
+    ListaEnlazada<Palabra> *listaPalabras= archivo->ordenarAlfabeticamente();
     cout << "Lista de palabras disponibles para la partida:" << endl;
     listaPalabras->mostrarLista();
     Partida partida;
