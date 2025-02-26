@@ -92,7 +92,7 @@ void Cola<T>::mostrarCola() const {
     Nodo<T> *actual = frente; // se crea un nodo actual para contener el inicio de la cola
     while (actual) {
         // mientras exista un nodo actual
-        cout << *(actual->dato) << " \n"; // Se imprime ese nodo actual
+        cout << actual->dato << " \n"; // Se imprime ese nodo actual
         actual = actual->siguiente; // el nodo actual se actualiza al siguiente nodo de la cola
     }
     cout << endl;

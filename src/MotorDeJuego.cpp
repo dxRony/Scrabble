@@ -47,8 +47,9 @@ void MotorDeJuego::nuevaPartida() {
     ListaEnlazada<Palabra> *listaPalabras= archivo.ordenarAlfabeticamente();
     cout << "Lista de palabras disponibles para la partida:" << endl;
     listaPalabras->mostrarLista();
-
+    cout << "creando partida..." << endl;
     Partida partida;
+    cout << "creando instancia partida..." << endl;
     partida.iniciarPartida(listaPalabras);
 }
 

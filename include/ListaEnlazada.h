@@ -47,7 +47,7 @@ ListaEnlazada<T>::~ListaEnlazada() {
 
 template<typename T>
 void ListaEnlazada<T>::agregarInicio(const T &nuevoDato) {
-    auto *nuevoNodo = new Nodo<T>(new T(nuevoDato)); // creando nuevo dato
+    auto nuevoNodo = new Nodo<T>(new T(nuevoDato)); // creando nuevo dato
     nuevoNodo->siguiente = cabeza; // el nuevo nodo apunta a la cabeza
     cabeza = nuevoNodo; // el nuevo nodo se convierte en la cabeza
 }
