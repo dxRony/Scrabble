@@ -27,14 +27,14 @@ void Jugador::mostrarLetras() const {
     int numeroLetra = 0;
     Nodo<Letra *> *actual = letras->obtenerCabeza();
 
-    cout << "Letras (fichas) de " << *nombre << ": \n";
+    cout << "Letras (fichas) de " << nombre << ": \n";
     if (!actual) {
-        cout << *nombre << ", no tiene mas letras en su bolsa" << endl;
+        cout << nombre << ", no tiene mas letras en su bolsa" << endl;
         return;
     }
     while (actual) {
-        cout << numeroLetra << ".- Letra = " << (*actual->dato)->getLetra()
-             << ", punteo = " << (*actual->dato)->getPunteo() << "; ";
+        cout << numeroLetra << ".- Letra = " << actual->dato->getLetra()
+             << ", punteo = " << actual->dato->getPunteo() << "; ";
         actual = actual->siguiente;
         numeroLetra++;
     }
@@ -77,7 +77,7 @@ Nodo<Letra*>* Jugador::fusionarListas(Nodo<Letra*>* izquierda, Nodo<Letra*>* der
 
     Nodo<Letra*>* resultado = nullptr; //nodo que guardara el que tenga mayor punteo
 
-    if ((*izquierda->dato)->getPunteo() >= (*derecha->dato)->getPunteo()) {
+    if (izquierda->dato->getPunteo() >= derecha->dato->getPunteo()) {
         //comparando ambos datos
         resultado = izquierda; //si el mayor es el de la izquierda
         resultado->siguiente = fusionarListas((izquierda->siguiente), derecha);

@@ -34,8 +34,6 @@ void Partida::iniciarPartida(ListaEnlazada<Palabra> *diccionario) {
     registrarJugadores();
     jugadores->mezclarCola();
     generarLetrasJugables(diccionario);
-    //cout << "Letras a repartir entre los jugadores:" << endl;
-    //letrasJugables.mostrarLista();
     cout << "Repartiendo letras (fichas) entre todos los jugadores y ordenandolas de mayor a menor punteo..." << endl;
     repartirLetras();
     ordenarLetrasJugadores();
@@ -65,7 +63,7 @@ void Partida::registrarJugadores() {
     do {
         cout << "\nIngresa el numero de jugadores que tendra la partida..." << endl;
         cin >> cantidadJugadores;
-        if (cantidadJugadores<2) {
+        if (cantidadJugadores < 2) {
             cout << "El numero de jugadores debe ser minimo 2" << endl;
         }
     } while (cantidadJugadores < 2);
@@ -75,7 +73,7 @@ void Partida::registrarJugadores() {
         cout << "Ingresa el nombre del jugador " << i + 1 << ": ";
         cin >> nombre;
 
-        Jugador *jugador = new Jugador();
+        auto jugador = new Jugador();
         jugador->setNombre(nombre);
         jugador->setPuntuacion(0);
         jugador->setCantidadTurnos(0);
@@ -86,24 +84,21 @@ void Partida::registrarJugadores() {
     jugadores->mostrarCola();
 }
 
-ListaEnlazada<Letra *> *Partida::generarLetrasJugables(ListaEnlazada<Palabra *> *diccionario) {
-    Nodo<Palabra *> *actual = diccionario->obtenerCabeza(); //obteniendo la primera lera
+ListaEnlazada<Letra *> *Partida::generarLetrasJugables(ListaEnlazada<Palabra> *diccionario) {
+    Nodo<Palabra> *actual = diccionario->obtenerCabeza(); //obteniendo la primera lera
     srand(static_cast<unsigned int>(time(nullptr))); // semilla de aleatoriedad
 
     while (actual != nullptr) {
-        Palabra *palabra = actual->dato;
+        Palabra palabra = actual->dato;
         //mientras sigan habiendo palabras en el diccionario
-        if (palabra != nullptr) {
-            string contenido = palabra->getContenido();
+            string contenido = palabra.getContenido();
             for (char caracter: contenido) {
-            //recorriendo cada letra de la palabra
-            Letra *letra = new Letra(); //creando objeto letra
-            letra->setLetra(caracter); // asignando la letra
-            letra->setPunteo(rand() % 9 + 1); // creando la puntuacion aleatoria dela letra
-            letrasJugables->agregarFinal(letra); // agregando la letra a la lista
-        }
-        }
-
+                //recorriendo cada letra de la palabra
+                Letra *letra = new Letra(); //creando objeto letra
+                letra->setLetra(caracter); // asignando la letra
+                letra->setPunteo(rand() % 9 + 1); // creando la puntuacion aleatoria dela letra
+                letrasJugables->agregarFinal(letra); // agregando la letra a la lista
+            }
         actual = actual->siguiente; // pasar al siguiente nodo del diccionario, para analizar la siguiente palabra
     }
     return letrasJugables;

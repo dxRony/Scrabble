@@ -9,7 +9,7 @@ struct Nodo {
     T dato;               // Apuntador al dato
     Nodo<T> *siguiente;    // Apuntador al siguiente nodo
 
-    explicit Nodo(T &nuevoDato) : dato(nuevoDato), siguiente(nullptr) {} // Constructor
-    ~Nodo() { delete dato; }                                             // Destructor
+    explicit Nodo(T nuevoDato) : dato(nuevoDato), siguiente(nullptr) {} // Constructor
+    ~Nodo() { }                                             // Destructor
 };
 #endif //NODO_H

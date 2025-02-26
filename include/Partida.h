@@ -32,7 +32,7 @@ public:
 
     void registrarJugadores();
 
-    ListaEnlazada<Letra*> *generarLetrasJugables(ListaEnlazada<Palabra*> *diccionario);
+    ListaEnlazada<Letra*> *generarLetrasJugables(ListaEnlazada<Palabra> *diccionario);
 
     void repartirLetras();
 

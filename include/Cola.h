@@ -43,7 +43,7 @@ Cola<T>::~Cola() {
 
 template<typename T>
 void Cola<T>::encolar(const T &nuevoDato) {
-    Nodo<T> *nuevoNodo = new Nodo<T>(new T(nuevoDato)); // creando nuevo nodo con el dato
+    Nodo<T> *nuevoNodo = new Nodo<T>(nuevoDato); // creando nuevo nodo con el dato
     if (estaVacia()) {
         // si la cola esta vacia
         frente = nuevoNodo;
@@ -62,7 +62,7 @@ T Cola<T>::desencolar() {
     }
 
     Nodo<T> *tmp = frente; // creando nodo temporal
-    T dato = *(frente->dato); // almacenando el dato
+    T dato = (frente->dato); // almacenando el dato
     frente = frente->siguiente; // cambiando dato de enfrente por el siguiente
     delete tmp; // liberando memoria
 
@@ -108,7 +108,7 @@ Cola<T> Cola<T>::mezclarCola() {
     T **arreglo = new T *[cantidad]; //convirtiendo la cola en un arreglo para una facil manipulacion
     Nodo<T> *actual = frente;
     for (int i = 0; i < cantidad; i++) {
-        arreglo[i] = new T(*(actual->dato)); // guardando el primer dato
+        arreglo[i] = new T(actual->dato); // guardando el primer dato
         actual = actual->siguiente;
     }
 

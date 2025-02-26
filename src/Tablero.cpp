@@ -35,7 +35,7 @@ void Tablero::generarTablero() {
     }
 }
 
-bool Tablero::colocarLetra(Letra letra, int fila, int columna, ListaEnlazada<Palabra *> *diccionario) {
+bool Tablero::colocarLetra(Letra letra, int fila, int columna, ListaEnlazada<Palabra> *diccionario) {
     int punteoLetra = letra.getPunteo();
     char contenidoLetra = letra.getLetra();
     bool colocada = false;
@@ -88,7 +88,7 @@ bool Tablero::colocarLetra(Letra letra, int fila, int columna, ListaEnlazada<Pal
     return true;
 }
 
-void Tablero::comprobarPalabraFormada(ListaEnlazada<Palabra *> *diccionario) {
+void Tablero::comprobarPalabraFormada(ListaEnlazada<Palabra> *diccionario) {
     /**
      * implementar la logica para verificar si se formo una palabra del diccionario
      */

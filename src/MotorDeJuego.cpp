@@ -35,17 +35,19 @@ void MotorDeJuego::mostrarMenu() {
                 finalizarEjecucion = true;
             default:
                 cout << "Opcion ingresada no válida." << endl;
+            break;
         }
     } while (!finalizarEjecucion);
 }
 
 void MotorDeJuego::nuevaPartida() {
     cout << "\nIniciando Nueva Partida..." << endl;
-    Archivo* archivo = new Archivo();
+    Archivo archivo;
     cout << "\nLeyendo y ordenando palabras..." << endl;
-    ListaEnlazada<Palabra> *listaPalabras= archivo->ordenarAlfabeticamente();
+    ListaEnlazada<Palabra> *listaPalabras= archivo.ordenarAlfabeticamente();
     cout << "Lista de palabras disponibles para la partida:" << endl;
     listaPalabras->mostrarLista();
+
     Partida partida;
     partida.iniciarPartida(listaPalabras);
 }

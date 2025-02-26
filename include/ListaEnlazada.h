@@ -21,7 +21,7 @@ public:
     ~ListaEnlazada(); //destructor
 
     void agregarInicio(const T &nuevoDato); //agrega un dato al inicio
-    void agregarFinal(const T &nuevoDato); //agrega un dato al final
+    void agregarFinal(T nuevoDato); //agrega un dato al final
     void eliminar(const T &valor); //elimina el primer nodo con el valor dado
     Nodo<T> *obtenerCabeza(); //devuelve el apuntador de la cabeza
     void setCabeza(Nodo<T> *nuevaCabeza); //modifica la cabea de la lista
@@ -53,8 +53,8 @@ void ListaEnlazada<T>::agregarInicio(const T &nuevoDato) {
 }
 
 template<typename T>
-void ListaEnlazada<T>::agregarFinal(const T &nuevoDato) {
-    auto *nuevoNodo = new Nodo<T>(new T(nuevoDato)); //creando nodo que contenga al nuevo elemento
+void ListaEnlazada<T>::agregarFinal(T nuevoDato) {
+    auto *nuevoNodo = new Nodo<T>(nuevoDato); //creando nodo que contenga al nuevo elemento
     if (estaVacia()) {
         cabeza = nuevoNodo; //si la lista esta vacia, el nuevoNodo sera la cabeza
     } else {
@@ -141,7 +141,7 @@ T ListaEnlazada<T>::obtenerYEliminar(int indice) {
     Nodo<T> *actual = cabeza; //guardando cabeza
     Nodo<T> *previo = nullptr; //guardando previo
 
-    for (int i = 0; i < indice && actual!=nullptr; i++) {
+    for (int i = 0; i < indice && actual != nullptr; i++) {
         //avanzando de dato hasta llegar al solicitado
         previo = actual;
         actual = actual->siguiente;
