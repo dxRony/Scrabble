@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/ronyrojas/Documentos/Scrabble/cmake-build-debug",
-		"source" : "/home/ronyrojas/Documentos/Scrabble"
+		"build" : "/home/ronyrojas/Documentos/Proyectos/Scrabble-main/cmake-build-debug",
+		"source" : "/home/ronyrojas/Documentos/Proyectos/Scrabble-main"
 	},
 	"version" : 
 	{

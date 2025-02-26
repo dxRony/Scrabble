@@ -35,7 +35,7 @@ ListaEnlazada<Palabra> *Archivo::leerCSV(const string &rutaArchivo) {
                 palabra.setContenido(palabraTexto); // se asigna la palabra leida
                 palabra.setPuntuacion(0); // puntuacion inicial
                 palabra.setPalabraFormada(false); // estado inicial
-                listaPalabras->agregarFinal(palabra); // se agrega al final de la lista
+                listaPalabras->insertar(palabra); // se agrega al final de la lista
             }
         }
     }
@@ -44,27 +44,23 @@ ListaEnlazada<Palabra> *Archivo::leerCSV(const string &rutaArchivo) {
 }
 
 ListaEnlazada<Palabra> *Archivo::ordenarAlfabeticamente() {
-    ListaEnlazada<Palabra > *listaPalabras = this->leerCSV("../util/palabras.csv");
-    if (!listaPalabras ||listaPalabras->estaVacia()) {
+    ListaEnlazada<Palabra> *listaPalabras = this->leerCSV("../util/palabras.csv");
+    if (!listaPalabras || listaPalabras->isEmpty()) {
         return listaPalabras;
     }
-    if (!listaPalabras) {
-        return nullptr;
-    }
-
-    Nodo<Palabra> *actual = listaPalabras->obtenerCabeza(); //obteniendo la cabeza de la lista
+    Nodo<Palabra> *actual = listaPalabras->getRaiz(); //obteniendo la cabeza de la lista
     while (actual != nullptr) {
         // minetras el nodo actual exista
-        Nodo<Palabra> *siguiente = actual->siguiente; //obteniendo el nodo siguiente de la lista
+        Nodo<Palabra> *siguiente = actual->getNext(); //obteniendo el nodo siguiente de la lista
         while (siguiente != nullptr) {
             //si el nodo siguiente existe
-            if (actual->dato.getContenido() > siguiente->dato.getContenido()) {
+            if (actual->getValue().getContenido() > siguiente->getValue().getContenido()) {
                 //comparando el contenido para determinar si es mayor
-                swap(actual->dato, siguiente->dato);
+                swap(actual->getValue(), siguiente->getValue());
             }
-            siguiente = siguiente->siguiente; //yendo al siguiente nodo (siguiente del siguiente)
+            siguiente = siguiente->getNext(); //yendo al siguiente nodo (siguiente del siguiente)
         }
-        actual = actual->siguiente; //el actual nodo se convierte en el siguiente del actual
+        actual = actual->getNext(); //el actual nodo se convierte en el siguiente del actual
     }
     return listaPalabras; //devolviendo la lista ordenada
 }

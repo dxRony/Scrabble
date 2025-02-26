@@ -9,7 +9,7 @@
 using namespace std;
 
 Partida::Partida() {
-    cout<< "entrando a constructor partida"<< endl;
+    cout << "entrando a constructor partida" << endl;
     jugadores = new Cola<Jugador>();
     palabrasJugadas = new Pila<Palabra>();
     listaPunteos = new ListaEnlazada<Jugador>();
@@ -29,17 +29,24 @@ Partida::~Partida() {
 
 void Partida::iniciarPartida(ListaEnlazada<Palabra> *diccionario) {
     cout << "entrando a iniciar partida..." << endl;
-    this->diccionario->copiarLista(diccionario);
-    registrarJugadores();
-    jugadores->mezclarCola();
-    generarLetrasJugables(diccionario);
+    this->diccionario = diccionario;
+    if (this->diccionario == nullptr || this->diccionario->isEmpty()) {
+        cerr << "Error: El diccionario está vacío o no se recibió correctamente." << endl;
+        return;
+    } else {
+        cout << "Diccionario recibido correctamente. Contiene las siguientes palabras:" << endl;
+        this->diccionario->mostrarLista();
+    }
+    //registrarJugadores();
+    //jugadores->mezclarCola();
+    //generarLetrasJugables(diccionario);
     cout << "Repartiendo letras (fichas) entre todos los jugadores y ordenandolas de mayor a menor punteo..." << endl;
-    repartirLetras();
-    ordenarLetrasJugadores();
+    //repartirLetras();
+    //ordenarLetrasJugadores();
 
     cout << "Generando turnos aleatorios..." << endl;
     cout << "Orden de los turnos para la partida: " << endl;
-    jugadores->mostrarCola();
+    //jugadores->mostrarCola();
 
     cout << "Todo listo para iniciar..." << endl;
     //tableroDeJuego.generarTablero(); //creando el tablero de juego
@@ -47,12 +54,12 @@ void Partida::iniciarPartida(ListaEnlazada<Palabra> *diccionario) {
     //tableroDeJuego.imprimirTablero();
 
     int opcionTurno = 0;
-    do {
-        jugadorActual = cambiarTurno();
-        opcionTurno = jugadorActual.mostrarOpcionesTurno();
+    //do {
+        //jugadorActual = cambiarTurno();
+        //opcionTurno = jugadorActual.mostrarOpcionesTurno();
         //realizarTurno(opcionTurno);
-       // tableroDeJuego.imprimirTablero();
-    } while (hayPalabra && !diccionario->estaVacia());
+        // tableroDeJuego.imprimirTablero();
+   // } while (hayPalabra && !diccionario->isEmpty());
     cout << "Se cumplio el while" << endl;
     //ciclando mientras hayan palabrasJugables o se puedan formar palabras
 }
@@ -76,27 +83,27 @@ void Partida::registrarJugadores() {
         jugador.setPuntuacion(0);
         jugador.setCantidadTurnos(0);
         jugador.setTiempoJugado(0);
-        jugadores->encolar(jugador);
+        jugadores->encolar(&jugador); //OJOOOOOOOOOOOOOOOOOOOOOoo
     }
     cout << "Jugadores: " << endl;
     jugadores->mostrarCola();
 }
 
 ListaEnlazada<Letra> *Partida::generarLetrasJugables(ListaEnlazada<Palabra> *diccionario) {
-    Nodo<Palabra> *actual = diccionario->obtenerCabeza(); //obteniendo la primera lera
+    Nodo<Palabra> *actual = diccionario->getRaiz(); //obteniendo la primera lera
     srand(static_cast<unsigned int>(time(nullptr))); // semilla de aleatoriedad
 
     while (actual) {
         //mientras sigan habiendo palabras en el diccionario
-        string contenido = actual->dato.getContenido();
-        for (char caracter: actual->dato.getContenido()) {
+        string contenido = actual->getData()->getContenido();
+        for (char caracter: actual->getData()->getContenido()) {
             //recorriendo cada letra de la palabra
             Letra letra; //creando objeto letra
             letra.setLetra(caracter); // asignando la letra
             letra.setPunteo(rand() % 9 + 1); // creando la puntuacion aleatoria dela letra
-            letrasJugables->agregarFinal(letra); // agregando la letra a la lista
+            letrasJugables->insertar(letra); // agregando la letra a la lista
         }
-        actual = actual->siguiente; // pasar al siguiente nodo del diccionario, para analizar la siguiente palabra
+        actual = actual->getNext(); // pasar al siguiente nodo del diccionario, para analizar la siguiente palabra
     }
     return letrasJugables;
 }
@@ -104,10 +111,10 @@ ListaEnlazada<Letra> *Partida::generarLetrasJugables(ListaEnlazada<Palabra> *dic
 void Partida::repartirLetras() {
     int cantidadJugadores = jugadores->contarElementos();
     if (cantidadJugadores == 0) return;
-    Nodo<Letra> *actualLetra = letrasJugables->obtenerCabeza();
+    Nodo<Letra> *actualLetra = letrasJugables->getRaiz();
     // repartiendo hasta que no haya dato siguiente
     while (actualLetra) {
-        Jugador actualJugador = jugadores->desencolar(); // guardando jugador
+        Jugador *actualJugador = jugadores->desencolar(); // guardando jugador
         actualJugador.setLetra(actualLetra->dato); // dandole una ficha
         jugadores->encolar(actualJugador); // agregandolo a la cola nuevamente
         actualLetra = actualLetra->siguiente; // actualizando letra
