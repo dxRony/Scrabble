@@ -36,6 +36,7 @@ public:
 
     void repartirLetras();
 
+    void ordenarLetrasJugables();
 
 };
 #endif //PARTIDA_H

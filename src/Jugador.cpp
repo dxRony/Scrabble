@@ -34,10 +34,70 @@ void Jugador::mostrarLetras() const {
         // Mostramos la información de la letra
         if (letraActual != nullptr) {
             cout << "Letra: " << letraActual->getLetra()
-                 << ", Punteo: " << letraActual->getPunteo() << endl;
+                    << ", Punteo: " << letraActual->getPunteo() << endl;
         }
     }
 }
+
+void Jugador::ordenarLetrasPorPunteo() {
+    if (letras == nullptr || letras->isEmpty()) return; // Si no hay letras, no hacer nada
+    letras->setRaiz(mergeSort(letras->getRaiz())); // Ordenar la lista
+}
+
+Nodo<Letra> *Jugador::mergeSort(Nodo<Letra> *cabeza) {
+    if (cabeza == nullptr || cabeza->getNext() == nullptr) {
+        return cabeza; // Caso base: lista vacía o con un solo elemento
+    }
+
+    // Dividir la lista en dos mitades
+    Nodo<Letra> *mitad = dividirLista(cabeza);
+
+    // Ordenar recursivamente ambas mitades
+    Nodo<Letra> *izquierda = mergeSort(cabeza);
+    Nodo<Letra> *derecha = mergeSort(mitad);
+
+    // Fusionar las dos mitades ordenadas
+    return fusionarListas(izquierda, derecha);
+}
+
+Nodo<Letra> *Jugador::dividirLista(Nodo<Letra> *cabeza) {
+    if (cabeza == nullptr) return nullptr;
+
+    Nodo<Letra> *lento = cabeza;
+    Nodo<Letra> *rapido = cabeza->getNext();
+
+    // Avanzar rápido dos pasos y lento un paso
+    while (rapido != nullptr && rapido->getNext() != nullptr) {
+        lento = lento->getNext();
+        rapido = rapido->getNext()->getNext();
+    }
+
+    // Dividir la lista en dos
+    Nodo<Letra> *mitad = lento->getNext();
+    lento->setNext(nullptr); // Separar las dos mitades
+
+    return mitad;
+}
+
+Nodo<Letra> *Jugador::fusionarListas(Nodo<Letra> *izquierda, Nodo<Letra> *derecha) {
+    if (izquierda == nullptr) return derecha;
+    if (derecha == nullptr) return izquierda;
+
+    Nodo<Letra> *resultado = nullptr;
+
+    // Comparar los puntajes de las letras
+    if (izquierda->getValue().getPunteo() >= derecha->getValue().getPunteo()) {
+        resultado = izquierda;
+        resultado->setNext(fusionarListas(izquierda->getNext(), derecha));
+    } else {
+        resultado = derecha;
+        resultado->setNext(fusionarListas(izquierda, derecha->getNext()));
+    }
+
+    return resultado;
+}
+
+
 /*
 void Jugador::ordenarLetrasPorPunteo() {
     //metodo a llamar para ordenar letras

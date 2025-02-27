@@ -30,19 +30,19 @@ void Partida::iniciarPartida(ListaEnlazada<Palabra> *diccionario) {
     cout << "Revolviendo turnos..." << endl;
     jugadores->mezclarCola();
     jugadores->mostrarCola();
-    cout << "Repartiendo letras a los jugadores..." << endl;
+    cout << "Repartiendo letras a los jugadores y ordenandolas por puntuacion..." << endl;
     generarLetrasJugables();
     repartirLetras();
-
+    ordenarLetrasJugables();
 }
 
 void Partida::agregarJugadores() {
     int cantidadJugadores;
-    cout << "\nIngrese la cantidad de jugadores (al menos 2): ";
+    cout << "\nIngrese la cantidad de jugadores: ";
     cin >> cantidadJugadores;
 
     while (cantidadJugadores < 2) {
-        cout << "Debe haber al menos 2 jugadores. Intente nuevamente: ";
+        cout << "Debe haber al menos 2 jugadores, intentalo nuevamente: ";
         cin >> cantidadJugadores;
     }
 
@@ -56,7 +56,7 @@ void Partida::agregarJugadores() {
         jugadores->encolar2(nuevoJugador); // Se pasa Jugador* como argumento
     }
 
-    cout << "\nJugadores agregados correctamente a la partida.\n" << endl;
+    cout << "\nJugadores registrados.\n" << endl;
 }
 
 void Partida::generarLetrasJugables() {
@@ -84,7 +84,6 @@ void Partida::generarLetrasJugables() {
             this->letrasJugables->insertar(letra);
         }
     }
-    cout << "Letras jugables generadas." << std::endl;
 }
 
 void Partida::repartirLetras() {
@@ -120,6 +119,18 @@ void Partida::repartirLetras() {
         // Volvemos a encolar al jugador para mantener el orden
         jugadores->encolar(jugadorActual);
     }
+}
 
-    cout << "Letras repartidas equitativamente entre los jugadores." << endl;
+void Partida::ordenarLetrasJugables() {
+    if (jugadores == nullptr || jugadores->isVacio()) {
+        cout << "No hay jugadores" << endl;
+        return;
+    }
+    // Recorrer la cola de jugadores
+    int numJugadores = jugadores->obtenerTamano();
+    for (int i = 0; i < numJugadores; i++) {
+        Jugador *jugadorActual = jugadores->desencolar();
+        jugadorActual->ordenarLetrasPorPunteo(); // Ordenar las letras del jugador
+        jugadores->encolar(jugadorActual); // Volver a encolar al jugador
+    }
 }

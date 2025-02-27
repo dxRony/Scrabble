@@ -18,19 +18,15 @@ private:
     int tiempoJugado;
     ListaEnlazada<Letra> *letras;
 
-    //funciones privadas
-    //Nodo<Letra > *mergeSort(Nodo<Letra> *cabeza);
-
-    //Nodo<Letra > *dividirLista(Nodo<Letra> *cabeza);
-
-    //Nodo<Letra > *fusionarListas(Nodo<Letra> *izquierda, Nodo<Letra> *derecha);
-
+    Nodo<Letra>* mergeSort(Nodo<Letra>* cabeza);
+    Nodo<Letra>* dividirLista(Nodo<Letra>* cabeza);
+    Nodo<Letra>* fusionarListas(Nodo<Letra>* izquierda, Nodo<Letra>* derecha);
 public:
     Jugador();
 
     void mostrarLetras() const;
 
-    //void ordenarLetrasPorPunteo();
+    void ordenarLetrasPorPunteo();
 
     //int mostrarOpcionesTurno() const;
 
