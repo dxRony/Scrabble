@@ -5,7 +5,7 @@
 
 int main() {
     srand(time(nullptr));
-    std::cout << "Hello and welcome to " << "!\n";
+    std::cout << "Hello world!!" << "!\n";
     MotorDeJuego motorDeJuego;
     motorDeJuego.mostrarMenu();
     return 0;

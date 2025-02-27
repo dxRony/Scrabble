@@ -27,7 +27,7 @@ void Jugador::mostrarLetras() const {
     }
 
     // Recorremos la lista de letras
-    for (int i = 0; i < letras->getSize(); i++) {
+    for (int i = 0; i < letras->getTamano(); i++) {
         // Obtenemos la letra en la posición actual
         Letra *letraActual = letras->obtenerDatoEnPosicion(i);
 
@@ -41,7 +41,7 @@ void Jugador::mostrarLetras() const {
 
 void Jugador::ordenarLetrasPorPunteo() {
     if (letras == nullptr || letras->isEmpty()) return; // Si no hay letras, no hacer nada
-    letras->setRaiz(mergeSort(letras->getRaiz())); // Ordenar la lista
+    letras->setCabeza(mergeSort(letras->getCabeza())); // Ordenar la lista
 }
 
 Nodo<Letra> *Jugador::mergeSort(Nodo<Letra> *cabeza) {

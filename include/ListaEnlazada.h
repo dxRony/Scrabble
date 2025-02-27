@@ -13,38 +13,42 @@ using namespace std;
 template<class T>
 class ListaEnlazada {
 private:
-    Nodo<T> *raiz; //apuntador al primer nodo (cabeza) de la lista raiz = cabeza
-    int size;
+    Nodo<T> *cabeza; //apuntador al primer nodo de la lista
+    int tamano; //tamaño de la lista
 
 public:
     ListaEnlazada() {
-        this->raiz = nullptr;
-        this->size = 0;
+        //iniciando lista vacia
+        this->cabeza = nullptr;
+        this->tamano = 0;
     }
 
-    Nodo<T> *getRaiz() {
-        return this->raiz;
+    Nodo<T> *getCabeza() {
+        //devuelve el apuntador de la cabez
+        return this->cabeza;
     }
 
-    void setRaiz(Nodo<T> *raiz) {
-        this->raiz = raiz;
+    void setCabeza(Nodo<T> *cabeza) {
+        //actualiza el apuntador de la cabeza de la lista
+        this->cabeza = cabeza;
     }
 
-    int getSize() {
-        return this->size;
+    int getTamano() {
+        return this->tamano;
     }
 
-    void setSize(int size) {
-        this->size = size;
+    void setTamano(int tamano) {
+        this->tamano = tamano;
     }
 
     Nodo<T> *getElement(int index) {
-        if (index < 0 || index >= this->size) return nullptr;
+        if (index < 0 || index >= this->tamano) return nullptr;
 
-        if (index == 0) return this->raiz;
+        if (index == 0) return this->cabeza;
 
         int contadorAux = 0;
-        Nodo<T> *aux = this->raiz;
+        Nodo<T> *aux = this->cabeza;
+        //recorre la lista hasta llegar al indice requerido y devuelve el nodo
         while (contadorAux < index) {
             aux = aux->getNext();
             contadorAux++;
@@ -52,58 +56,90 @@ public:
         return aux;
     }
 
-    void insertar2(T *value) {
-        if (value == nullptr) return; // Verificar que el puntero no sea nulo
-
-        // Crear un nuevo nodo con una copia del objeto Letra
-        auto *nuevoNodo = new Nodo<T>(*value);
-        if (this->raiz == nullptr) {
-            this->raiz = nuevoNodo;
-            this->size++;
+    void insertar(T value) {
+        //inserta un nuevo nodo al final de la lista
+        auto *nuevoNodo = new Nodo<T>(value);
+        if (this->cabeza == nullptr) {
+            this->cabeza = nuevoNodo;
+            tamano++;
             return;
         }
-        Nodo<T> *aux = this->raiz;
-        while (aux->getNext() != nullptr) aux = aux->getNext();
-
+        Nodo<T> *aux = this->cabeza;
+        //mientras haya un siguiente, se actualiza el aux
+        while (aux->getNext() != nullptr) {
+            aux = aux->getNext();
+        }
         aux->setNext(nuevoNodo);
-        this->size++;
+        tamano++;
     }
 
-    void insertar(T value) {
-        auto *nuevoNodo = new Nodo<T>(value);
-        if (this->raiz == nullptr) {
-            this->raiz = nuevoNodo;
-            this->size++;
+    void insertar2(T *value) {
+        //viendo que el puntero no sea nulo
+        if (value == nullptr) {
             return;
         }
-        Nodo<T> *aux = this->raiz;
-        while (aux->getNext() != nullptr) aux = aux->getNext();
-
+        // creando nuevo nodo
+        auto *nuevoNodo = new Nodo<T>(*value);
+        if (this->cabeza == nullptr) {
+            this->cabeza = nuevoNodo;
+            tamano++;
+            return;
+        }
+        Nodo<T> *aux = this->cabeza;
+        while (aux->getNext() != nullptr) {
+            aux = aux->getNext();
+        }
         aux->setNext(nuevoNodo);
-        this->size++;
+        tamano++;
     }
 
     T *eliminar(T *value) {
-        Nodo<T> *aux = this->raiz;
-        Nodo<T> *previo = nullptr;
+        //elimina el nodo dado el valor
+        Nodo<T> *aux = this->cabeza;
+        Nodo<T> *previo = nullptr; //guarda el nodo anterior para conectarlo al siguiente del dato a eliminar
         while (aux != nullptr && aux->getData() != value) {
             previo = aux;
             aux = aux->getNext();
         }
-        if (aux == nullptr) return nullptr;
-
+        if (aux == nullptr) {
+            return nullptr;
+        }
         if (previo != nullptr) {
             previo->setNext(aux->getNext());
         } else {
-            this->raiz = aux->getNext();
+            this->cabeza = aux->getNext();
         }
         aux->setNext(nullptr);
-        this->size--;
+        tamano--;
         return aux->getData();
     }
 
-    Nodo<T> *eliminar(int index) {
-        Nodo<T> *aux = this->raiz;
+    T *eliminar2(int indice) {
+        //elimina el dato y lo devuelve por el indice recibido
+        if (indice < 0 || indice >= tamano) {
+            return nullptr; // Índice no válido
+        }
+        Nodo<T> *aux = cabeza;
+        Nodo<T> *previo = nullptr;
+
+        for (int i = 0; i < indice; i++) {
+            previo = aux;
+            aux = aux->getNext();
+        }
+        if (previo != nullptr) {
+            previo->setNext(aux->getNext());
+        } else {
+            cabeza = aux->getNext();
+        }
+        T *dato = aux->getData();
+        delete aux;
+        tamano--;
+        return dato;
+    }
+
+    Nodo<T> *eliminarPorIndice(int index) {
+        //elimina y devuelve el nodo
+        Nodo<T> *aux = this->cabeza;
         Nodo<T> *previo = nullptr;
         for (int i = 0; i < index; i++) {
             previo = aux;
@@ -112,44 +148,19 @@ public:
         if (previo != nullptr) {
             previo->setNext(aux->getNext());
         } else {
-            this->raiz = aux->getNext();
+            this->cabeza = aux->getNext();
         }
         aux->setNext(nullptr);
-        this->size--;
+        tamano--;
         return aux;
     }
 
-    T* eliminar2(int indice) {
-        if (indice < 0 || indice >= size) {
-            return nullptr; // Índice no válido
-        }
-
-        Nodo<T> *aux = raiz;
-        Nodo<T> *previo = nullptr;
-
-        for (int i = 0; i < indice; i++) {
-            previo = aux;
-            aux = aux->getNext();
-        }
-
-        if (previo != nullptr) {
-            previo->setNext(aux->getNext());
-        } else {
-            raiz = aux->getNext();
-        }
-
-        T* dato = aux->getData();
-        delete aux;
-        size--;
-        return dato;
-    }
-
     bool isEmpty() {
-        return this->raiz == nullptr;
+        return this->cabeza == nullptr;
     }
 
     void imprimirLista() {
-        Nodo<T> *actual = this->raiz;
+        Nodo<T> *actual = this->cabeza;
         while (actual != nullptr) {
             cout << actual->getValue() << ", ";
             actual = actual->getNext();
@@ -157,16 +168,12 @@ public:
         cout << "nullptr" << endl;
     }
 
-    T* obtenerDatoEnPosicion(int posicion) {
-        // Verificamos si la posición es válida
-        if (posicion < 0 || posicion >= this->size) {
-            throw std::out_of_range("Posición fuera de rango");
+    T *obtenerDatoEnPosicion(int posicion) {
+        //devuelve el dato, sin eliminarlo
+        if (posicion < 0 || posicion >= this->tamano) {
+            throw out_of_range("Posición fuera de rango");
         }
-
-        // Obtenemos el nodo en la posición especificada
         Nodo<T> *nodo = this->getElement(posicion);
-
-        // Devolvemos el dato almacenado en el nodo
         return nodo->getData();
     }
 };

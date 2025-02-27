@@ -51,7 +51,7 @@ ListaEnlazada<Palabra> *Archivo::ordenarAlfabeticamente() {
     bool intercambio;
     do {
         intercambio = false;
-        Nodo<Palabra> *actual = listaPalabras->getRaiz();
+        Nodo<Palabra> *actual = listaPalabras->getCabeza();
         while (actual != nullptr && actual->getNext() != nullptr) {
             Nodo<Palabra> *siguiente = actual->getNext();
             if (actual->getValue().getContenido() > siguiente->getValue().getContenido()) {

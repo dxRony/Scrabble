@@ -14,39 +14,43 @@ using namespace std;
 template<typename T>
 class Pila {
 private:
-    Nodo<T> *raiz; // apuntador al primer elemento de la pila raiz = cima
+    Nodo<T> *cima; // apuntador a la cima de la pila
 
 public:
     Pila() {
-        this->raiz = nullptr;
+        //inciando pila con una cima nula
+        this->cima = nullptr;
     }
 
-    Nodo<T> *getRaiz() {
-        return this->raiz;
+    Nodo<T> *getCima() {
+        return this->cima;
     }
 
-    void setRaiz(Nodo<T> *raiz) {
-        this->raiz = raiz;
+    void setCima(Nodo<T> *cima) {
+        this->cima = cima;
     }
 
     void push(T data) {
+        //creando nodo dado el dato recibio, actualizando cima con el dato recibido
         auto *nuevoNodo = new Nodo<T>(data);
-        nuevoNodo->setNext(this->raiz);
-        this->raiz = nuevoNodo;
+        nuevoNodo->setNext(this->cima);
+        this->cima = nuevoNodo;
     }
 
     T *pop() {
-        if (this->raiz == nullptr) return nullptr;
-
-        Nodo<T> *aux = this->raiz;
-        T *data = this->raiz->getData();
-        this->raiz = this->raiz->getNext();
+        if (this->cima == nullptr) return nullptr;
+        //nodo que contiene la cima
+        Nodo<T> *aux = this->cima;
+        //obteniendo el dato de la cima
+        T *data = this->cima->getData();
+        //actualizando la cima al siguiente nodo y devolviendo la antigua cima
+        this->cima = this->cima->getNext();
         delete aux;
         return data;
     }
 
     bool isEmpty() {
-        return this->raiz == nullptr;
+        return this->cima == nullptr;
     }
 };
 #endif //PILA_H

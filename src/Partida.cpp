@@ -76,7 +76,7 @@ void Partida::generarLetrasJugables() {
     }
 
     // Recorremos cada palabra en el diccionario
-    for (int i = 0; i < diccionario->getSize(); i++) {
+    for (int i = 0; i < diccionario->getTamano(); i++) {
         Palabra *palabraActual = diccionario->obtenerDatoEnPosicion(i);
 
         // Obtenemos el contenido de la palabra (string)
@@ -112,7 +112,7 @@ void Partida::repartirLetras() {
         Jugador *jugadorActual = jugadores->desencolar();
 
         // Eliminamos la primera letra de la lista y obtenemos el nodo
-        Nodo<Letra> *nodoLetra = letrasJugables->eliminar(0);
+        Nodo<Letra> *nodoLetra = letrasJugables->eliminarPorIndice(0);
 
         // Obtenemos el dato (Letra*) del nodo
         Letra *letra = nodoLetra->getData();
@@ -168,7 +168,7 @@ void Partida::realizarTurno(int opcionTurno) {
                 int indiceLetra;
                 cout << "\nIngresa el indice de la letra que quieres colocar: " << endl;
                 cin >> indiceLetra;
-                if (indiceLetra < 0 || indiceLetra >= jugadorActual.getLetras()->getSize()) {
+                if (indiceLetra < 0 || indiceLetra >= jugadorActual.getLetras()->getTamano()) {
                     cout << "Índice no válido. Intenta de nuevo." << endl;
                     break;
                 }
@@ -248,7 +248,7 @@ void Partida::realizarTurno(int opcionTurno) {
 
 void Partida::comprobarLetraFormada(ListaEnlazada<Palabra> *diccionario) {
     // recorriendo diccionario por si alguna palabra es igual a las letras en el tablero
-    for (int i = 0; i < diccionario->getSize(); i++) {
+    for (int i = 0; i < diccionario->getTamano(); i++) {
         //guardando la palabra del diccionario y su contenido
         Palabra *palabraActual = diccionario->obtenerDatoEnPosicion(i);
         string palabra = palabraActual->getContenido();
@@ -269,7 +269,7 @@ void Partida::comprobarLetraFormada(ListaEnlazada<Palabra> *diccionario) {
             jugadorActual.setPuntuacion(jugadorActual.getPuntuacion() + puntuacionPalabra);
 
             //eliminando la palabra del diccionario para que no se vuelva a encontrar en el futuro
-            diccionario->eliminar(i);
+            diccionario->eliminarPorIndice(i);
 
             // agregando la palabra para el reporte
             palabrasJugadas->push(*palabraActual);
