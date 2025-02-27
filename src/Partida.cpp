@@ -5,14 +5,14 @@
 using namespace std;
 
 Partida::Partida() {
-    jugadores = new Cola<Jugador>();
-    palabrasJugadas = new Pila<Palabra>();
-    listaPunteos = new ListaEnlazada<Jugador>();
-    letrasJugables = new ListaEnlazada<Letra>();
-    diccionario = nullptr;
-    hayPalabra = false;
-    hayLetraCentro = false;
-    partidaTerminada = false;
+    jugadores = new Cola<Jugador>(); //cola de jugadores en la partida
+    palabrasJugadas = new Pila<Palabra>(); //pila de palabras que se han completado en el tablero
+    listaPunteos = new ListaEnlazada<Jugador>(); //lista de punteos de los jugadores
+    letrasJugables = new ListaEnlazada<Letra>(); //lista de letras a repartir entre todos los jugadores
+    diccionario = nullptr; //lista de palabras que se leeran del archivo
+    hayPalabra = false; //bandera para verificar si se pueden formar palabras en el tablero
+    hayLetraCentro = false; //bandera para ver si ya hay una letra en el centro
+    partidaTerminada = false; //bandera que finaliza la ejecucion del juego
 }
 
 Partida::~Partida() {
@@ -60,45 +60,39 @@ void Partida::agregarJugadores() {
         cout << "Ingrese el nombre del jugador " << i << ": ";
         cin >> nombreJugador;
 
-        Jugador nuevoJugador; // Jugador creado dinámicamente
-        nuevoJugador.setNombre(nombreJugador); // Uso de puntero
-        jugadores->encolar2(nuevoJugador); // Se pasa Jugador* como argumento
+        Jugador nuevoJugador; // creando jugador
+        nuevoJugador.setNombre(nombreJugador); //agregandole nombre
+        jugadores->encolar2(nuevoJugador); // encolando al jugador
     }
-
-    cout << "\nJugadores registrados.\n" << endl;
+    cout << "\nJugadores registrados\n" << endl;
 }
 
 void Partida::generarLetrasJugables() {
-    // Verificamos que el diccionario no esté vacío
     if (diccionario == nullptr || diccionario->isEmpty()) {
-        cout << "El diccionario está vacío." << endl;
+        cout << "El diccionario no tiene palabras" << endl;
         return;
     }
-
-    // Recorremos cada palabra en el diccionario
+    // recorriendo el diccionario
     for (int i = 0; i < diccionario->getTamano(); i++) {
+        //obteniendo palabra por palabra del diccionario
         Palabra *palabraActual = diccionario->obtenerDatoEnPosicion(i);
-
-        // Obtenemos el contenido de la palabra (string)
+        // guardando el contenido de la palabra
         string contenido = palabraActual->getContenido();
-
-        // Recorremos cada letra del contenido
+        // recorriendo letra por letra de la palabra
         for (char letraChar: contenido) {
-            // Creamos un objeto Letra con la letra y un puntaje aleatorio
-            Letra letra; // Objeto Letra (no puntero)
-            letra.setLetra(letraChar); // Asignamos la letra
-            letra.setPunteo(rand() % 9 + 1); // Puntaje aleatorio entre 1 y 9
-
-            // Agregamos la letra a la lista de letras jugables
+            // creando un objeto Letra y dandole los respectivos valores
+            Letra letra;
+            letra.setLetra(letraChar); // asignando char letra
+            letra.setPunteo(rand() % 9 + 1); // punteo aleatorio (1-9)
+            // agregando letra preparada a la lista de letras jugables
             this->letrasJugables->insertar(letra);
         }
     }
 }
 
 void Partida::repartirLetras() {
-    // Verificamos que haya letras jugables y jugadores
     if (letrasJugables == nullptr || letrasJugables->isEmpty()) {
-        cout << "No hay letras jugables para repartir." << endl;
+        cout << "No hay letras jugables para repartir" << endl;
         return;
     }
     if (jugadores == nullptr || jugadores->isVacio()) {
@@ -106,26 +100,23 @@ void Partida::repartirLetras() {
         return;
     }
 
-    // Repartimos las letras hasta que se acaben
+    // repartiendo letrasJugables entre jugadores, hasta vaciar letrasJugables
     while (!letrasJugables->isEmpty()) {
-        // Desencolamos al jugador actual
+        // creando jugadorTemporal
         Jugador *jugadorActual = jugadores->desencolar();
 
-        // Eliminamos la primera letra de la lista y obtenemos el nodo
+        // eliminando la primera letra y guardandola en nodoLetra
         Nodo<Letra> *nodoLetra = letrasJugables->eliminarPorIndice(0);
 
-        // Obtenemos el dato (Letra*) del nodo
+        //obteniendo el dato del nodo
         Letra *letra = nodoLetra->getData();
 
-        // Asignamos la letra al jugador actual
+        // guardando la letra en las letras del jugadorTemporal
         if (letra != nullptr) {
             jugadorActual->getLetras()->insertar2(letra); // Insertamos la letra en el jugador
         }
-
-        // Liberamos el nodo (pero no el dato, ya que ahora pertenece al jugador)
         delete nodoLetra;
-
-        // Volvemos a encolar al jugador para mantener el orden
+        //devolviendo el jugadorTemporal a la cola
         jugadores->encolar(jugadorActual);
     }
 }
@@ -135,9 +126,9 @@ void Partida::ordenarLetrasJugables() {
         cout << "No hay jugadores" << endl;
         return;
     }
-    // Recorrer la cola de jugadores
     int numJugadores = jugadores->obtenerTamano();
     for (int i = 0; i < numJugadores; i++) {
+        //recorriendo jugadores para aplicarles el metodo ordenarLetrasPorPunteo
         Jugador *jugadorActual = jugadores->desencolar();
         jugadorActual->ordenarLetrasPorPunteo(); // Ordenar las letras del jugador
         jugadores->encolar(jugadorActual); // Volver a encolar al jugador
@@ -149,10 +140,9 @@ void Partida::cambiarTurno() {
         cout << "No hay jugadores en la cola." << endl;
         return;
     }
-
-    // Desencolar al siguiente jugador
+    // desencolando al jugador
     jugadorActual = jugadores->desencolar2();
-    // Volver a encolar al jugador para mantener el orden de los turnos
+    //volviendolo a encolar para ciclarlo
     jugadores->encolar2(jugadorActual);
 }
 
@@ -162,14 +152,13 @@ void Partida::realizarTurno(int opcionTurno) {
     while (!turnoTerminado) {
         switch (opcionTurno) {
             case 1: {
-                // Colocar una letra en el tablero
                 cout << "Letras de " << jugadorActual.getNombre() << ":" << endl;
                 jugadorActual.mostrarLetras();
                 int indiceLetra;
                 cout << "\nIngresa el indice de la letra que quieres colocar: " << endl;
                 cin >> indiceLetra;
                 if (indiceLetra < 0 || indiceLetra >= jugadorActual.getLetras()->getTamano()) {
-                    cout << "Índice no válido. Intenta de nuevo." << endl;
+                    cout << "indice no valido, intentalo de nuevo" << endl;
                     break;
                 }
                 Letra *letraSeleccionada = jugadorActual.getLetras()->obtenerDatoEnPosicion(indiceLetra - 1);
@@ -181,24 +170,20 @@ void Partida::realizarTurno(int opcionTurno) {
                 fila--;
                 columna--;
                 if (fila < 0 || fila >= 15 || columna < 0 || columna >= 15) {
-                    cout << "Posición fuera del tablero" << endl;
-                    break; // Salir del caso 1 sin terminar el turno
+                    cout << "posicion fuera del tablero :/" << endl;
+                    break;
                 }
                 if (tableroDeJuego.obtenerLetra(fila, columna) != nullptr) {
-                    cout << "La casilla ya está ocupada. Intenta de nuevo." << endl;
-                    break; // Salir del caso 1 sin terminar el turno
+                    cout << "La casilla ya esta ocupada, intentalo de nuevo." << endl;
+                    break;
                 }
 
                 if (tableroDeJuego.colocarLetra(fila, columna, letraSeleccionada)) {
-                    // Eliminar la letra de la lista del jugador
+                    // si se coloca la letra del jugador en el tablero se elimina de sus letras
                     jugadorActual.getLetras()->eliminar2(indiceLetra - 1);
-
-                    cout << "Letra colocada correctamente en la posición ("
+                    cout << "Letra colocada correctamente en: ("
                             << (fila + 1) << ", " << (columna + 1) << ")." << endl;
-
-                    // Mostrar el tablero actualizado
                     tableroDeJuego.imprimirTablero();
-
                     //cuando se coloca una letra se comprueba si en su fila o columna la letra existe en diccionario
                     comprobarLetraFormada(diccionario);
                     turnoTerminado = true;
@@ -208,37 +193,30 @@ void Partida::realizarTurno(int opcionTurno) {
                 break;
             }
             case 2: {
-                // Mostrar las letras del jugador actual
                 cout << "Letras de " << jugadorActual.getNombre() << ":" << endl;
                 jugadorActual.mostrarLetras();
-                // El turno no termina, el jugador puede seleccionar otra opción
                 opcionTurno = jugadorActual.mostrarOpcionesTurno();
                 break;
             }
             case 3: {
-                // Mostrar las palabras del diccionario
                 cout << "Palabras en el diccionario:" << endl;
                 diccionario->imprimirLista();
-                // El turno no termina, el jugador puede seleccionar otra opción
                 opcionTurno = jugadorActual.mostrarOpcionesTurno();
                 break;
             }
             case 4: {
-                // Pasar turno
-                cout << jugadorActual.getNombre() << " ha decidido pasar su turno." << endl;
-                turnoTerminado = true; // El turno termina sin realizar ninguna acción
+                cout << jugadorActual.getNombre() << " ha decidido pasar su turno" << endl;
+                turnoTerminado = true;
                 break;
             }
-            case 5: {//terminar partida
+            case 5: {
                 cout << "Finalizando partida..." << endl;
                 partidaTerminada = true;
                 turnoTerminado = true;
                 break;
             }
             default: {
-                // Opción no válida
-                cout << "Opción no válida. Intenta de nuevo." << endl;
-                // El turno no termina, el jugador puede seleccionar otra opción
+                cout << "opcion invalida, intenta de nuevo." << endl;
                 opcionTurno = jugadorActual.mostrarOpcionesTurno();
                 break;
             }
@@ -257,7 +235,7 @@ void Partida::comprobarLetraFormada(ListaEnlazada<Palabra> *diccionario) {
         if (tableroDeJuego.verificarPalabraTablero(palabra)) {
             // si la palbra existiera se recibe true y se procede a calcular el punteo de la palabra
             int puntuacionPalabra = 0;
-            for (char letraChar : palabra) {
+            for (char letraChar: palabra) {
                 // obteniendo cada letra obtener su punteo
                 Letra *letra = tableroDeJuego.obtenerLetraTablero(letraChar);
                 if (letra != nullptr) {

@@ -33,30 +33,30 @@ void Jugador::mostrarLetras() const {
 
         // Mostramos la información de la letra
         if (letraActual != nullptr) {
-            cout << i+1 << ") Letra: " << letraActual->getLetra()
+            cout << i + 1 << ") Letra: " << letraActual->getLetra()
                     << ", Punteo: " << letraActual->getPunteo() << "; ";
         }
     }
 }
 
 void Jugador::ordenarLetrasPorPunteo() {
-    if (letras == nullptr || letras->isEmpty()) return; // Si no hay letras, no hacer nada
-    letras->setCabeza(mergeSort(letras->getCabeza())); // Ordenar la lista
+    if (letras == nullptr || letras->isEmpty()) return;
+    letras->setCabeza(mergeSort(letras->getCabeza())); //llamando a metodo para ordenar la lista usando mergeSort
 }
 
 Nodo<Letra> *Jugador::mergeSort(Nodo<Letra> *cabeza) {
     if (cabeza == nullptr || cabeza->getNext() == nullptr) {
-        return cabeza; // Caso base: lista vacía o con un solo elemento
+        return cabeza; // si la lista esta vacía o con un elemento, ya esta ordenada
     }
 
-    // Dividir la lista en dos mitades
+    // dividiendo la lista en dos mitades
     Nodo<Letra> *mitad = dividirLista(cabeza);
 
-    // Ordenar recursivamente ambas mitades
+    // ordenando ambas mitades de manera recursiva
     Nodo<Letra> *izquierda = mergeSort(cabeza);
     Nodo<Letra> *derecha = mergeSort(mitad);
 
-    // Fusionar las dos mitades ordenadas
+    // fusionar las mitades ya ordenadas
     return fusionarListas(izquierda, derecha);
 }
 
@@ -66,26 +66,27 @@ Nodo<Letra> *Jugador::dividirLista(Nodo<Letra> *cabeza) {
     Nodo<Letra> *lento = cabeza;
     Nodo<Letra> *rapido = cabeza->getNext();
 
-    // Avanzar rápido dos pasos y lento un paso
+    // avanzando rapido dos pasos y lento un paso, para obtener el largo de la lista y la mitad
     while (rapido != nullptr && rapido->getNext() != nullptr) {
         lento = lento->getNext();
         rapido = rapido->getNext()->getNext();
     }
 
-    // Dividir la lista en dos
+    // sepraando la lista a la mitda
     Nodo<Letra> *mitad = lento->getNext();
-    lento->setNext(nullptr); // Separar las dos mitades
-
+    lento->setNext(nullptr); // desvinculando la mitad de la lista original y devolviendola
     return mitad;
 }
 
 Nodo<Letra> *Jugador::fusionarListas(Nodo<Letra> *izquierda, Nodo<Letra> *derecha) {
-    if (izquierda == nullptr) return derecha;
-    if (derecha == nullptr) return izquierda;
-
+    if (izquierda == nullptr) {
+        return derecha;
+    }
+    if (derecha == nullptr) {
+        return izquierda;
+    }
     Nodo<Letra> *resultado = nullptr;
-
-    // Comparar los puntajes de las letras
+    // comparando puntajes de derecha e izq y fusionando listas
     if (izquierda->getValue().getPunteo() >= derecha->getValue().getPunteo()) {
         resultado = izquierda;
         resultado->setNext(fusionarListas(izquierda->getNext(), derecha));
@@ -93,7 +94,6 @@ Nodo<Letra> *Jugador::fusionarListas(Nodo<Letra> *izquierda, Nodo<Letra> *derech
         resultado = derecha;
         resultado->setNext(fusionarListas(izquierda, derecha->getNext()));
     }
-
     return resultado;
 }
 
@@ -112,13 +112,25 @@ int Jugador::mostrarOpcionesTurno() const {
 }
 
 // getters
+string Jugador::getNombre() const {
+    return nombre;
+}
 
+int Jugador::getPuntuacion() const {
+    return puntuacion;
+}
 
-string Jugador::getNombre() const { return nombre; }
-int Jugador::getPuntuacion() const { return puntuacion; }
-int Jugador::getCantidadTurnos() const { return cantidadTurnos; }
-int Jugador::getTiempoJugado() const { return tiempoJugado; }
-ListaEnlazada<Letra> *Jugador::getLetras() { return letras; }
+int Jugador::getCantidadTurnos() const {
+    return cantidadTurnos;
+}
+
+int Jugador::getTiempoJugado() const {
+    return tiempoJugado;
+}
+
+ListaEnlazada<Letra> *Jugador::getLetras() {
+    return letras;
+}
 
 // setters
 void Jugador::setNombre(const string &nombre) {

@@ -13,9 +13,17 @@ Palabra::Palabra() {
 }
 
 // getters
-string Palabra::getContenido() const { return contenido; }
-int Palabra::getPuntuacion() const { return puntuacion; }
-bool Palabra::isPalabraFormada() const { return palabraFormada; }
+string Palabra::getContenido() const {
+    return contenido;
+}
+
+int Palabra::getPuntuacion() const {
+    return puntuacion;
+}
+
+bool Palabra::isPalabraFormada() const {
+    return palabraFormada;
+}
 
 // setters
 void Palabra::setContenido(string contenido) {

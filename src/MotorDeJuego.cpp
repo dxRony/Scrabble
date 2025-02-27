@@ -24,17 +24,14 @@ void MotorDeJuego::mostrarMenu() {
 
         try {
             cin >> opcion;
-
-            // Verificar si la entrada es válida
+            //viendo si la entrada es un numero
             if (cin.fail()) {
                 throw runtime_error("Entrada invalida, debes ingresar un numero entre 1 y 3");
             }
-
+            //viendo si la entrada es un numero en el rango permitido
             if (opcion < 1 || opcion > 3) {
                 throw out_of_range("Opcion fuera de rango, debes ingresar un numero entre 1 y 3");
             }
-
-            // Si la entrada es válida, ejecutar la opción
             switch (opcion) {
                 case 1:
                     nuevaPartida();
@@ -61,7 +58,7 @@ void MotorDeJuego::nuevaPartida() {
     ListaEnlazada<Palabra> *listaPalabras = archivo.ordenarAlfabeticamente();
     cout << "Lista de palabras disponibles para la partida:" << endl;
     listaPalabras->imprimirLista();
-
+    //iniciando partida
     Partida partida;
     partida.iniciarPartida(listaPalabras);
 }

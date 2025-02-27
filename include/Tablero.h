@@ -22,11 +22,10 @@ public:
 
     bool colocarLetra(int fila, int columna, Letra* letraAColocar);
 
-    bool verificarPalabraTablero(const string &palabra);
+    bool verificarPalabraTablero(const string &palabra) const;
 
-    bool verificarPalabraFormada(int fila, int columna, const string &palabra);
+    bool verificarPalabraFormada(int fila, int columna, const string &palabra) const;
 
-    Letra* obtenerLetraTablero(char letraChar);
+    Letra* obtenerLetraTablero(char letraChar) const;
 };
-
 #endif //TABLERO_H

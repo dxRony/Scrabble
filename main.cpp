@@ -4,7 +4,7 @@
 #include <ctime>   // Para time()
 
 int main() {
-    srand(time(nullptr));
+    srand(time(nullptr));//semilla de aleatoriedad para toda la ejecucion
     std::cout << "Hello world!!" << "!\n";
     MotorDeJuego motorDeJuego;
     motorDeJuego.mostrarMenu();

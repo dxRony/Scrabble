@@ -44,25 +44,30 @@ ListaEnlazada<Palabra> *Archivo::leerCSV(const string &rutaArchivo) {
 }
 
 ListaEnlazada<Palabra> *Archivo::ordenarAlfabeticamente() {
+    //mandando a leer el archivo y guardar las palabras en listaPalabras
     ListaEnlazada<Palabra> *listaPalabras = this->leerCSV("../util/palabras.csv");
     if (!listaPalabras || listaPalabras->isEmpty()) {
         return listaPalabras;
     }
     bool intercambio;
     do {
-        intercambio = false;
-        Nodo<Palabra> *actual = listaPalabras->getCabeza();
+        //usando algoritmo bubble sort para la ordenacion
+        intercambio = false;//para ver si se intercambio una palabra en cada recorrido del do while
+        Nodo<Palabra> *actual = listaPalabras->getCabeza();//obteniendo la cabeza de la lista
         while (actual != nullptr && actual->getNext() != nullptr) {
-            Nodo<Palabra> *siguiente = actual->getNext();
+            //mientras hayan palabras en la lista
+            Nodo<Palabra> *siguiente = actual->getNext();//guardando el nodo siguiente del nodo actual
             if (actual->getValue().getContenido() > siguiente->getValue().getContenido()) {
-                // En lugar de: swap(actual->getValue(), siguiente->getValue());
-                Palabra temp = actual->getValue();
-                actual->setValue(siguiente->getValue());
-                siguiente->setValue(temp);
+                //comparando contenido del actual con el del siguiente
+                //aplicando intercambio de nodos
+                Palabra temp = actual->getValue();//guardando el actual temporalmente
+                actual->setValue(siguiente->getValue());//en actual se guarda el siguiente
+                siguiente->setValue(temp);//en siguiente se guarda el temporal
                 intercambio = true;
             }
-            actual = actual->getNext();
+            actual = actual->getNext();//guardando el siguiente en actual
         }
+        //ciclando hasta que ya no haya intercambio
     } while (intercambio);
-    return listaPalabras; //devolviendo la lista ordenada
+    return listaPalabras; //devolviendo la lista ordenada alfabeticamente
 }

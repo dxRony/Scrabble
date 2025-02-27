@@ -12,8 +12,13 @@ Letra::Letra() {
 }
 
 // getters
-char Letra::getLetra() const { return letra; }
-int Letra::getPunteo() const { return punteo; }
+char Letra::getLetra() const {
+    return letra;
+}
+
+int Letra::getPunteo() const {
+    return punteo;
+}
 
 //setters
 void Letra::setLetra(char letra) {

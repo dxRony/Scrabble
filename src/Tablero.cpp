@@ -7,8 +7,8 @@
 #include <iomanip>
 using namespace std;
 
-
 Tablero::Tablero() {
+    //iniciando tablero con nullptr
     for (int i = 0; i < 15; i++) {
         for (int j = 0; j < 15; j++) {
             casillas[i][j] = nullptr;
@@ -20,17 +20,16 @@ Tablero::Tablero() {
 void Tablero::generarTablero() {
     int casillasBloqueadas = 0;
     while (casillasBloqueadas < 10) {
-        int fila = rand() % 15; // Fila aleatoria entre 0 y 14
-        int columna = rand() % 15; // Columna aleatoria entre 0 y 14
+        int fila = rand() % 15; // fila aleatoria (0-14)
+        int columna = rand() % 15; // columna aleatoria (0-14)
 
-        // Verificar si la casilla ya está bloqueada o es el centro
+        // verificando si la casilla ya esta bloqueada o esta en el centro donde estara la primer letra
         if (casillas[fila][columna] == nullptr && !(fila == 7 && columna == 7)) {
-            // Crear una letra con el carácter '*' y puntuación 0
+            // creando letra con contenido * y puntuación 0
             Letra *letraBloqueada = new Letra();
             letraBloqueada->setLetra('*');
             letraBloqueada->setPunteo(0);
-
-            // Bloquear la casilla
+            // bloqueando la casilla
             casillas[fila][columna] = letraBloqueada;
             casillasBloqueadas++;
         }
@@ -40,35 +39,31 @@ void Tablero::generarTablero() {
 void Tablero::imprimirTablero() const {
     cout << "**********TABLERO DE JUEGO**********" << endl;
 
-    // Imprimir la numeración de las columnas
-    cout << "    "; // Espacio para alinear las columnas
+    // numeracion de las columnas
+    cout << "    "; // alineacion de columnas
     for (int col = 1; col <= 15; col++) {
-        cout << " " << setw(2) << col << " "; // Mostrar números de columna
+        cout << " " << setw(2) << col << " ";
     }
     cout << endl;
-
-    // Imprimir el borde superior del tablero
-    cout << "    -"; // Espacio para alinear las filas
+    // birde superior
+    cout << "    -"; // alineacion de filas
     for (int col = 0; col < 15; col++) {
-        cout << "----"; // Borde superior de cada columna
+        cout << "----"; // borde superior de cada columna
     }
     cout << endl;
-
-    // Imprimir las filas del tablero
+    // imprimiendo filas
     for (int fila = 0; fila < 15; fila++) {
         // Mostrar el número de fila
-        cout << setw(2) << (fila + 1) << " |"; // Número de fila y borde izquierdo
-
-        // Mostrar el contenido de cada casilla
+        cout << setw(2) << (fila + 1) << " |"; // num fila y borde izq
+        // mostrando letra de cada casilla
         for (int col = 0; col < 15; col++) {
             if (casillas[fila][col] == nullptr) {
-                cout << "   |"; // Casilla vacía
+                cout << "   |"; //si hay casilla vacia se muestra el espacio en blanco
             } else {
-                cout << " " << casillas[fila][col]->getLetra() << " |"; // Mostrar la letra
+                cout << " " << casillas[fila][col]->getLetra() << " |"; // sino se muestra la letra
             }
         }
         cout << endl;
-
         // Imprimir el borde inferior de la fila
         cout << "    -"; // Espacio para alinear las filas
         for (int col = 0; col < 15; col++) {
@@ -80,17 +75,19 @@ void Tablero::imprimirTablero() const {
 
 Letra *Tablero::obtenerLetra(int fila, int columna) const {
     if (fila < 0 || fila >= 15 || columna < 0 || columna >= 15) {
-        return nullptr; // Fuera del tablero
+        return nullptr;
     }
+    //devolviendo letra del tablero en la posicion indicada
     return casillas[fila][columna];
 }
 
 bool Tablero::colocarLetra(int fila, int columna, Letra *letraAColocar) {
     if (fila < 0 || fila >= 15 || columna < 0 || columna >= 15) {
-        return false; // Fuera del tablero
+        return false;
     }
     if (casillas[fila][columna] != nullptr) {
-        return false; // Casilla ocupada
+        //verificando si la casilla ya esta ocupada
+        return false;
     }
     if (!hayLetraCentro) {
         //reemplazando coordenadas cuando no haya letra en el centro
@@ -104,24 +101,24 @@ bool Tablero::colocarLetra(int fila, int columna, Letra *letraAColocar) {
         // Validando que la letra este al lado de otra letra
         bool letraContigua = false;
 
-        // Verificando arriba
+        // viendo que haya letra arriba
         if (fila > 0 && casillas[fila - 1][columna] != nullptr) {
             letraContigua = true;
         }
-        // Verificando abajo
+        // viendo que haya letra abajo
         else if (fila < 14 && casillas[fila + 1][columna] != nullptr) {
             letraContigua = true;
         }
-        // Verificando izquierda
+        // viendo que haya letra izquierda
         else if (columna > 0 && casillas[fila][columna - 1] != nullptr) {
             letraContigua = true;
         }
-        // Verificando derecha
+        // viendo que haya letra derecha
         else if (columna < 14 && casillas[fila][columna + 1] != nullptr) {
             letraContigua = true;
         }
-
         if (!letraContigua) {
+            //si no hay letra a la par
             cout << "La letra debe colocarse al lado de otra letra ya colocada." << endl;
             return false;
         }
@@ -130,7 +127,7 @@ bool Tablero::colocarLetra(int fila, int columna, Letra *letraAColocar) {
     return true;
 }
 
-bool Tablero::verificarPalabraTablero(const string &palabra) {
+bool Tablero::verificarPalabraTablero(const string &palabra) const {
     // recorriendo todo el tablero para ver si se formo la palabra del diccionario
     for (int fila = 0; fila < 15; fila++) {
         for (int columna = 0; columna < 15; columna++) {
@@ -145,7 +142,7 @@ bool Tablero::verificarPalabraTablero(const string &palabra) {
     return false;
 }
 
-bool Tablero::verificarPalabraFormada(int fila, int columna, const string &palabra) {
+bool Tablero::verificarPalabraFormada(int fila, int columna, const string &palabra) const {
     //entrando con la posicion actual y la palabra del diccionario
 
     //evaluando horizontalmente y manejando el espacio del tablero
@@ -184,11 +181,11 @@ bool Tablero::verificarPalabraFormada(int fila, int columna, const string &palab
     return false;
 }
 
-Letra *Tablero::obtenerLetraTablero(char letraChar) {
+Letra *Tablero::obtenerLetraTablero(char letraChar) const {
     //recorriend el tablero en busqueda de la letra que forma la palabra formada
     for (int fila = 0; fila < 15; fila++) {
         for (int columna = 0; columna < 15; columna++) {
-            Letra *letra = casillas[fila][columna];//obteniendo la letra de la posicion y devolviendola
+            Letra *letra = casillas[fila][columna]; //obteniendo la letra de la posicion y devolviendola
             if (letra != nullptr && letra->getLetra() == letraChar) {
                 return letra;
             }
