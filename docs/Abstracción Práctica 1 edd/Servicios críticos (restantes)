@@ -1,0 +1,12 @@
+		Servicios críticos (restantes)
+2) Gestión de turnos con cola O(1):
+	Usar una cola para manejar los turnos de los jugadores, para una rotacion eficiente.
+
+3) Inserción y eliminación de fichas en lista enlazada O(n):
+	Manejar las fichas del jugador usando una lista enlazada para agregar y quitar letras.
+
+5) Registro de palabras jugadas con pila O(1):
+	Almacenar las palabras jugadas en una pila, para poder deshacer la ultima palabra    (se revierte la colocacion de la ultima ficha).
+
+6) Cálculo y ordenación de puntuaciones O(n^2):
+	Calcular la puntuación de cada jugador y ordenarlo en una lista al final del juego.

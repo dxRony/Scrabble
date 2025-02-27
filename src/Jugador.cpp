@@ -105,6 +105,7 @@ int Jugador::mostrarOpcionesTurno() const {
     cout << "2. Ver Tus Letras" << endl;
     cout << "3. Ver Palabras Jugables" << endl;
     cout << "4. Pasar turno" << endl;
+    cout << "5. Terminar Partida" << endl;
     cout << "Selecciona Una Opcion" << endl;
     cin >> opcion;
     return opcion;

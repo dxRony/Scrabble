@@ -12,6 +12,7 @@ Partida::Partida() {
     diccionario = nullptr;
     hayPalabra = false;
     hayLetraCentro = false;
+    partidaTerminada = false;
 }
 
 Partida::~Partida() {
@@ -41,8 +42,7 @@ void Partida::iniciarPartida(ListaEnlazada<Palabra> *diccionario) {
         int opcionTurno = jugadorActual.mostrarOpcionesTurno();
         cout << opcionTurno << endl;
         realizarTurno(opcionTurno);
-    } while (hayPalabra || !diccionario->isEmpty());
-    cout << "Se cumplio el while" << endl;
+    } while (!partidaTerminada && !diccionario->isEmpty());
 }
 
 void Partida::agregarJugadores() {
@@ -166,7 +166,7 @@ void Partida::realizarTurno(int opcionTurno) {
                 cout << "Letras de " << jugadorActual.getNombre() << ":" << endl;
                 jugadorActual.mostrarLetras();
                 int indiceLetra;
-                cout << "Ingresa el indice de la letra que quieres colocar: " << endl;
+                cout << "\nIngresa el indice de la letra que quieres colocar: " << endl;
                 cin >> indiceLetra;
                 if (indiceLetra < 0 || indiceLetra >= jugadorActual.getLetras()->getSize()) {
                     cout << "Índice no válido. Intenta de nuevo." << endl;
@@ -227,6 +227,12 @@ void Partida::realizarTurno(int opcionTurno) {
                 // Pasar turno
                 cout << jugadorActual.getNombre() << " ha decidido pasar su turno." << endl;
                 turnoTerminado = true; // El turno termina sin realizar ninguna acción
+                break;
+            }
+            case 5: {//terminar partida
+                cout << "Finalizando partida..." << endl;
+                partidaTerminada = true;
+                turnoTerminado = true;
                 break;
             }
             default: {

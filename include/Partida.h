@@ -20,6 +20,7 @@ private:
     ListaEnlazada<Letra> *letrasJugables;
     bool hayPalabra;
     bool hayLetraCentro;
+    bool partidaTerminada;
     Jugador jugadorActual;
     Tablero tableroDeJuego;
 
