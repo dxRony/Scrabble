@@ -23,9 +23,6 @@ Partida::~Partida() {
 
 void Partida::iniciarPartida(ListaEnlazada<Palabra> *diccionario) {
     this->diccionario = diccionario;
-    cout << "\nDiccionario recibido y asignado a la partida." << endl;
-    cout << "Palabras en el diccionario:" << endl;
-    diccionario->imprimirLista();
     agregarJugadores();
     cout << "Generando turnos aleatorios..." << endl;
     jugadores->mezclarCola();
@@ -187,7 +184,6 @@ void Partida::realizarTurno(int opcionTurno) {
                     cout << "Posición fuera del tablero" << endl;
                     break; // Salir del caso 1 sin terminar el turno
                 }
-
                 if (tableroDeJuego.obtenerLetra(fila, columna) != nullptr) {
                     cout << "La casilla ya está ocupada. Intenta de nuevo." << endl;
                     break; // Salir del caso 1 sin terminar el turno
@@ -203,7 +199,8 @@ void Partida::realizarTurno(int opcionTurno) {
                     // Mostrar el tablero actualizado
                     tableroDeJuego.imprimirTablero();
 
-                    // El turno termina después de colocar una letra
+                    //cuando se coloca una letra se comprueba si en su fila o columna la letra existe en diccionario
+                    comprobarLetraFormada(diccionario);
                     turnoTerminado = true;
                 } else {
                     cout << "No se pudo colocar la letra, repite tu turno" << endl;
@@ -239,6 +236,40 @@ void Partida::realizarTurno(int opcionTurno) {
                 opcionTurno = jugadorActual.mostrarOpcionesTurno();
                 break;
             }
+        }
+    }
+}
+
+void Partida::comprobarLetraFormada(ListaEnlazada<Palabra> *diccionario) {
+    // recorriendo diccionario por si alguna palabra es igual a las letras en el tablero
+    for (int i = 0; i < diccionario->getSize(); i++) {
+        //guardando la palabra del diccionario y su contenido
+        Palabra *palabraActual = diccionario->obtenerDatoEnPosicion(i);
+        string palabra = palabraActual->getContenido();
+
+        // llamando a metodo para ver si la palabra existe en el tablero
+        if (tableroDeJuego.verificarPalabraTablero(palabra)) {
+            // si la palbra existiera se recibe true y se procede a calcular el punteo de la palabra
+            int puntuacionPalabra = 0;
+            for (char letraChar : palabra) {
+                // obteniendo cada letra obtener su punteo
+                Letra *letra = tableroDeJuego.obtenerLetraTablero(letraChar);
+                if (letra != nullptr) {
+                    //validandoque la letra exista y agregando el punteo de la letra
+                    puntuacionPalabra += letra->getPunteo();
+                }
+            }
+            //mandando la puntuacion al jugador que formo la palabra
+            jugadorActual.setPuntuacion(jugadorActual.getPuntuacion() + puntuacionPalabra);
+
+            //eliminando la palabra del diccionario para que no se vuelva a encontrar en el futuro
+            diccionario->eliminar(i);
+
+            // agregando la palabra para el reporte
+            palabrasJugadas->push(*palabraActual);
+
+            // Mostrar un mensaje indicando que se ha formado una palabra
+            cout << "Has formado la palabra : " << palabra << "! Puntuacion obtendida: " << puntuacionPalabra << endl;
         }
     }
 }

@@ -41,5 +41,7 @@ public:
     void cambiarTurno();
 
     void realizarTurno(int opcionTurno);
+
+    void comprobarLetraFormada(ListaEnlazada<Palabra> *diccionario);
 };
 #endif //PARTIDA_H

@@ -129,3 +129,70 @@ bool Tablero::colocarLetra(int fila, int columna, Letra *letraAColocar) {
     casillas[fila][columna] = letraAColocar;
     return true;
 }
+
+bool Tablero::verificarPalabraTablero(const string &palabra) {
+    // recorriendo todo el tablero para ver si se formo la palabra del diccionario
+    for (int fila = 0; fila < 15; fila++) {
+        for (int columna = 0; columna < 15; columna++) {
+            //lamando a metodo verificarPalabra desde la posicion actual
+            if (verificarPalabraFormada(fila, columna, palabra)) {
+                //devolviendo true a partida, para indicar que si se formo la palabra completa
+                return true;
+            }
+        }
+    }
+    //devolviendo true o false segun lo obtenido del recorrido
+    return false;
+}
+
+bool Tablero::verificarPalabraFormada(int fila, int columna, const string &palabra) {
+    //entrando con la posicion actual y la palabra del diccionario
+
+    //evaluando horizontalmente y manejando el espacio del tablero
+    if (columna + palabra.length() <= 15) {
+        bool coincide = true;
+        for (int i = 0; i < palabra.length(); i++) {
+            //obteniendo la letra del posicion actual
+            Letra *letra = casillas[fila][columna + i];
+            if (letra == nullptr || letra->getLetra() != palabra[i]) {
+                //si la letra no coincide con la palabra o no hay letra en la posicion, se finaliza el ciclo y se devuelve false
+                coincide = false;
+                break;
+            }
+        }
+        if (coincide) {
+            //si coincide, se devuelve true, para avanzar a la siguiente letra
+            return true;
+        }
+    }
+
+    //evaluando verticalmente y manejando el espacio del tablero
+    if (fila + palabra.length() <= 15) {
+        bool coincide = true;
+        for (int i = 0; i < palabra.length(); i++) {
+            Letra *letra = casillas[fila + i][columna];
+            if (letra == nullptr || letra->getLetra() != palabra[i]) {
+                coincide = false;
+                break;
+            }
+        }
+        if (coincide) {
+            return true;
+        }
+    }
+    //devolviendo true si se formo una fracion de la palabra, y avanzar al resto de la palabra
+    return false;
+}
+
+Letra *Tablero::obtenerLetraTablero(char letraChar) {
+    //recorriend el tablero en busqueda de la letra que forma la palabra formada
+    for (int fila = 0; fila < 15; fila++) {
+        for (int columna = 0; columna < 15; columna++) {
+            Letra *letra = casillas[fila][columna];//obteniendo la letra de la posicion y devolviendola
+            if (letra != nullptr && letra->getLetra() == letraChar) {
+                return letra;
+            }
+        }
+    }
+    return nullptr;
+}
