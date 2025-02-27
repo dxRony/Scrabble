@@ -28,7 +28,7 @@ private:
 public:
     Jugador();
 
-    //void mostrarLetras() ;
+    void mostrarLetras() const;
 
     //void ordenarLetrasPorPunteo();
 

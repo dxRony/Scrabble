@@ -15,7 +15,7 @@ Partida::Partida() {
 }
 
 Partida::~Partida() {
-   delete jugadores;
+    delete jugadores;
     delete palabrasJugadas;
     delete listaPunteos;
     delete letrasJugables;
@@ -30,8 +30,10 @@ void Partida::iniciarPartida(ListaEnlazada<Palabra> *diccionario) {
     cout << "Revolviendo turnos..." << endl;
     jugadores->mezclarCola();
     jugadores->mostrarCola();
-    cout << "Repartiendo letras a los jugadores..."<< endl;
+    cout << "Repartiendo letras a los jugadores..." << endl;
     generarLetrasJugables();
+    repartirLetras();
+
 }
 
 void Partida::agregarJugadores() {
@@ -49,9 +51,9 @@ void Partida::agregarJugadores() {
         cout << "Ingrese el nombre del jugador " << i << ": ";
         cin >> nombreJugador;
 
-        Jugador nuevoJugador;  // Jugador creado dinámicamente
+        Jugador nuevoJugador; // Jugador creado dinámicamente
         nuevoJugador.setNombre(nombreJugador); // Uso de puntero
-        jugadores->encolar2(nuevoJugador);       // Se pasa Jugador* como argumento
+        jugadores->encolar2(nuevoJugador); // Se pasa Jugador* como argumento
     }
 
     cout << "\nJugadores agregados correctamente a la partida.\n" << endl;
@@ -65,18 +67,18 @@ void Partida::generarLetrasJugables() {
     }
 
     // Recorremos cada palabra en el diccionario
-    for (int i = 0; i < diccionario->obtenerTamano(); i++) {
+    for (int i = 0; i < diccionario->getSize(); i++) {
         Palabra *palabraActual = diccionario->obtenerDatoEnPosicion(i);
 
         // Obtenemos el contenido de la palabra (string)
         string contenido = palabraActual->getContenido();
 
         // Recorremos cada letra del contenido
-        for (char letraChar : contenido) {
+        for (char letraChar: contenido) {
             // Creamos un objeto Letra con la letra y un puntaje aleatorio
-            Letra *letra = new Letra();
-            letra->setLetra(letraChar) ; // Asignamos la letra
-            letra->setPunteo(rand() % 9 + 1)  ; // Puntaje aleatorio entre 1 y 9
+            Letra letra; // Objeto Letra (no puntero)
+            letra.setLetra(letraChar); // Asignamos la letra
+            letra.setPunteo(rand() % 9 + 1); // Puntaje aleatorio entre 1 y 9
 
             // Agregamos la letra a la lista de letras jugables
             this->letrasJugables->insertar(letra);
@@ -85,4 +87,39 @@ void Partida::generarLetrasJugables() {
     cout << "Letras jugables generadas." << std::endl;
 }
 
+void Partida::repartirLetras() {
+    // Verificamos que haya letras jugables y jugadores
+    if (letrasJugables == nullptr || letrasJugables->isEmpty()) {
+        cout << "No hay letras jugables para repartir." << endl;
+        return;
+    }
+    if (jugadores == nullptr || jugadores->isVacio()) {
+        cout << "No hay jugadores para repartir las letras." << endl;
+        return;
+    }
 
+    // Repartimos las letras hasta que se acaben
+    while (!letrasJugables->isEmpty()) {
+        // Desencolamos al jugador actual
+        Jugador *jugadorActual = jugadores->desencolar();
+
+        // Eliminamos la primera letra de la lista y obtenemos el nodo
+        Nodo<Letra> *nodoLetra = letrasJugables->eliminar(0);
+
+        // Obtenemos el dato (Letra*) del nodo
+        Letra *letra = nodoLetra->getData();
+
+        // Asignamos la letra al jugador actual
+        if (letra != nullptr) {
+            jugadorActual->getLetras()->insertar2(letra); // Insertamos la letra en el jugador
+        }
+
+        // Liberamos el nodo (pero no el dato, ya que ahora pertenece al jugador)
+        delete nodoLetra;
+
+        // Volvemos a encolar al jugador para mantener el orden
+        jugadores->encolar(jugadorActual);
+    }
+
+    cout << "Letras repartidas equitativamente entre los jugadores." << endl;
+}

@@ -34,5 +34,8 @@ public:
 
     void generarLetrasJugables();
 
+    void repartirLetras();
+
+
 };
 #endif //PARTIDA_H

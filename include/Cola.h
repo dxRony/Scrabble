@@ -72,7 +72,9 @@ public:
     }
 
     void encolar(T *dato) {
-        auto *nuevoNodo = new Nodo<T>(dato);
+        if (dato == nullptr) return; // Verificar que el puntero no sea nulo
+        // Crear un nuevo nodo con una copia del objeto Jugador
+        auto *nuevoNodo = new Nodo<T>(*dato);
         if (this->fin == nullptr) {
             this->inicio = this->fin = nuevoNodo;
             return;
@@ -91,8 +93,8 @@ public:
         this->fin = nuevoNodo;
     }
 
-    T *desencolar() {
-        if (this->inicio == nullptr) return T();
+    T* desencolar() {
+        if (this->inicio == nullptr) return nullptr; // Devuelve nullptr si la cola está vacía
 
         Nodo<T> *aux = this->inicio;
         T *dato = this->inicio->getData();

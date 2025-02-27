@@ -19,26 +19,26 @@ Jugador::Jugador() {
     letras = new ListaEnlazada<Letra>();
 }
 
-/*
-void Jugador::mostrarLetras() {
-    int numeroLetra = 0;
-    Nodo<Letra> *actual = letras.obtenerCabeza();
-
-    cout << "Letras (fichas) de " << nombre << ": \n";
-    if (!actual) {
-        cout << nombre << ", no tiene mas letras en su bolsa" << endl;
+void Jugador::mostrarLetras() const {
+    // Verificamos si el jugador tiene letras
+    if (letras == nullptr || letras->isEmpty()) {
+        cout << "El jugador no tiene letras en su inventario." << endl;
         return;
     }
-    while (actual) {
-        cout << numeroLetra << ".- Letra = " << actual->dato.getLetra()
-                << ", punteo = " << actual->dato.getPunteo() << "; ";
-        actual = actual->siguiente;
-        numeroLetra++;
+
+    // Recorremos la lista de letras
+    for (int i = 0; i < letras->getSize(); i++) {
+        // Obtenemos la letra en la posición actual
+        Letra *letraActual = letras->obtenerDatoEnPosicion(i);
+
+        // Mostramos la información de la letra
+        if (letraActual != nullptr) {
+            cout << "Letra: " << letraActual->getLetra()
+                 << ", Punteo: " << letraActual->getPunteo() << endl;
+        }
     }
-    cout << endl;
 }
-
-
+/*
 void Jugador::ordenarLetrasPorPunteo() {
     //metodo a llamar para ordenar letras
     letras.setCabeza(mergeSort(letras.obtenerCabeza()));

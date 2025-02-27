@@ -52,8 +52,11 @@ public:
         return aux;
     }
 
-    void insertar(T *value) {
-        auto *nuevoNodo = new Nodo<T>(value);
+    void insertar2(T *value) {
+        if (value == nullptr) return; // Verificar que el puntero no sea nulo
+
+        // Crear un nuevo nodo con una copia del objeto Letra
+        auto *nuevoNodo = new Nodo<T>(*value);
         if (this->raiz == nullptr) {
             this->raiz = nuevoNodo;
             this->size++;
@@ -127,6 +130,19 @@ public:
             actual = actual->getNext();
         }
         cout << "nullptr" << endl;
+    }
+
+    T* obtenerDatoEnPosicion(int posicion) {
+        // Verificamos si la posición es válida
+        if (posicion < 0 || posicion >= this->size) {
+            throw std::out_of_range("Posición fuera de rango");
+        }
+
+        // Obtenemos el nodo en la posición especificada
+        Nodo<T> *nodo = this->getElement(posicion);
+
+        // Devolvemos el dato almacenado en el nodo
+        return nodo->getData();
     }
 };
 #endif //LISTAENLAZADA_H
