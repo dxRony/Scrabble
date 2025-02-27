@@ -155,10 +155,6 @@ void Partida::cambiarTurno() {
 
     // Desencolar al siguiente jugador
     jugadorActual = jugadores->desencolar2();
-
-    // Mostrar el nombre del jugador actual
-    cout << "\nTurno de: " << jugadorActual.getNombre() << endl;
-
     // Volver a encolar al jugador para mantener el orden de los turnos
     jugadores->encolar2(jugadorActual);
 }
@@ -168,33 +164,81 @@ void Partida::realizarTurno(int opcionTurno) {
 
     while (!turnoTerminado) {
         switch (opcionTurno) {
-            case 1: // Colocar una letra en el tablero
-                cout << "Colocar letra en el tablero." << endl;
-
-                tableroDeJuego.imprimirTablero();
-                turnoTerminado = true; // El turno termina después de colocar una letra
-                break;
-            case 2: // Mostrar las letras del jugador actual
+            case 1: {
+                // Colocar una letra en el tablero
                 cout << "Letras de " << jugadorActual.getNombre() << ":" << endl;
                 jugadorActual.mostrarLetras();
-            // El turno no termina, el jugador puede seleccionar otra opción
+                int indiceLetra;
+                cout << "Ingresa el indice de la letra que quieres colocar: " << endl;
+                cin >> indiceLetra;
+                if (indiceLetra < 0 || indiceLetra >= jugadorActual.getLetras()->getSize()) {
+                    cout << "Índice no válido. Intenta de nuevo." << endl;
+                    break;
+                }
+                Letra *letraSeleccionada = jugadorActual.getLetras()->obtenerDatoEnPosicion(indiceLetra - 1);
+                int fila, columna;
+                cout << "Ingresa la fila (1-15): ";
+                cin >> fila;
+                cout << "Ingresa la columna (1-15): ";
+                cin >> columna;
+                fila--;
+                columna--;
+                if (fila < 0 || fila >= 15 || columna < 0 || columna >= 15) {
+                    cout << "Posición fuera del tablero" << endl;
+                    break; // Salir del caso 1 sin terminar el turno
+                }
+
+                if (tableroDeJuego.obtenerLetra(fila, columna) != nullptr) {
+                    cout << "La casilla ya está ocupada. Intenta de nuevo." << endl;
+                    break; // Salir del caso 1 sin terminar el turno
+                }
+
+                if (tableroDeJuego.colocarLetra(fila, columna, letraSeleccionada)) {
+                    // Eliminar la letra de la lista del jugador
+                    jugadorActual.getLetras()->eliminar2(indiceLetra - 1);
+
+                    cout << "Letra colocada correctamente en la posición ("
+                            << (fila + 1) << ", " << (columna + 1) << ")." << endl;
+
+                    // Mostrar el tablero actualizado
+                    tableroDeJuego.imprimirTablero();
+
+                    // El turno termina después de colocar una letra
+                    turnoTerminado = true;
+                } else {
+                    cout << "No se pudo colocar la letra, repite tu turno" << endl;
+                }
+                break;
+            }
+            case 2: {
+                // Mostrar las letras del jugador actual
+                cout << "Letras de " << jugadorActual.getNombre() << ":" << endl;
+                jugadorActual.mostrarLetras();
+                // El turno no termina, el jugador puede seleccionar otra opción
                 opcionTurno = jugadorActual.mostrarOpcionesTurno();
                 break;
-            case 3: // Mostrar las palabras del diccionario
+            }
+            case 3: {
+                // Mostrar las palabras del diccionario
                 cout << "Palabras en el diccionario:" << endl;
                 diccionario->imprimirLista();
-            // El turno no termina, el jugador puede seleccionar otra opción
+                // El turno no termina, el jugador puede seleccionar otra opción
                 opcionTurno = jugadorActual.mostrarOpcionesTurno();
                 break;
-            case 4: // Pasar turno
+            }
+            case 4: {
+                // Pasar turno
                 cout << jugadorActual.getNombre() << " ha decidido pasar su turno." << endl;
                 turnoTerminado = true; // El turno termina sin realizar ninguna acción
                 break;
-            default: // Opción no válida
+            }
+            default: {
+                // Opción no válida
                 cout << "Opción no válida. Intenta de nuevo." << endl;
-            // El turno no termina, el jugador puede seleccionar otra opción
+                // El turno no termina, el jugador puede seleccionar otra opción
                 opcionTurno = jugadorActual.mostrarOpcionesTurno();
                 break;
+            }
         }
     }
 }

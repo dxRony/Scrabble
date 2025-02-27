@@ -17,6 +17,10 @@ public:
     void generarTablero();
 
     void imprimirTablero()const;
+
+    Letra* obtenerLetra(int fila, int columna)const;
+
+    bool colocarLetra(int fila, int columna, Letra* letraAColocar);
 };
 
 #endif //TABLERO_H

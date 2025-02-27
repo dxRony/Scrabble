@@ -119,6 +119,31 @@ public:
         return aux;
     }
 
+    T* eliminar2(int indice) {
+        if (indice < 0 || indice >= size) {
+            return nullptr; // Índice no válido
+        }
+
+        Nodo<T> *aux = raiz;
+        Nodo<T> *previo = nullptr;
+
+        for (int i = 0; i < indice; i++) {
+            previo = aux;
+            aux = aux->getNext();
+        }
+
+        if (previo != nullptr) {
+            previo->setNext(aux->getNext());
+        } else {
+            raiz = aux->getNext();
+        }
+
+        T* dato = aux->getData();
+        delete aux;
+        size--;
+        return dato;
+    }
+
     bool isEmpty() {
         return this->raiz == nullptr;
     }

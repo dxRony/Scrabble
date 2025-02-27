@@ -37,8 +37,8 @@ void Tablero::generarTablero() {
     }
 }
 
-void Tablero::imprimirTablero() const{
-    cout << "Tablero de juego:" << endl;
+void Tablero::imprimirTablero() const {
+    cout << "**********TABLERO DE JUEGO**********" << endl;
 
     // Imprimir la numeración de las columnas
     cout << "    "; // Espacio para alinear las columnas
@@ -48,7 +48,7 @@ void Tablero::imprimirTablero() const{
     cout << endl;
 
     // Imprimir el borde superior del tablero
-    cout << "    -"; // Espacio para alinear las filas o "    -"
+    cout << "    -"; // Espacio para alinear las filas
     for (int col = 0; col < 15; col++) {
         cout << "----"; // Borde superior de cada columna
     }
@@ -78,4 +78,54 @@ void Tablero::imprimirTablero() const{
     }
 }
 
+Letra *Tablero::obtenerLetra(int fila, int columna) const {
+    if (fila < 0 || fila >= 15 || columna < 0 || columna >= 15) {
+        return nullptr; // Fuera del tablero
+    }
+    return casillas[fila][columna];
+}
 
+bool Tablero::colocarLetra(int fila, int columna, Letra *letraAColocar) {
+    if (fila < 0 || fila >= 15 || columna < 0 || columna >= 15) {
+        return false; // Fuera del tablero
+    }
+    if (casillas[fila][columna] != nullptr) {
+        return false; // Casilla ocupada
+    }
+    if (!hayLetraCentro) {
+        //reemplazando coordenadas cuando no haya letra en el centro
+        cout << "\nLa primera letra debe estar en el centro" << endl;
+        fila = 7;
+        columna = 7;
+        cout << "Colocando letra en el centro " << endl;
+        hayLetraCentro = true;
+    } else {
+        //si ya hay letra en el centro
+        // Validando que la letra este al lado de otra letra
+        bool letraContigua = false;
+
+        // Verificando arriba
+        if (fila > 0 && casillas[fila - 1][columna] != nullptr) {
+            letraContigua = true;
+        }
+        // Verificando abajo
+        else if (fila < 14 && casillas[fila + 1][columna] != nullptr) {
+            letraContigua = true;
+        }
+        // Verificando izquierda
+        else if (columna > 0 && casillas[fila][columna - 1] != nullptr) {
+            letraContigua = true;
+        }
+        // Verificando derecha
+        else if (columna < 14 && casillas[fila][columna + 1] != nullptr) {
+            letraContigua = true;
+        }
+
+        if (!letraContigua) {
+            cout << "La letra debe colocarse al lado de otra letra ya colocada." << endl;
+            return false;
+        }
+    }
+    casillas[fila][columna] = letraAColocar;
+    return true;
+}

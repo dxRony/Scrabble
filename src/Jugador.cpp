@@ -33,8 +33,8 @@ void Jugador::mostrarLetras() const {
 
         // Mostramos la información de la letra
         if (letraActual != nullptr) {
-            cout << "Letra: " << letraActual->getLetra()
-                    << ", Punteo: " << letraActual->getPunteo() << endl;
+            cout << i+1 << ") Letra: " << letraActual->getLetra()
+                    << ", Punteo: " << letraActual->getPunteo() << "; ";
         }
     }
 }
