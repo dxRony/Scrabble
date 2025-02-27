@@ -28,7 +28,7 @@ public:
 
     void ordenarLetrasPorPunteo();
 
-    //int mostrarOpcionesTurno() const;
+    int mostrarOpcionesTurno() const;
 
     //getters
     string getNombre() const;

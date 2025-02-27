@@ -27,13 +27,25 @@ void Partida::iniciarPartida(ListaEnlazada<Palabra> *diccionario) {
     cout << "Palabras en el diccionario:" << endl;
     diccionario->imprimirLista();
     agregarJugadores();
-    cout << "Revolviendo turnos..." << endl;
+    cout << "Generando turnos aleatorios..." << endl;
     jugadores->mezclarCola();
     jugadores->mostrarCola();
     cout << "Repartiendo letras a los jugadores y ordenandolas por puntuacion..." << endl;
     generarLetrasJugables();
     repartirLetras();
     ordenarLetrasJugables();
+    cout << "Generando tablero con 10 casillas desactivadas..." << endl;
+    tableroDeJuego.generarTablero();
+    tableroDeJuego.imprimirTablero();
+
+
+    do {
+        cambiarTurno();
+        int opcionTurno = jugadorActual.mostrarOpcionesTurno();
+        cout << opcionTurno << endl;
+        realizarTurno(opcionTurno);
+    } while (hayPalabra || !diccionario->isEmpty());
+    cout << "Se cumplio el while" << endl;
 }
 
 void Partida::agregarJugadores() {
@@ -132,5 +144,57 @@ void Partida::ordenarLetrasJugables() {
         Jugador *jugadorActual = jugadores->desencolar();
         jugadorActual->ordenarLetrasPorPunteo(); // Ordenar las letras del jugador
         jugadores->encolar(jugadorActual); // Volver a encolar al jugador
+    }
+}
+
+void Partida::cambiarTurno() {
+    if (jugadores->isVacio()) {
+        cout << "No hay jugadores en la cola." << endl;
+        return;
+    }
+
+    // Desencolar al siguiente jugador
+    jugadorActual = jugadores->desencolar2();
+
+    // Mostrar el nombre del jugador actual
+    cout << "\nTurno de: " << jugadorActual.getNombre() << endl;
+
+    // Volver a encolar al jugador para mantener el orden de los turnos
+    jugadores->encolar2(jugadorActual);
+}
+
+void Partida::realizarTurno(int opcionTurno) {
+    bool turnoTerminado = false;
+
+    while (!turnoTerminado) {
+        switch (opcionTurno) {
+            case 1: // Colocar una letra en el tablero
+                cout << "Colocar letra en el tablero." << endl;
+
+                tableroDeJuego.imprimirTablero();
+                turnoTerminado = true; // El turno termina después de colocar una letra
+                break;
+            case 2: // Mostrar las letras del jugador actual
+                cout << "Letras de " << jugadorActual.getNombre() << ":" << endl;
+                jugadorActual.mostrarLetras();
+            // El turno no termina, el jugador puede seleccionar otra opción
+                opcionTurno = jugadorActual.mostrarOpcionesTurno();
+                break;
+            case 3: // Mostrar las palabras del diccionario
+                cout << "Palabras en el diccionario:" << endl;
+                diccionario->imprimirLista();
+            // El turno no termina, el jugador puede seleccionar otra opción
+                opcionTurno = jugadorActual.mostrarOpcionesTurno();
+                break;
+            case 4: // Pasar turno
+                cout << jugadorActual.getNombre() << " ha decidido pasar su turno." << endl;
+                turnoTerminado = true; // El turno termina sin realizar ninguna acción
+                break;
+            default: // Opción no válida
+                cout << "Opción no válida. Intenta de nuevo." << endl;
+            // El turno no termina, el jugador puede seleccionar otra opción
+                opcionTurno = jugadorActual.mostrarOpcionesTurno();
+                break;
+        }
     }
 }

@@ -9,7 +9,7 @@
 #include "Pila.h"
 #include "Jugador.h"
 #include "Palabra.h"
-//#include "Tablero.h"
+#include "Tablero.h"
 
 class Partida {
 private:
@@ -21,7 +21,7 @@ private:
     bool hayPalabra;
     bool hayLetraCentro;
     Jugador jugadorActual;
-    //Tablero tableroDeJuego;
+    Tablero tableroDeJuego;
 
 public:
     Partida();
@@ -38,5 +38,8 @@ public:
 
     void ordenarLetrasJugables();
 
+    void cambiarTurno();
+
+    void realizarTurno(int opcionTurno);
 };
 #endif //PARTIDA_H
