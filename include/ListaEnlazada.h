@@ -165,7 +165,14 @@ public:
             cout << actual->getValue() << ", ";
             actual = actual->getNext();
         }
-        cout << "nullptr" << endl;
+    }
+
+    void imprimirLista2() {
+        Nodo<T> *actual = this->cabeza;
+        while (actual != nullptr) {
+            cout << actual->getValue() << endl;
+            actual = actual->getNext();
+        }
     }
 
     T *obtenerDatoEnPosicion(int posicion) {

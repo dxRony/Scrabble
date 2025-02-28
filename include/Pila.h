@@ -52,5 +52,19 @@ public:
     bool isEmpty() {
         return this->cima == nullptr;
     }
+
+    void mostrarPila() {
+        if (isEmpty()) {
+            cout << "La pila está vacía." << endl;
+            return;
+        }
+        //guardando dato desde la cima
+        Nodo<T> *actual = this->cima;
+        while (actual != nullptr) {
+            //mientras exista un dato, se imprime y se avanza al siguiente
+            cout << *actual->getData() << ", ";
+            actual = actual->getNext();
+        }
+    }
 };
 #endif //PILA_H

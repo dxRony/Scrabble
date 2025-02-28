@@ -44,5 +44,11 @@ public:
     void realizarTurno(int opcionTurno);
 
     void comprobarLetraFormada(ListaEnlazada<Palabra> *diccionario);
+
+    Pila<Palabra> *getPalabrasJugadas();
+
+    ListaEnlazada<Palabra> *getDiccionario();
+
+    Cola<Jugador> *getJugadores();
 };
 #endif //PARTIDA_H

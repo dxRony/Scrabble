@@ -12,8 +12,8 @@ al iniciar una partida:
 - primer turno coloca cualquier letra en el centro
 - siguiente turno debe colocar una letra contigua
 - cuando se forma una palabra del diccionario, se retira de palabras jugables
-
 - ciclar hasta que ya no hayan palabras jugables o los jugadores ya no tengan fichas
+
 - guardar datos de la partida cuando esta acabe
 - regresar al menu principal
 - generar reportes

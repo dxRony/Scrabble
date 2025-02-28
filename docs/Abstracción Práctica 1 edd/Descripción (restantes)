@@ -1,10 +1,8 @@
 		Descripción (restantes)
 4) Formación de palabras:
-	-Se formarán las palabras con las fichas
 	-En una pila se guardaran las palabras para "deshacer" el ultimo movimiento
 
 5) Sistema de puntuación:
-	-Se calcula la puntuacion de la palabra formada y se guarda en la lista de punteos
 	-Implementar un algoritmo para visualizar a los jugadores segun sus punteos
 
 6) Finalización del juego:

@@ -2,6 +2,8 @@
 // Created by ronyrojas on 26/02/25.
 //
 #include "../include/Partida.h"
+
+#include "../include/Reporte.h"
 using namespace std;
 
 Partida::Partida() {
@@ -36,13 +38,13 @@ void Partida::iniciarPartida(ListaEnlazada<Palabra> *diccionario) {
     tableroDeJuego.generarTablero();
     tableroDeJuego.imprimirTablero();
 
-
     do {
         cambiarTurno();
         int opcionTurno = jugadorActual.mostrarOpcionesTurno();
         cout << opcionTurno << endl;
         realizarTurno(opcionTurno);
     } while (!partidaTerminada && !diccionario->isEmpty());
+    cout << "Generando reportes..." << endl;
 }
 
 void Partida::agregarJugadores() {
@@ -186,6 +188,8 @@ void Partida::realizarTurno(int opcionTurno) {
                     tableroDeJuego.imprimirTablero();
                     //cuando se coloca una letra se comprueba si en su fila o columna la letra existe en diccionario
                     comprobarLetraFormada(diccionario);
+                    //sumandole 1 turno al jugador
+                    jugadorActual.setCantidadTurnos(jugadorActual.getCantidadTurnos() + 1);
                     turnoTerminado = true;
                 } else {
                     cout << "No se pudo colocar la letra, repite tu turno" << endl;
@@ -206,12 +210,16 @@ void Partida::realizarTurno(int opcionTurno) {
             }
             case 4: {
                 cout << jugadorActual.getNombre() << " ha decidido pasar su turno" << endl;
+                //sumandole 1 turno al jugador
+                jugadorActual.setCantidadTurnos(jugadorActual.getCantidadTurnos() + 1);
                 turnoTerminado = true;
                 break;
             }
             case 5: {
                 cout << "Finalizando partida..." << endl;
                 partidaTerminada = true;
+                //sumandole 1 turno al jugador
+                jugadorActual.setCantidadTurnos(jugadorActual.getCantidadTurnos() + 1);
                 turnoTerminado = true;
                 break;
             }
@@ -256,4 +264,17 @@ void Partida::comprobarLetraFormada(ListaEnlazada<Palabra> *diccionario) {
             cout << "Has formado la palabra : " << palabra << "! Puntuacion obtendida: " << puntuacionPalabra << endl;
         }
     }
+}
+
+//getters
+Pila<Palabra>* Partida::getPalabrasJugadas() {
+    return palabrasJugadas;
+}
+
+ListaEnlazada<Palabra>* Partida::getDiccionario() {
+    return diccionario;
+}
+
+Cola<Jugador>* Partida::getJugadores() {
+    return jugadores;
 }

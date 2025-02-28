@@ -21,4 +21,6 @@ add_executable(Scrabble main.cpp
         include/Letra.h
         src/Letra.cpp
         include/Tablero.h
-        src/Tablero.cpp)
+        src/Tablero.cpp
+        include/Reporte.h
+        src/Reporte.cpp)

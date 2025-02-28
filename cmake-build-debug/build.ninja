@@ -97,6 +97,12 @@ build CMakeFiles/Scrabble.dir/src/Tablero.cpp.o: CXX_COMPILER__Scrabble_unscanne
   OBJECT_DIR = CMakeFiles/Scrabble.dir
   OBJECT_FILE_DIR = CMakeFiles/Scrabble.dir/src
 
+build CMakeFiles/Scrabble.dir/src/Reporte.cpp.o: CXX_COMPILER__Scrabble_unscanned_Debug /home/ronyrojas/Documentos/Scrabble/src/Reporte.cpp || cmake_object_order_depends_target_Scrabble
+  DEP_FILE = CMakeFiles/Scrabble.dir/src/Reporte.cpp.o.d
+  FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/Scrabble.dir
+  OBJECT_FILE_DIR = CMakeFiles/Scrabble.dir/src
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Scrabble
@@ -105,7 +111,7 @@ build CMakeFiles/Scrabble.dir/src/Tablero.cpp.o: CXX_COMPILER__Scrabble_unscanne
 #############################################
 # Link the executable Scrabble
 
-build Scrabble: CXX_EXECUTABLE_LINKER__Scrabble_Debug CMakeFiles/Scrabble.dir/main.cpp.o CMakeFiles/Scrabble.dir/src/MotorDeJuego.cpp.o CMakeFiles/Scrabble.dir/src/Archivo.cpp.o CMakeFiles/Scrabble.dir/src/Palabra.cpp.o CMakeFiles/Scrabble.dir/src/Partida.cpp.o CMakeFiles/Scrabble.dir/src/Jugador.cpp.o CMakeFiles/Scrabble.dir/src/Letra.cpp.o CMakeFiles/Scrabble.dir/src/Tablero.cpp.o
+build Scrabble: CXX_EXECUTABLE_LINKER__Scrabble_Debug CMakeFiles/Scrabble.dir/main.cpp.o CMakeFiles/Scrabble.dir/src/MotorDeJuego.cpp.o CMakeFiles/Scrabble.dir/src/Archivo.cpp.o CMakeFiles/Scrabble.dir/src/Palabra.cpp.o CMakeFiles/Scrabble.dir/src/Partida.cpp.o CMakeFiles/Scrabble.dir/src/Jugador.cpp.o CMakeFiles/Scrabble.dir/src/Letra.cpp.o CMakeFiles/Scrabble.dir/src/Tablero.cpp.o CMakeFiles/Scrabble.dir/src/Reporte.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/Scrabble.dir
   POST_BUILD = :
