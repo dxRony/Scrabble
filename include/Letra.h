@@ -21,7 +21,6 @@ public:
 
     void setPunteo(int punteo);
 
-    // Declaración de la sobrecarga como amiga
     friend ostream &operator<<(ostream &os, const Letra &l);
 };
 #endif //LETRA_H

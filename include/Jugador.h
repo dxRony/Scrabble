@@ -13,7 +13,7 @@ private:
     int cantidadTurnos;
     int tiempoJugado;
     ListaEnlazada<Letra> *letras;
-
+    //encapsulando metodos
     Nodo<Letra>* mergeSort(Nodo<Letra>* cabeza);
     Nodo<Letra>* dividirLista(Nodo<Letra>* cabeza);
     Nodo<Letra>* fusionarListas(Nodo<Letra>* izquierda, Nodo<Letra>* derecha);
@@ -48,7 +48,6 @@ public:
 
     void setLetras(ListaEnlazada<Letra> *letras);
 
-    // Sobrecarga del operador <<
     friend ostream &operator<<(ostream &os, const Jugador &jugador);
 };
 

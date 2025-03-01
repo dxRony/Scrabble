@@ -11,3 +11,13 @@
 1	28	1740805608321495270	build.ninja	74ab88798e943d73
 2	295	1740721500679415406	CMakeFiles/Scrabble.dir/src/Letra.cpp.o	f2ea42b6538b8d6f
 1	240	1740801561161131956	CMakeFiles/Scrabble.dir/src/Partida.cpp.o	5fdef9eae6163c27
+1	231	1740807503333414883	CMakeFiles/Scrabble.dir/src/Palabra.cpp.o	59c8ec24a34c0465
+2	294	1740807503334414876	CMakeFiles/Scrabble.dir/src/Letra.cpp.o	f2ea42b6538b8d6f
+1	294	1740807503333414883	CMakeFiles/Scrabble.dir/src/main.cpp.o	d0e33bc1a5013857
+1	321	1740807503334414876	CMakeFiles/Scrabble.dir/src/Jugador.cpp.o	2de800320aa7b1b
+1	330	1740807503333414883	CMakeFiles/Scrabble.dir/src/MotorDeJuego.cpp.o	2964d56145a6f0c1
+3	331	1740807503335414868	CMakeFiles/Scrabble.dir/src/Reporte.cpp.o	6233c7749ec709f0
+1	350	1740807503333414883	CMakeFiles/Scrabble.dir/src/Archivo.cpp.o	faac6050680dfab9
+2	361	1740807503334414876	CMakeFiles/Scrabble.dir/src/Tablero.cpp.o	3cfb162255066c45
+1	367	1740807503333414883	CMakeFiles/Scrabble.dir/src/Partida.cpp.o	5fdef9eae6163c27
+367	416	1740807503699412262	Scrabble	fc0abb10d5b2357f

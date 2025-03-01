@@ -20,13 +20,6 @@ private:
     Jugador jugadorActual;
     Tablero tableroDeJuego;
 
-public:
-    Partida();
-
-    ~Partida();
-
-    void iniciarPartida(ListaEnlazada<Palabra> *diccionario);
-
     void agregarJugadores();
 
     void generarLetrasJugables();
@@ -40,6 +33,13 @@ public:
     void realizarTurno(int opcionTurno);
 
     void comprobarLetraFormada(ListaEnlazada<Palabra> *diccionario);
+
+public:
+    Partida();
+
+    ~Partida();
+
+    void iniciarPartida(ListaEnlazada<Palabra> *diccionario);
 
     Pila<Palabra> *getPalabrasJugadas();
 

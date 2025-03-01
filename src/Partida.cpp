@@ -264,14 +264,14 @@ void Partida::comprobarLetraFormada(ListaEnlazada<Palabra> *diccionario) {
 }
 
 //getters
-Pila<Palabra>* Partida::getPalabrasJugadas() {
+Pila<Palabra> *Partida::getPalabrasJugadas() {
     return palabrasJugadas;
 }
 
-ListaEnlazada<Palabra>* Partida::getDiccionario() {
+ListaEnlazada<Palabra> *Partida::getDiccionario() {
     return diccionario;
 }
 
-Cola<Jugador>* Partida::getJugadores() {
+Cola<Jugador> *Partida::getJugadores() {
     return jugadores;
 }

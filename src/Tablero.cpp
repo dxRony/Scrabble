@@ -49,7 +49,7 @@ void Tablero::imprimirTablero() const {
     cout << endl;
     // imprimiendo filas
     for (int fila = 0; fila < 15; fila++) {
-        // Mostrar el número de fila
+        // mostrar el número de fila
         cout << setw(2) << (fila + 1) << " |"; // num fila y borde izq
         // mostrando letra de cada casilla
         for (int col = 0; col < 15; col++) {
@@ -60,10 +60,10 @@ void Tablero::imprimirTablero() const {
             }
         }
         cout << endl;
-        // Imprimir el borde inferior de la fila
-        cout << "    -"; // Espacio para alinear las filas
+        // mostrar el borde inferior de la fila
+        cout << "    -"; // espacio para emparejar las filas
         for (int col = 0; col < 15; col++) {
-            cout << "----"; // Borde inferior de cada columna
+            cout << "----"; // borde inferior de cada columna
         }
         cout << endl;
     }
@@ -94,7 +94,7 @@ bool Tablero::colocarLetra(int fila, int columna, Letra *letraAColocar) {
         hayLetraCentro = true;
     } else {
         //si ya hay letra en el centro
-        // Validando que la letra este al lado de otra letra
+        // viendo que la letra este al lado de otra letra
         bool letraContigua = false;
 
         // viendo que haya letra arriba

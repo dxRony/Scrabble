@@ -2,7 +2,6 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
-#include <cstring>
 
 ListaEnlazada<Palabra> *Archivo::leerCSV(const string &rutaArchivo) {
     auto *listaPalabras = new ListaEnlazada<Palabra>();
@@ -15,13 +14,11 @@ ListaEnlazada<Palabra> *Archivo::leerCSV(const string &rutaArchivo) {
     string linea;
     while (getline(archivo, linea)) {
         // leyendo linea por linea
-
         stringstream ss(linea); //dividiendo la linea en palabras
         string palabraTexto;
 
         while (getline(ss, palabraTexto, ',')) {
             //extrayendo las palabras separadas por coma
-
             palabraTexto.erase(0, palabraTexto.find_first_not_of(" \t")); //eliminando espacios en blanco
             palabraTexto.erase(palabraTexto.find_last_not_of(" \t") + 1);
 
@@ -48,10 +45,10 @@ ListaEnlazada<Palabra> *Archivo::ordenarAlfabeticamente() {
     if (!listaPalabras || listaPalabras->isEmpty()) {
         return listaPalabras;
     }
-    bool intercambio;
+    bool hayCambio;
     do {
         //usando algoritmo bubble sort para la ordenacion
-        intercambio = false;//para ver si se intercambio una palabra en cada recorrido del do while
+        hayCambio = false;//para ver si se intercambio una palabra en cada recorrido del do while
         Nodo<Palabra> *actual = listaPalabras->getCabeza();//obteniendo la cabeza de la lista
         while (actual != nullptr && actual->getNext() != nullptr) {
             //mientras hayan palabras en la lista
@@ -62,11 +59,11 @@ ListaEnlazada<Palabra> *Archivo::ordenarAlfabeticamente() {
                 Palabra temp = actual->getValue();//guardando el actual temporalmente
                 actual->setValue(siguiente->getValue());//en actual se guarda el siguiente
                 siguiente->setValue(temp);//en siguiente se guarda el temporal
-                intercambio = true;
+                hayCambio = true;
             }
             actual = actual->getNext();//guardando el siguiente en actual
         }
         //ciclando hasta que ya no haya intercambio
-    } while (intercambio);
+    } while (hayCambio);
     return listaPalabras; //devolviendo la lista ordenada alfabeticamente
 }

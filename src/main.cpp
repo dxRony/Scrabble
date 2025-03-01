@@ -1,7 +1,7 @@
 #include <iostream>
 #include "../include/MotorDeJuego.h"
-#include <cstdlib> // Para rand() y srand()
-#include <ctime>   // Para time()
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 int main() {
     srand(time(nullptr));//semilla de aleatoriedad para toda la ejecucion
