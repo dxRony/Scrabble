@@ -1,7 +1,3 @@
-//
-// Created by ronyrojas on 26/02/25.
-//
-
 #include "../include/Archivo.h"
 #include <fstream>
 #include <sstream>

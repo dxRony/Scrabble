@@ -1,7 +1,3 @@
-//
-// Created by ronyrojas on 26/02/25.
-//
-
 #ifndef PILA_H
 #define PILA_H
 

@@ -1,7 +1,3 @@
-//
-// Created by ronyrojas on 26/02/25.
-//
-
 #ifndef COLA_H
 #define COLA_H
 #include <iostream>
@@ -75,7 +71,7 @@ public:
     }
 
     void encolar(T *dato) {
-        if (dato == nullptr) return; // Verificar que el puntero no sea nulo
+        if (dato == nullptr) return; // viendo que el puntero no sea nulo
         //creando nodo con el apuntador del dato y encolandolo
         auto *nuevoNodo = new Nodo<T>(*dato);
         if (this->fin == nullptr) {

@@ -1,15 +1,13 @@
 # ninja log v6
-66	646	1740761079404110801	CMakeFiles/Scrabble.dir/src/Reporte.cpp.o	6233c7749ec709f0
-65	646	1740761079403110804	CMakeFiles/Scrabble.dir/main.cpp.o	c387848d052f36b
-1	315	1740721500678415421	CMakeFiles/Scrabble.dir/src/Palabra.cpp.o	59c8ec24a34c0465
-65	646	1740761079403110804	CMakeFiles/Scrabble.dir/src/MotorDeJuego.cpp.o	2964d56145a6f0c1
+0	176	1740801561160131968	CMakeFiles/Scrabble.dir/src/main.cpp.o	d0e33bc1a5013857
 0	214	1740797079339193045	CMakeFiles/Scrabble.dir/src/Archivo.cpp.o	faac6050680dfab9
 66	646	1740761079404110801	CMakeFiles/Scrabble.dir/src/Jugador.cpp.o	2de800320aa7b1b
+66	646	1740761079404110801	CMakeFiles/Scrabble.dir/src/Reporte.cpp.o	6233c7749ec709f0
 2	317	1740721500679415406	CMakeFiles/Scrabble.dir/src/Tablero.cpp.o	3cfb162255066c45
-230	279	1740797792422950056	Scrabble	42bf8058bd23598c
-1	230	1740797792193951333	CMakeFiles/Scrabble.dir/src/Partida.cpp.o	5fdef9eae6163c27
-2	295	1740721500679415406	CMakeFiles/Scrabble.dir/src/Letra.cpp.o	f2ea42b6538b8d6f
-1	28	1740801561154132037	build.ninja	74ab88798e943d73
-0	176	1740801561160131968	CMakeFiles/Scrabble.dir/src/main.cpp.o	d0e33bc1a5013857
-1	240	1740801561161131956	CMakeFiles/Scrabble.dir/src/Partida.cpp.o	5fdef9eae6163c27
+65	646	1740761079403110804	CMakeFiles/Scrabble.dir/main.cpp.o	c387848d052f36b
+65	646	1740761079403110804	CMakeFiles/Scrabble.dir/src/MotorDeJuego.cpp.o	2964d56145a6f0c1
+1	315	1740721500678415421	CMakeFiles/Scrabble.dir/src/Palabra.cpp.o	59c8ec24a34c0465
 240	301	1740801561400129170	Scrabble	fc0abb10d5b2357f
+1	28	1740805608321495270	build.ninja	74ab88798e943d73
+2	295	1740721500679415406	CMakeFiles/Scrabble.dir/src/Letra.cpp.o	f2ea42b6538b8d6f
+1	240	1740801561161131956	CMakeFiles/Scrabble.dir/src/Partida.cpp.o	5fdef9eae6163c27

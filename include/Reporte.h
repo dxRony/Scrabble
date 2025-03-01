@@ -1,7 +1,3 @@
-//
-// Created by ronyrojas on 27/02/25.
-//
-
 #ifndef REPORTE_H
 #define REPORTE_H
 #include "Pila.h"

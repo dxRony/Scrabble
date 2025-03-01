@@ -1,7 +1,3 @@
-//
-// Created by ronyrojas on 26/02/25.
-//
-
 #ifndef PARTIDA_H
 #define PARTIDA_H
 #include "ListaEnlazada.h"

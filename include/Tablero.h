@@ -1,7 +1,3 @@
-//
-// Created by ronyrojas on 26/02/25.
-//
-
 #ifndef TABLERO_H
 #define TABLERO_H
 #include "Letra.h"

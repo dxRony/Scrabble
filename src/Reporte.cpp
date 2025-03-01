@@ -1,6 +1,3 @@
-//
-// Created by ronyrojas on 27/02/25.
-//
 #include "../include/Reporte.h"
 
 using namespace std;

@@ -1,7 +1,3 @@
-//
-// Created by ronyrojas on 26/02/25.
-//
-
 #ifndef LETRA_H
 #define LETRA_H
 #include <string>

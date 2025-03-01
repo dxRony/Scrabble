@@ -1,7 +1,3 @@
-//
-// Created by ronyrojas on 26/02/25.
-//
-
 #ifndef JUGADOR_H
 #define JUGADOR_H
 

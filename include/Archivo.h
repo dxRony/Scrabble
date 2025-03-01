@@ -1,7 +1,3 @@
-//
-// Created by ronyrojas on 26/02/25.
-//
-
 #ifndef ARCHIVO_H
 #define ARCHIVO_H
 #include <string>

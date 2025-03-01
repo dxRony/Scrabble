@@ -1,7 +1,3 @@
-//
-// Created by ronyrojas on 26/02/25.
-//
-
 #ifndef LISTAENLAZADA_H
 #define LISTAENLAZADA_H
 #include <iostream>

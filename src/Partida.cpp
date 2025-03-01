@@ -1,6 +1,3 @@
-//
-// Created by ronyrojas on 26/02/25.
-//
 #include "../include/Partida.h"
 
 #include "../include/Reporte.h"

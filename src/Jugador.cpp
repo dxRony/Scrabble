@@ -1,10 +1,3 @@
-//
-// Created by ronyrojas on 26/02/25.
-//
-
-//
-// Created by ronyrojas on 19/02/25.
-//
 #include "../include/Jugador.h"
 #include "../include/Letra.h"
 #include <iostream>
@@ -20,18 +13,18 @@ Jugador::Jugador() {
 }
 
 void Jugador::mostrarLetras() const {
-    // Verificamos si el jugador tiene letras
+    // ver si el jugador tiene letras
     if (letras == nullptr || letras->isEmpty()) {
         cout << "El jugador no tiene letras en su inventario." << endl;
         return;
     }
 
-    // Recorremos la lista de letras
+    // recorriendo la lista de letras
     for (int i = 0; i < letras->getTamano(); i++) {
         // Obtenemos la letra en la posición actual
         Letra *letraActual = letras->obtenerDatoEnPosicion(i);
 
-        // Mostramos la información de la letra
+        // mostrando la info de la letra
         if (letraActual != nullptr) {
             cout << i + 1 << ") Letra: " << letraActual->getLetra()
                     << ", Punteo: " << letraActual->getPunteo() << "; ";
