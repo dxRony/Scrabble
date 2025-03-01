@@ -1,5 +1,5 @@
 #include <iostream>
-#include "include/MotorDeJuego.h"
+#include "../include/MotorDeJuego.h"
 #include <cstdlib> // Para rand() y srand()
 #include <ctime>   // Para time()
 using namespace std;

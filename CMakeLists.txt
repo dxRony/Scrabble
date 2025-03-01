@@ -3,7 +3,7 @@ project(Scrabble)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(Scrabble main.cpp
+add_executable(Scrabble src/main.cpp
         include/MotorDeJuego.h
         src/MotorDeJuego.cpp
         include/Archivo.h
