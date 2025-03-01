@@ -45,7 +45,10 @@ ListaEnlazada<Palabra> *Archivo::leerCSV(const string &rutaArchivo) {
 
 ListaEnlazada<Palabra> *Archivo::ordenarAlfabeticamente() {
     //mandando a leer el archivo y guardar las palabras en listaPalabras
-    ListaEnlazada<Palabra> *listaPalabras = this->leerCSV("../util/palabras.csv");
+    cout << "Ingresa la ruta del archivo.csv..." << endl;
+    string rutaArchivo;
+    cin >> rutaArchivo;
+    ListaEnlazada<Palabra> *listaPalabras = this->leerCSV(rutaArchivo);
     if (!listaPalabras || listaPalabras->isEmpty()) {
         return listaPalabras;
     }
